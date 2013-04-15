@@ -8,9 +8,11 @@
 	$uuid = generateUUID();
 	echo $uuid;
 	//test
-	setPassword($redis, $uuid, 'cakecake');
-	setContact($redis, $uuid, 'mal@serenity', 99999);
-	setProfile($redis, $uuid, 'Malcolm', 'Reynolds', 'Ship Captain', 'I like to smuggle.', 1, 99999);
+	//setPassword($redis, $uuid, 'cakecake');
+	//setContact($redis, $uuid, 'mal@serenity', 99999);
+	//setProfile($redis, $uuid, 'Malcolm', 'Reynolds', 'Ship Captain', 'I like to smuggle.', 1, 99999);
+	//setGoals($redis, $uuid, 'Captain', 'comma,delimited,stuff?');
+	//setExperience($redis, $uuid, 'done,this,and,that');
 	
 	
 	function generateUUID() {
@@ -55,5 +57,20 @@
 			'zip_code'    => $zip
 		);
 		$db->set('user:profile:' . $id, json_encode($profileEntry));
+	}
+	
+	function setGoals($db, $id, $ttl, $desc) {
+		$goalsEntry = array (
+			'title'            => $ttl,
+			'goal_description' => $desc
+		);
+		$db->set('user:goals:' . $id, json_encode($goalsEntry));
+	}
+	
+	function setExperience($db, $id, $desc) {
+		$experienceEntry = array (
+			'experience_description' => $desc
+		);
+		$db->set('user:experience:' . $id, json_encode($experienceEntry));
 	}
 ?>
