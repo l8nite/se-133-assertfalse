@@ -6,8 +6,10 @@
 	//$redis->set('user:12345', 'cake');
 	
 	$uuid = generateUUID();
-	//test values
-	$password = 'cakecake';
+	//test
+	setPassword($redis, $uuid, 'cakecake');
+	setProfile($redis, $uuid, 'Malcolm', 'Reynolds', 'Ship Captain', 'I like to smuggle.', 1, 99999);
+	
 	
 	function generateUUID() {
 		return randomString(8) . '-' . randomString(4) . '-4' . randomString(3) . '-8' . randomString(3) . '-' . randomString(12);
@@ -23,7 +25,7 @@
 		return $rand;
 	}
 	
-	function setPassword($id, $pw, $db) {
+	function setPassword($db, $id, $pw) {
 		$salt = randomString(8);
 		$hash = crypt($pw, $salt);
 		$passwordEntry = array(
@@ -33,5 +35,15 @@
 		$db->set('user:password:' . $id, json_encode($passwordEntry));
 	}
 	
-	setPassword($uuid, $password, $redis);
+	function setProfile($db, $id, $fname, $lname, $ttl, $desc, $type, $zip) {
+		$profileEntry = array (
+			'first'       => $fname,
+			'last'        => $lname,
+			'title'       => $ttl,
+			'description' => $desc,
+			'user_type'   => $type,
+			'zip_code'    => $zip
+		);
+		$db->set('user:profile:' . $id, json_encode($profileEntry));
+	}
 ?>
