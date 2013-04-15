@@ -6,8 +6,10 @@
 	//$redis->set('user:12345', 'cake');
 	
 	$uuid = generateUUID();
+	echo $uuid;
 	//test
 	setPassword($redis, $uuid, 'cakecake');
+	setContact($redis, $uuid, 'mal@serenity', 99999);
 	setProfile($redis, $uuid, 'Malcolm', 'Reynolds', 'Ship Captain', 'I like to smuggle.', 1, 99999);
 	
 	
@@ -28,11 +30,19 @@
 	function setPassword($db, $id, $pw) {
 		$salt = randomString(8);
 		$hash = crypt($pw, $salt);
-		$passwordEntry = array(
+		$passwordEntry = array (
 			'pass' => $hash,
 			'salt' => $salt
 		);
 		$db->set('user:password:' . $id, json_encode($passwordEntry));
+	}
+	
+	function setContact($db, $id, $email, $zip) {
+		$contactEntry = array (
+			'email'    => $email,
+			'zip_code' => $zip
+		);
+		$db->set('user:contact:' . $id, json_encode($contactEntry));
 	}
 	
 	function setProfile($db, $id, $fname, $lname, $ttl, $desc, $type, $zip) {
