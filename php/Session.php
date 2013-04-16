@@ -2,7 +2,7 @@
 class Session {
 	public static function resolveSessionID($db, $sid) {
 		$sessionEntry = json_decode($db->get('session:user:' . $sid));
-		return $sessionEntry[0];
+		return substr($sessionEntry[0], 5); //strip off the 'user:'
 	}
 
 	public static function generateSession($db, $id) {

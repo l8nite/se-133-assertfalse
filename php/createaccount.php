@@ -4,21 +4,24 @@ header('Access-Control-Allow-Origin: *'); //TODO, fix if possible
 
 require 'Predis/Autoloader.php';
 require './Session.php';
+require './Profile.php';
 
 Predis\Autoloader::register();
 $redis = new Predis\Client('tcp://kong.idlemonkeys.net:6379');
-
-$uuid = generateUUID();
 //TEST
 //setPassword($redis, $uuid, 'cakecake');
 //setContact($redis, $uuid, 'mal@serenity', 99999);
 //setProfile($redis, $uuid, 'Malcolm', 'Reynolds', 'Ship Captain', 'I like to smuggle.', 1, 99999);
 //setGoals($redis, $uuid, 'Captain', 'comma,delimited,stuff?');
 //setExperience($redis, $uuid, 'done,this,and,that');
+//Profile::updateTitle($redis, 'fbzlmfv6-6sol-4103-89o6-cy2v42o7negr', 'testTitle');
+//Profile::updateDescription($redis, 'fbzlmfv6-6sol-4103-89o6-cy2v42o7negr', 'testSummary');
 //TEST
 
 //if first sign up page
 if (isset($_REQUEST['inputEmail']) && isset($_REQUEST['inputPassword']) && isset($_REQUEST['typeOptions']) && isset($_REQUEST['inputFirst']) && isset($_REQUEST['inputLast']) && isset($_REQUEST['inputZip'])) {
+	$uuid = generateUUID();
+	
 	setPassword($redis, $uuid, $_REQUEST['inputPassword']);
 	setContact($redis, $uuid, $_REQUEST['inputEmail'], $_REQUEST['inputZip']);
 	setProfile($redis, $uuid, $_REQUEST['inputFirst'], $_REQUEST['inputLast'], 'Title', 'Description', $_REQUEST['typeOptions'], $_REQUEST['inputZip']);
@@ -26,6 +29,21 @@ if (isset($_REQUEST['inputEmail']) && isset($_REQUEST['inputPassword']) && isset
 	$sid = Session::generateSession($redis, $uuid);
 	setcookie('MentorWebSession', $sid, time()+60*60*24*30, "/"); //30 days
 	echo $sid;
+}
+
+//if second sign up page
+if (isset($_REQUEST['inputTitle']) && isset($_REQUEST['inputSummary']) && isset($_REQUEST['inputGoals']) && isset($_REQUEST['inputExperience'])) {
+	if (isset($_COOKIE['MentorWebSession'])) {
+		$uuid = Session::resolveSessionID($redis, $_COOKIE['MentorWebSession']);
+		
+		Profile::updateTitle($redis, $uuid, $_REQUEST['inputTitle']);
+		Profile::updateDescription($redis, $uuid, $_REQUEST['inputSummary']);
+		setGoals($redis, $uuid, $_REQUEST['inputTitle'], $_REQUEST['inputGoals']);
+		setExperience($redis, $uuid, $_REQUEST['inputExperience']);
+		
+		echo $_COOKIE['MentorWebSession'];
+	} else {
+	}
 }
 
 function generateUUID() {
