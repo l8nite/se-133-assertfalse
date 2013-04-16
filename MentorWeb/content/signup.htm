@@ -192,11 +192,9 @@
     <script src="../assets/js/bootstrap.js"></script>
     <script>
 		$('#mainForm').on('submit', function(event) {
-			event.preventDefault();
-			//console.log($('#mainForm').serialize()); //tester
+			event.preventDefault(); //TODO could not find original listener
 			$.post('http://localhost/php/createaccount.php', $('#mainForm').serialize());
 		});
 	</script>
-
   </body>
 </html>
