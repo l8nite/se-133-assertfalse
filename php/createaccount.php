@@ -21,12 +21,13 @@ $redis = new Predis\Client('tcp://kong.idlemonkeys.net:6379');
 //if first sign up page
 if (isset($_REQUEST['inputEmail']) && isset($_REQUEST['inputPassword']) && isset($_REQUEST['typeOptions']) && isset($_REQUEST['inputFirst']) && isset($_REQUEST['inputLast']) && isset($_REQUEST['inputZip'])) {
 	$uuid = generateUUID();
-	
+
 	setPassword($redis, $uuid, $_REQUEST['inputPassword']);
 	setContact($redis, $uuid, $_REQUEST['inputEmail'], $_REQUEST['inputZip']);
 	setProfile($redis, $uuid, $_REQUEST['inputFirst'], $_REQUEST['inputLast'], 'Title', 'Description', $_REQUEST['typeOptions'], $_REQUEST['inputZip']);
 
 	$sid = Session::generateSession($redis, $uuid);
+	setcookie('MentorWebSession', $sid, time()-1, "/");
 	setcookie('MentorWebSession', $sid, time()+60*60*24*30, "/"); //30 days
 	echo $sid;
 }
@@ -35,13 +36,11 @@ if (isset($_REQUEST['inputEmail']) && isset($_REQUEST['inputPassword']) && isset
 if (isset($_REQUEST['inputTitle']) && isset($_REQUEST['inputSummary']) && isset($_REQUEST['inputGoals']) && isset($_REQUEST['inputExperience'])) {
 	if (isset($_COOKIE['MentorWebSession'])) {
 		$uuid = Session::resolveSessionID($redis, $_COOKIE['MentorWebSession']);
-		
+
 		Profile::updateTitle($redis, $uuid, $_REQUEST['inputTitle']);
 		Profile::updateDescription($redis, $uuid, $_REQUEST['inputSummary']);
 		setGoals($redis, $uuid, $_REQUEST['inputTitle'], $_REQUEST['inputGoals']);
 		setExperience($redis, $uuid, $_REQUEST['inputExperience']);
-		
-		echo $_COOKIE['MentorWebSession'];
 	} else {
 	}
 }
