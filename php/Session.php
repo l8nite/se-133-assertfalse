@@ -4,23 +4,23 @@ class Session {
 		$sessionEntry = json_decode($db->get('session:user:' . $sid));
 		return $sessionEntry[0];
 	}
-	
+
 	public static function generateSession($db, $id) {
 		$sid = self::generateSessionID();
-		
+
 		$userSessionEntry = array (
 			'session:user:' . $sid
 		);
 		$db->set('user:session:' . $id, json_encode($userSessionEntry));
-		
+
 		$sessionUserEntry = array (
 			'user:' . $id
 		);
 		$db->set('session:user:' . $sid, json_encode($sessionUserEntry));
-		
+
 		return $sid;
 	}
-	
+
 	private static function generateSessionID() {
 		return randomString(8) . '-' . randomString(4) . '-4' . randomString(3) . '-9' . randomString(3) . '-' . randomString(12);
 	}

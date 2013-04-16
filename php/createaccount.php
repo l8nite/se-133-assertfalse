@@ -17,13 +17,14 @@ $uuid = generateUUID();
 //setExperience($redis, $uuid, 'done,this,and,that');
 //TEST
 
-//if first sign up page 
+//if first sign up page
 if (isset($_REQUEST['inputEmail']) && isset($_REQUEST['inputPassword']) && isset($_REQUEST['typeOptions']) && isset($_REQUEST['inputFirst']) && isset($_REQUEST['inputLast']) && isset($_REQUEST['inputZip'])) {
 	setPassword($redis, $uuid, $_REQUEST['inputPassword']);
 	setContact($redis, $uuid, $_REQUEST['inputEmail'], $_REQUEST['inputZip']);
 	setProfile($redis, $uuid, $_REQUEST['inputFirst'], $_REQUEST['inputLast'], 'Title', 'Description', $_REQUEST['typeOptions'], $_REQUEST['inputZip']);
-	
+
 	$sid = Session::generateSession($redis, $uuid);
+	setcookie('MentorWebSession', $sid, time()+60*60*24*30, "/"); //30 days
 	echo $sid;
 }
 
