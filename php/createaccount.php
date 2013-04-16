@@ -1,4 +1,7 @@
 ﻿<?php
+	//disable domain access control
+    header('Access-Control-Allow-Origin: *'); //TODO
+	
 	require 'Predis/Autoloader.php';
 	Predis\Autoloader::register();
 	
@@ -14,6 +17,12 @@
 	//setGoals($redis, $uuid, 'Captain', 'comma,delimited,stuff?');
 	//setExperience($redis, $uuid, 'done,this,and,that');
 	
+	//email, 
+	if (isset($_REQUEST['inputEmail']) && isset($_REQUEST['inputPassword']) && isset($_REQUEST['typeOptions']) && isset($_REQUEST['inputFirst']) && isset($_REQUEST['inputLast']) && isset($_REQUEST['inputZip'])) {
+		setPassword($redis, $uuid, $_REQUEST['inputPassword']);
+		setContact($redis, $uuid, $_REQUEST['inputEmail'], $_REQUEST['inputZip']);
+		setProfile($redis, $uuid, $_REQUEST['inputFirst'], $_REQUEST['inputLast'], 'Title', 'Description', $_REQUEST['typeOptions'], $_REQUEST['inputZip']);
+	}	
 	
 	function generateUUID() {
 		return randomString(8) . '-' . randomString(4) . '-4' . randomString(3) . '-8' . randomString(3) . '-' . randomString(12);
