@@ -1,5 +1,53 @@
 ﻿<?php
 class Profile {
+
+	private $database;
+	private $uuid;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param $db Predis database client.
+	 * @param $uuid Raw UUID string.
+	 */
+	public function __construct($db, $uuid) {
+		$this->database = $db;
+		$this->uuid = $uuid;
+	}
+
+	/**
+	 * Get Contact object.
+	 * @return String in JSON format.
+	 */
+	public function getContact() {
+		return $this->database->get('user:contact:' . $this->uuid);
+	}
+
+	/**
+	 * Get Profile object.
+	 * @return String in JSON format.
+	 */
+	public function getProfile() {
+		return $this->database->get('user:profile:' . $this->uuid);
+	}
+
+	/**
+	 * Get Experience object.
+	 * @return String in JSON format.
+	 */
+	public function getExperience() {
+		return $this->database->get('user:experience:' . $this->uuid);
+	}
+
+	/**
+	 * Get Goals object.
+	 * @return String in JSON format.
+	 */
+	public function getGoals() {
+		return $this->database->get('user:goals:' . $this->uuid);
+	}
+
+	//vvvv Mainly for Create Account function. vvvv
 	public static function updateTitle($db, $uuid, $title) {
 		$profileEntry = json_decode($db->get('user:profile:' . $uuid));
 		$profileEntry->{'title'} = $title;
@@ -11,8 +59,7 @@ class Profile {
 		$profileEntry->{'description'} = $desc;
 		$db->set('user:profile:' . $uuid, json_encode($profileEntry));
 	}
-	
-	//#### Mainly for Create Account function. ####
+
 	public static function generateUUID() {
 		return self::randomString(8) . '-' . self::randomString(4) . '-4' . self::randomString(3) . '-8' . self::randomString(3) . '-' . self::randomString(12);
 	}
@@ -26,7 +73,7 @@ class Profile {
 		}
 		return $rand;
 	}
-	
+
 	public static function setPassword($db, $id, $pw) {
 		$salt = self::randomString(8);
 		$hash = crypt($pw, $salt);
@@ -71,6 +118,6 @@ class Profile {
 		);
 		$db->set('user:experience:' . $id, json_encode($experienceEntry));
 	}
-	//#### Mainly for Create Account function. ####
+	//^^^^ Mainly for Create Account function. ^^^^
 }
 ?>
