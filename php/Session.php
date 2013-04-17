@@ -22,7 +22,7 @@ class Session {
 	}
 
 	private static function generateSessionID() {
-		return randomString(8) . '-' . randomString(4) . '-4' . randomString(3) . '-9' . randomString(3) . '-' . randomString(12);
+		return self::randomString(8) . '-' . self::randomString(4) . '-4' . self::randomString(3) . '-9' . self::randomString(3) . '-' . self::randomString(12);
 	}
 
 	private static function randomString($len) {
