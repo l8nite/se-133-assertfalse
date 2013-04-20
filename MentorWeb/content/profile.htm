@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -79,7 +79,7 @@
                     </ul>
                 </li>
                 <li><a href="#about">About</a></li>
-                </ul>   
+                </ul>
             </div><!--/.nav-collapse -->
             </div><!-- /.navbar-inner -->
         </div><!-- /.navbar -->
@@ -107,38 +107,38 @@
                 <img src="../assets/img/John-Doe.jpg" alt="" />
             </div>
             <div class="span8">
-                <h2>John Doe</h2>
-                <h4>Embedded Systems Entrepreneur and Web Application Designer</h4>
-                <p>Computer engineering has not only been my chosen educational path, but a passion. Between my professional career and education at San Jose State University, I have had an opportunity to use my time for digital hardware and web application projects. I am looking for a mentor to guide me toward my goal in computer engineering.</p>
+                <h2 id="nameField">John Doe</h2>
+                <h4 id="titleField">Embedded Systems Entrepreneur and Web Application Designer</h4>
+                <p  id="descField">Computer engineering has not only been my chosen educational path, but a passion. Between my professional career and education at San Jose State University, I have had an opportunity to use my time for digital hardware and web application projects. I am looking for a mentor to guide me toward my goal in computer engineering.</p>
             </div>
-            <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p>           
+            <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p>
           </div>
           <div class="row-fluid">
             <div class="span12">
               <h3>Contact</h3>
               <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p> 
+            <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p>
             </div><!--/span-->
           </div><!--/row-->
           <div class="row-fluid">
             <div class="span12">
               <h3>Experience</h3>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p> 
+              <p id="expField">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p>
             </div><!--/span-->
           </div><!--/row-->
           <div class="row-fluid">
             <div class="span12">
               <h3>Goals</h3>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p> 
+              <p id="goalsField">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p>
             </div><!--/span-->
           </div><!--/row-->
           <div class="row-fluid">
             <div class="span12">
               <h3>Education</h3>
               <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p> 
+              <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p>
             </div><!--/span-->
           </div><!--/row-->
         </div><!--/span-->
@@ -157,6 +157,14 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../assets/js/jquery.js"></script>
     <script src="../assets/js/bootstrap.js"></script>
-
+    <script>
+		$(document).ready(function () {
+			$.get('http://localhost/php/viewownprofile.php', function(returnData) {
+				$('#descField').html(returnData);
+				//var profileData = $.parseJSON(returnData);
+				//alert(profileData.name);
+			}, 'text');
+		});
+	</script>
   </body>
 </html>

@@ -17,34 +17,34 @@ class Profile {
 
 	/**
 	 * Get Contact object.
-	 * @return String in JSON format.
+	 * @return Array.
 	 */
 	public function getContact() {
-		return $this->database->get('user:contact:' . $this->uuid);
+		return json_decode($this->database->get('user:contact:' . $this->uuid));
 	}
 
 	/**
 	 * Get Profile object.
-	 * @return String in JSON format.
+	 * @return Array.
 	 */
 	public function getProfile() {
-		return $this->database->get('user:profile:' . $this->uuid);
+		return json_decode($this->database->get('user:profile:' . $this->uuid));
 	}
 
 	/**
 	 * Get Experience object.
-	 * @return String in JSON format.
+	 * @return Array.
 	 */
 	public function getExperience() {
-		return $this->database->get('user:experience:' . $this->uuid);
+		return json_decode($this->database->get('user:experience:' . $this->uuid));
 	}
 
 	/**
 	 * Get Goals object.
-	 * @return String in JSON format.
+	 * @return Array.
 	 */
 	public function getGoals() {
-		return $this->database->get('user:goals:' . $this->uuid);
+		return json_decode($this->database->get('user:goals:' . $this->uuid));
 	}
 
 	//vvvv Mainly for Create Account function. vvvv
