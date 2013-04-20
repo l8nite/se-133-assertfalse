@@ -21,7 +21,9 @@ if (isset($_COOKIE['MentorWebSession'])) {
 	$return = array (
 		'name'        => $profileEntry->{'first'} . ' ' . $profileEntry->{'last'},
 		'title'       => $profileEntry->{'title'},
-		'description' => $profileEntry->{'description'}
+		'description' => $profileEntry->{'description'},
+		'experience'  => $experienceEntry->{'experience_description'},
+		'goals'       => $goalsEntry->{'goal_description'}
 	);
 	
 	echo json_encode($return);
