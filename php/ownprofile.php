@@ -1,3 +1,30 @@
+﻿<?php
+//disable domain access control
+header('Access-Control-Allow-Origin: *'); //TODO, fix if possible
+
+require 'Predis/Autoloader.php';
+require './Session.php';
+require './Profile.php';
+
+if (isset($_COOKIE['MentorWebSession'])) {
+	Predis\Autoloader::register();
+	//$redis = new Predis\Client('tcp://kong.idlemonkeys.net:6379');
+	$redis = new Predis\Client('tcp://localhost:6379');
+
+	$uuid = Session::resolveSessionID($redis, $_COOKIE['MentorWebSession']);
+
+	$profile = new Profile($redis, $uuid);
+	$profileEntry = $profile->getProfile();
+	$experienceEntry = $profile->getExperience();
+	$goalsEntry = $profile->getGoals();
+	
+	$return = array (
+		'name'        => $profileEntry->{'first'} . ' ' . $profileEntry->{'last'},
+		'title'       => $profileEntry->{'title'},
+		'description' => $profileEntry->{'description'}
+	);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -107,9 +134,9 @@
                 <img src="../assets/img/John-Doe.jpg" alt="" />
             </div>
             <div class="span8">
-                <h2 id="nameField">John Doe</h2>
-                <h4 id="titleField">Embedded Systems Entrepreneur and Web Application Designer</h4>
-                <p  id="descField">Computer engineering has not only been my chosen educational path, but a passion. Between my professional career and education at San Jose State University, I have had an opportunity to use my time for digital hardware and web application projects. I am looking for a mentor to guide me toward my goal in computer engineering.</p>
+                <h2 id="nameField"><?= $return['name']?></h2>
+                <h4 id="titleField"><?= $return['title']?></h4>
+                <p  id="descField"><?= $return['description']?></p>
             </div>
             <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p>
           </div>
@@ -158,14 +185,6 @@
     <script src="../assets/js/jquery.js"></script>
     <script src="../assets/js/bootstrap.js"></script>
     <script>
-		$(document).ready(function () {
-			$.get('http://localhost/php/viewownprofile.php', function(returnData) {
-				var profileData = $.parseJSON($.trim(returnData)); //PHP seems to add two invisible, trimmable characters in front of output
-				$('#nameField').html(profileData.name);
-				$('#titleField').html(profileData.title);
-				$('#descField').html(profileData.description);
-			}, 'text');
-		});
 	</script>
   </body>
 </html>
