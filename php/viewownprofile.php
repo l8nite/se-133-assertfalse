@@ -15,6 +15,7 @@ if (isset($_COOKIE['MentorWebSession'])) {
 
 	$profile = new Profile($redis, $uuid);
 	$profileEntry = $profile->getProfile();
+	$contactEntry = $profile->getContact();
 	$experienceEntry = $profile->getExperience();
 	$goalsEntry = $profile->getGoals();
 	
@@ -22,6 +23,7 @@ if (isset($_COOKIE['MentorWebSession'])) {
 		'name'        => $profileEntry->{'first'} . ' ' . $profileEntry->{'last'},
 		'title'       => $profileEntry->{'title'},
 		'description' => $profileEntry->{'description'},
+		'email'       => $contactEntry->{'email'},
 		'experience'  => $experienceEntry->{'experience_description'},
 		'goals'       => $goalsEntry->{'goal_description'}
 	);

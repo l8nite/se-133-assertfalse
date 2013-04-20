@@ -101,7 +101,7 @@
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="span9" id="mainField">
+        <div class="span9" id="mainField" style="display:none">
           <div class="row-fluid">
             <div class="span4">
                 <img src="../assets/img/John-Doe.jpg" alt="" />
@@ -116,7 +116,7 @@
           <div class="row-fluid">
             <div class="span12">
               <h3>Contact</h3>
-              <p>loading...</p>
+              <p id="contactField">loading...</p>
             <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p>
             </div><!--/span-->
           </div><!--/row-->
@@ -158,19 +158,18 @@
     <script src="../assets/js/jquery.js"></script>
     <script src="../assets/js/bootstrap.js"></script>
     <script>
-		$('#mainField').hide();
-	
 		$(document).ready(function () {
 			$.get('http://localhost/php/viewownprofile.php', function(returnData) {
 				var profileData = $.parseJSON($.trim(returnData)); //PHP seems to add two invisible, trimmable characters in front of output
-				
+
 				$('#nameField').html(profileData.name);
 				$('#titleField').html(profileData.title);
 				$('#descField').html(profileData.description);
+				$('#contactField').html(profileData.email);
 				$('#expField').html(profileData.experience);
 				$('#goalsField').html(profileData.goals);
-				
-				$('#mainField').show();
+
+				$('#mainField').show(); //div mainField has inline "display:none"
 			}, 'text');
 		});
 	</script>
