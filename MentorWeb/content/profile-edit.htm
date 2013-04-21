@@ -1,0 +1,229 @@
+<!DOCTYPE html> 
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Profile &middot; MentorWeb</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../assets/css/mentorweb.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+
+  <body>
+
+<div class="navbar-wrapper">
+        <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+        <div class="container">
+
+        <div class="navbar navbar-inverse">
+            <div class="navbar-inner">
+            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">MentorWeb</a>
+            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                <li class="active"><a href="#">Home</a></li>
+                <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    <li><a href="#">Edit Profile</a></li>
+                    <li><a href="#">Manage Files</a></li>
+                    <li><a href="#">Become a Mentor</a></li>
+                    <li><a href="#">Upgrade to Premium</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header">Mentors</li>
+                    <li><a href="#">Find a Mentor</a></li>
+                    <li><a href="#">Review a Mentor</a></li>
+                    <li><a href="#">Manage Mentors</a></li>
+                    </ul>
+                </li>
+                <li><a href="#about">About</a></li>
+                </ul>   
+            </div><!--/.nav-collapse -->
+            </div><!-- /.navbar-inner -->
+        </div><!-- /.navbar -->
+        </div> <!-- /.container -->
+    </div>
+
+    <div class="container-fluid" style="margin-top:20px;">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Profile</li>
+              <li><a href="#">Overview</a></li>
+              <li><div class="divider" /></li>
+              <li class="active"><a href="#Contact">Contact</a></li>
+              <li><a href="#Experience">Experience</a></li>
+              <li><a href="#Goals">Goals</a></li>
+              <li><a href="#Education">Education</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+          <div class="row-fluid">
+            <div class="span12">
+                <form class="form-horizontal" id="mainForm">
+					<fieldset ID="Contact">
+						<legend>Contact Details</legend>
+						<div class="control-group">
+							<label class="control-label" for="inputEmail">Email</label>
+							<div class="controls">
+								<input type="text" name="inputEmail" id="inputEmail" placeholder="Email">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputFirst">First Name</label>
+							<div class="controls">
+								<input type="text" name="inputFirst" id="inputFirst" placeholder="First Name">
+								
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputLast">Last Name</label>
+							<div class="controls">
+								<input type="text" name="inputLast" id="inputLast" placeholder="Last Name">
+								
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>Additional Contact Details</legend>
+						<div class="control-group">
+							<label class="control-label" for="inputFirst">Address</label>
+							<div class="controls">
+								<input type="text" name="inputStreet" id="inputStreet" class="input-xlarge" placeholder="Street Address">
+							</div>
+						</div>				
+						<div class="control-group">
+							<label class="control-label" for="inputCity">City</label>
+							<div class="controls">
+								<input type="text" name="inputCity" id="inputCity" class="input-small" placeholder="City">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputState">State</label>
+							<div class="controls">
+								<input type="text" name="inputState" id="inputState" class="input-mini" placeholder="State">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputZip">Zip Code</label>
+							<div class="controls">
+								<input class="input-mini" type="text" name="inputZip" id="inputZip" placeholder="Zip Code">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputCell">Cell Phone</label>
+							<div class="controls">
+								<input class="input-mini" type="text" name="inputCellArea" id="inputCellArea" placeholder="408">
+								<input class="input-small" type="text" name="inputCell" id="inputCell" placeholder="555-3689">
+							</div>
+						</div>
+					</fieldset>
+					<fieldset ID="Experience">
+						<legend>Experience</legend>
+						<div class="control-group">
+							<label class="control-label" for="inputFirst">Professional Experience</label>
+							<div class="controls">
+								<textarea rows="4" type="text" name="inputExperience" id="inputExperience" class="input-xlarge" placeholder="Experience"></textarea>
+								<span class="help-block">Write about your past work experiences.</span>
+							</div>
+						</div>				
+						<div class="control-group">
+							<label class="control-label" for="inputInterest">Interests and Hobbies</label>
+							<div class="controls">
+								<textarea rows="4" type="text" name="inputInterest" id="inputInterest" class="input-xlarge" placeholder="City"></textarea>
+								<span class="help-block">Write about your interests and hobbies outside of your professional career.</span>
+							</div>
+						</div>
+					</fieldset>
+					<fieldset ID="Goals">
+						<legend>Goals</legend>
+						<div class="control-group">
+							<label class="control-label" for="inputFirst">Future Prospects</label>
+							<div class="controls">
+								<textarea rows="4" type="text" name="inputGoals" id="inputGoals" class="input-xlarge" placeholder="Goals"></textarea>
+								<span class="help-block">Write about your future goals, both longterm and short term for professional and personal growth.</span>
+							</div>
+						</div>				
+					</fieldset>
+					<fieldset ID="Education">
+						<legend>Education</legend>
+						<div class="control-group">
+							<label class="control-label" for="inputDegree">Degrees</label>
+							<div class="controls">
+								<textarea rows="4" type="text" name="inputDegree" id="inputDegree" class="input-xlarge" placeholder="Goals"></textarea>
+								<span class="help-block">What degrees have you obtained in school?</span>
+							</div>
+							<label class="control-label" for="inputEducationOther">Other Notable Educational Accomplishments</label>
+							<div class="controls">
+								<textarea rows="4" type="text" name="inputEducationOther" id="inputEducationOther" class="input-xlarge" placeholder="Goals"></textarea>
+								<span class="help-block">What other notable education have you obtained outside of school?</span>
+							</div>
+						</div>				
+					</fieldset>
+				</form>
+            </div>
+            <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p>           
+          </div>
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; MentorWeb 2013</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap.js"></script>
+
+  </body>
+</html>
