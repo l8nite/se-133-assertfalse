@@ -18,9 +18,7 @@ else {
 }
 
 
-$sender = $_REQUEST['from'];
-// TODO: LOOK UP SENDER UUID
-$sender_uuid = $sender;
+$sender_uuid = $_REQUEST['from'];
 
 $messages = $redis->zrange("messages:$uuid:$sender_uuid", 0, -1, 'withscores');
 $responses = array();

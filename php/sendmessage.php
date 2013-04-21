@@ -17,9 +17,7 @@ else {
     exit;
 }
 
-$recipient = $_REQUEST['to'];
-// TODO : need to look up recipient UUID
-$recipient_uuid = $recipient;
+$recipient_uuid = $_REQUEST['to'];
 $message = $_REQUEST['m'];
 $sender_uuid = $uuid;
 
