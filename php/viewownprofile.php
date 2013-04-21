@@ -18,7 +18,7 @@ if (isset($_COOKIE['MentorWebSession'])) {
 	$contactEntry = $profile->getContact();
 	$experienceEntry = $profile->getExperience();
 	$goalsEntry = $profile->getGoals();
-	
+
 	$return = array (
 		'name'        => $profileEntry->{'first'} . ' ' . $profileEntry->{'last'},
 		'title'       => $profileEntry->{'title'},
@@ -27,7 +27,7 @@ if (isset($_COOKIE['MentorWebSession'])) {
 		'experience'  => $experienceEntry->{'experience_description'},
 		'goals'       => $goalsEntry->{'goal_description'}
 	);
-	
+
 	echo json_encode($return);
 }
 ?>
