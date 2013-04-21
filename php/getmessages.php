@@ -20,10 +20,17 @@ else {
 
 $sender_uuid = $_REQUEST['from'];
 
+$sender_contact = json_decode($redis->get("user:contact:$sender_uuid"));
+$sender_username = $sender_contact->{'email'};
+
 $messages = $redis->zrange("messages:$uuid:$sender_uuid", 0, -1, 'withscores');
-$responses = array();
+$response = array();
+$response['messages'] = array();
+$response['sender'] = $sender_username;
+
 foreach ($messages as $message) {
-    array_push($responses, array('message' => $message[0], 'time' => $message[1]));
+    array_push($response['messages'], array('message' => $message[0], 'time' => $message[1]));
 }
-echo(json_encode($responses));
+
+echo(json_encode($response));
 ?>
