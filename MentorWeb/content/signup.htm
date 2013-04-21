@@ -193,7 +193,7 @@
     <script>
 		$('#mainForm').on('submit', function(event) {
 			event.preventDefault(); //TODO could not find original listener, search and disable safely
-			$.post('http://localhost/php/createaccount.php', $('#mainForm').serialize(), function(returnData) {
+			$.post('../../php/createaccount.php', $('#mainForm').serialize(), function(returnData) {
 				window.location.replace("./signup1.htm"); //redirect to next sign up page
 			}, 'text');
 		});
