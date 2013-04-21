@@ -17,11 +17,27 @@ else {
     exit;
 }
 
-$recipient_uuid = $_REQUEST['to'];
+$recipient = $_REQUEST['to'];
+
+$recipient_uuid = "";
+if (preg_match("/^[a-z0-9]{8}-([a-z0-9]{4}-){3}[a-z0-9]{12}$/i", $recipient)) {
+    $recipient_uuid = $recipient;
+}
+else {
+    $recipient_uuid = $redis->get("uuid_for:$recipient");
+}
+
+if ($recipient_uuid == null) {
+    header(':', true, 409);
+    echo(json_encode(array('error' => 'UUID not found')));
+    exit;
+}
+
 $message = $_REQUEST['m'];
 $sender_uuid = $uuid;
 
-$redis->zadd("senders:$recipient_uuid", time(), $sender_uuid);
+$redis->zadd("contacts:$recipient_uuid", time(), $sender_uuid);
+$redis->zadd("contacts:$sender_uuid", time(), $recipient_uuid);
 $redis->zadd("messages:$recipient_uuid:$sender_uuid", time(), $message);
 
 echo("{}");
