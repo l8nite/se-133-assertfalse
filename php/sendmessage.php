@@ -18,11 +18,13 @@ else {
 }
 
 $recipient = $_REQUEST['to'];
+// TODO : need to look up recipient UUID
+$recipient_uuid = $recipient;
 $message = $_REQUEST['m'];
-$sender = $uuid;
+$sender_uuid = $uuid;
 
-$redis->zadd("senders:$recipient", time(), $sender);
-$redis->zadd("messages:$recipient:$sender", time(), $message);
+$redis->zadd("senders:$recipient_uuid", time(), $sender_uuid);
+$redis->zadd("messages:$recipient_uuid:$sender_uuid", time(), $message);
 
 echo("{}");
 ?>
