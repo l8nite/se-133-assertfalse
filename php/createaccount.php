@@ -12,11 +12,14 @@ $redis = new Predis\Client('tcp://localhost:6379');
 
 //if first sign up page
 if (isset($_REQUEST['inputEmail']) && isset($_REQUEST['inputPassword']) && isset($_REQUEST['typeOptions']) && isset($_REQUEST['inputFirst']) && isset($_REQUEST['inputLast']) && isset($_REQUEST['inputZip'])) {
-	$uuid = Profile::generateUUID();
+    $uuid = Profile::generateUUID();
+    $email = $_REQUEST['inputEmail'];
 
 	Profile::setPassword($redis, $uuid, $_REQUEST['inputPassword']);
-	Profile::setContact($redis, $uuid, $_REQUEST['inputEmail'], $_REQUEST['inputZip']);
+	Profile::setContact($redis, $uuid, $email, $_REQUEST['inputZip']);
 	Profile::setProfile($redis, $uuid, $_REQUEST['inputFirst'], $_REQUEST['inputLast'], 'Title', 'Description', $_REQUEST['typeOptions'], $_REQUEST['inputZip']);
+
+    $redis->set("uuid_for:$email", $uuid);
 
 	$sid = Session::generateSession($redis, $uuid);
 	setcookie('MentorWebSession', $sid, time()-1, "/");
