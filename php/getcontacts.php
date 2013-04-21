@@ -19,7 +19,7 @@ else {
 
 
 
-$senders = $redis->zrange("senders:$uuid", 0, -1);
+$senders = $redis->zrange("contacts:$uuid", 0, -1);
 
 $response = array();
 

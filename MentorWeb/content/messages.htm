@@ -153,7 +153,7 @@
         var currentMessagesFrom = null;
 
         $(document).ready(function () {
-          $.get('../../php/getsenders.php', function(returnData) {
+          $.get('../../php/getcontacts.php', function(returnData) {
             var senders = $.parseJSON($.trim(returnData));
             for (var i = 0; i < senders.length; ++i) {
                 console.log(senders[i]);
@@ -194,7 +194,7 @@
               $('#messages-with').html('Messages with ' + response.with);
 
               $('#messages-list').empty();
-              for (var i = response.messages.length - 1; i >= 0; --i) {
+              for (var i = 0; i < response.messages.length; ++i) {
                   var message = response.messages[i];
                   var div = $('<div class="row-fluid"><div class="span1">' + message.time + '</div><div class="span3">' + message.name + '</div><div class="8">' + message.text + '</div></div>');
                   $('#messages-list').append(div);
