@@ -22,6 +22,5 @@ $cake = new Match($redis, "oaagcvbr-omuw-4rrr-8u70-d33ljk08mr24");
 //var_dump($cake->compareAllMentors(Match::filter("software")));
 //var_dump($cake->compareAllMentors(Match::filter("cake root beer engineer")));
 
-var_dump($cake->profile);
 var_dump($cake->match());
 ?>

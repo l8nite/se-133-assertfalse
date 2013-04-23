@@ -13,7 +13,7 @@ class Match {
 	public function __construct($db, $uuid) {
 		$this->database = $db;
 		$this->uuid = $uuid;
-		$profile = new Profile($this->database, $this->uuid);
+		$this->profile = new Profile($db, $uuid);
 	}
 
 	/**
@@ -21,12 +21,18 @@ class Match {
 	 */
 	public function match() {
 		$user_type = $this->profile->getProfile()->{'user_type'};
+		$array = NULL;
+		
 		if ($user_type == 'MENTOR') {
-			return arsort(scoreAllMentees($this->profile->getExperience()->{'keywords'}));
+			$array = self::scoreAllMentees($this->profile->getExperience()->{'keywords'});
+			arsort($array);
 		}
 		elseif ($user_type == 'MENTEE') {
-			return arsort(scoreAllMentors($this->profile->getGoals()->{'keywords'}));
+			$array = self::scoreAllMentors($this->profile->getGoals()->{'keywords'});
+			arsort($array);
 		}
+		
+		return $array;
 	}
 
 	/**
@@ -40,7 +46,7 @@ class Match {
 			$profile = new Profile($this->database, substr($user, 13)); //strip off 'user:profile:'
 			$user_type = $profile->getProfile()->{'user_type'};
 			if ($user_type == 'MENTOR' || $user_type == 'BOTH') {
-				echo $array[$profile->getUUID()] = $this->score($keywords, $profile->getExperience()->{'keywords'}); //this vs that profile
+				$array[$profile->getUUID()] = $this->score($keywords, $profile->getExperience()->{'keywords'}); //this vs that profile
 			}
 		}
 
@@ -58,7 +64,7 @@ class Match {
 			$profile = new Profile($this->database, substr($user, 13)); //strip off 'user:profile:'
 			$user_type = $profile->getProfile()->{'user_type'};
 			if ($user_type == 'MENTEE' || $user_type == 'BOTH') {
-				echo $array[$profile->getUUID()] = $this->score($keywords, $profile->getGoals()->{'keywords'}); //this vs that profile
+				$array[$profile->getUUID()] = $this->score($keywords, $profile->getGoals()->{'keywords'}); //this vs that profile
 			}
 		}
 
