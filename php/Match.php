@@ -3,6 +3,7 @@ class Match {
 
 	private $database;
 	private $uuid;
+	private $profile;
 
 	/**
 	 * Constructor.
@@ -12,29 +13,36 @@ class Match {
 	public function __construct($db, $uuid) {
 		$this->database = $db;
 		$this->uuid = $uuid;
+		$profile = new Profile($this->database, $uuid);
 	}
 
 	/**
 	 *
 	 */
 	public function match() {
-		
 	}
 
 	/**
 	 *
 	 */
-	public function getAllGoals() {
-		$allGoals = $this->database->keys('user:goals:*');
-		//foreach($allGoals as $goalEntry) {
-		//	json_decode($this->database->get('user:goals:' . $this->uuid));
-		//}
+	public function compareAllMentors($keywords) {
+		$allUsers = $this->database->keys('user:profile:*');
+		$array = array();
+		
+		foreach($allUsers as $user) {
+			$profile = new Profile($this->database, substr($user, 13)); //strip off 'user:profile:'
+			if ($profile->getProfile()->{'user_type'} == 'MENTOR') {
+				echo $array[$profile->getUUID()] = $this->score($keywords, $profile->getExperience()->{'keywords'}); //this vs that profile
+			}
+		}
+		
+		return $array;
 	} 
 
 	/**
 	 *
 	 */
-	public function getAllExperience() {
+	public function compareAllExperience() {
 		return $this->database->keys('user:experience:*');
 	}
 
@@ -59,7 +67,7 @@ class Match {
 	/**
 	 *
 	 */
-	public static function score($array1, $array2) {
+	private static function score($array1, $array2) {
 		$score = 0;
 	
 		foreach ($array1 as $word1) {

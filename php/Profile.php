@@ -16,6 +16,13 @@ class Profile {
 	}
 
 	/**
+	 *
+	 */
+	public function getUUID() {
+		return $this->uuid;
+	}
+	
+	/**
 	 * Get Contact object.
 	 * @return Array.
 	 */

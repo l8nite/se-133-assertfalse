@@ -2,6 +2,7 @@
 //disable domain access control
 header('Access-Control-Allow-Origin: *'); //TODO, fix if possible
 require './Match.php';
+require './Profile.php';
 require 'Predis/Autoloader.php';
 
 Predis\Autoloader::register();
@@ -16,6 +17,8 @@ $redis = new Predis\Client('tcp://localhost:6379');
 //echo Match::score($array1, $array2);
 //echo Match::score($array1, $array3);
 
-$cake = new Match($redis, "");
-var_dump($cake->getAllGoals());
+$cake = new Match($redis, "i6ntkq3n-s9wz-4zpo-8kil-jl8t2sgwcd2s");
+//var_dump($cake->compareAllMentors(Match::filter("experience")));
+//var_dump($cake->compareAllMentors(Match::filter("software")));
+var_dump($cake->compareAllMentors(Match::filter("cake root beer engineer")));
 ?>
