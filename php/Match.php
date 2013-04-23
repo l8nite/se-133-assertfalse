@@ -38,7 +38,7 @@ class Match {
 	/**
 	 *
 	 */
-	public function scoreAllMentors($keywords) {
+	private function scoreAllMentors($keywords) {
 		$allUsers = $this->database->keys('user:profile:*');
 		$array = array();
 
@@ -56,7 +56,7 @@ class Match {
 	/**
 	 *
 	 */
-	public function scoreAllMentees($keywords) {
+	private function scoreAllMentees($keywords) {
 		$allUsers = $this->database->keys('user:profile:*');
 		$array = array();
 
