@@ -17,8 +17,11 @@ $redis = new Predis\Client('tcp://localhost:6379');
 //echo Match::score($array1, $array2);
 //echo Match::score($array1, $array3);
 
-$cake = new Match($redis, "i6ntkq3n-s9wz-4zpo-8kil-jl8t2sgwcd2s");
+$cake = new Match($redis, "oaagcvbr-omuw-4rrr-8u70-d33ljk08mr24");
 //var_dump($cake->compareAllMentors(Match::filter("experience")));
 //var_dump($cake->compareAllMentors(Match::filter("software")));
-var_dump($cake->compareAllMentors(Match::filter("cake root beer engineer")));
+//var_dump($cake->compareAllMentors(Match::filter("cake root beer engineer")));
+
+var_dump($cake->profile);
+var_dump($cake->match());
 ?>

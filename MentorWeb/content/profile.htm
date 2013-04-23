@@ -159,7 +159,7 @@
     <script src="../assets/js/bootstrap.js"></script>
     <script>
 		$(document).ready(function () {
-			$.get('http://localhost/php/viewownprofile.php', function(returnData) {
+			$.get('../../php/viewownprofile.php', function(returnData) {
 				var profileData = $.parseJSON($.trim(returnData)); //PHP seems to add two invisible, trimmable characters in front of output
 
 				$('#nameField').html(profileData.name);
@@ -169,7 +169,7 @@
 				$('#expField').html(profileData.experience);
 				$('#goalsField').html(profileData.goals);
 
-				$('#mainField').show(); //div mainField has inline "display:none"
+				$('#mainField').show(0); //div mainField has inline "display:none"
 			}, 'text');
 		});
 	</script>

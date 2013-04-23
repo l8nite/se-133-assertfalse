@@ -13,37 +13,56 @@ class Match {
 	public function __construct($db, $uuid) {
 		$this->database = $db;
 		$this->uuid = $uuid;
-		$profile = new Profile($this->database, $uuid);
+		$profile = new Profile($this->database, $this->uuid);
 	}
 
 	/**
 	 *
 	 */
 	public function match() {
+		$user_type = $this->profile->getProfile()->{'user_type'};
+		if ($user_type == 'MENTOR') {
+			return arsort(scoreAllMentees($this->profile->getExperience()->{'keywords'}));
+		}
+		elseif ($user_type == 'MENTEE') {
+			return arsort(scoreAllMentors($this->profile->getGoals()->{'keywords'}));
+		}
 	}
 
 	/**
 	 *
 	 */
-	public function compareAllMentors($keywords) {
+	public function scoreAllMentors($keywords) {
 		$allUsers = $this->database->keys('user:profile:*');
 		$array = array();
-		
+
 		foreach($allUsers as $user) {
 			$profile = new Profile($this->database, substr($user, 13)); //strip off 'user:profile:'
-			if ($profile->getProfile()->{'user_type'} == 'MENTOR') {
+			$user_type = $profile->getProfile()->{'user_type'};
+			if ($user_type == 'MENTOR' || $user_type == 'BOTH') {
 				echo $array[$profile->getUUID()] = $this->score($keywords, $profile->getExperience()->{'keywords'}); //this vs that profile
 			}
 		}
-		
+
 		return $array;
-	} 
+	}
 
 	/**
 	 *
 	 */
-	public function compareAllExperience() {
-		return $this->database->keys('user:experience:*');
+	public function scoreAllMentees($keywords) {
+		$allUsers = $this->database->keys('user:profile:*');
+		$array = array();
+
+		foreach($allUsers as $user) {
+			$profile = new Profile($this->database, substr($user, 13)); //strip off 'user:profile:'
+			$user_type = $profile->getProfile()->{'user_type'};
+			if ($user_type == 'MENTEE' || $user_type == 'BOTH') {
+				echo $array[$profile->getUUID()] = $this->score($keywords, $profile->getGoals()->{'keywords'}); //this vs that profile
+			}
+		}
+
+		return $array;
 	}
 
 	/**
@@ -69,14 +88,14 @@ class Match {
 	 */
 	private static function score($array1, $array2) {
 		$score = 0;
-	
+
 		foreach ($array1 as $word1) {
 			foreach ($array2 as $word2) {
 				if ($word1 == $word2)
 					$score++;
 			}
 		}
-		
+
 		return $score;
 	}
 }
