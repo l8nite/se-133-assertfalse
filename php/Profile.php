@@ -107,14 +107,16 @@ class Profile {
 	public static function setGoals($db, $id, $ttl, $desc) {
 		$goalsEntry = array (
 			'title'            => $ttl,
-			'goal_description' => $desc
+			'goal_description' => $desc,
+			'keywords'         => Match::filter($desc)
 		);
 		$db->set('user:goals:' . $id, json_encode($goalsEntry));
 	}
 
 	public static function setExperience($db, $id, $desc) {
 		$experienceEntry = array (
-			'experience_description' => $desc
+			'experience_description' => $desc,
+			'keywords'               => Match::filter($desc)
 		);
 		$db->set('user:experience:' . $id, json_encode($experienceEntry));
 	}
