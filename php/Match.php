@@ -22,7 +22,7 @@ class Match {
 	public function match() {
 		$user_type = $this->profile->getProfile()->{'user_type'};
 		$array = NULL;
-		
+
 		if ($user_type == 'MENTOR') {
 			$array = self::scoreAllMentees($this->profile->getExperience()->{'keywords'});
 			arsort($array);
@@ -31,7 +31,7 @@ class Match {
 			$array = self::scoreAllMentors($this->profile->getGoals()->{'keywords'});
 			arsort($array);
 		}
-		
+
 		return $array;
 	}
 
