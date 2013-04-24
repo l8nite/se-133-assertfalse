@@ -83,7 +83,7 @@ class Match {
 		foreach($split as $word) {
 			$word = strtolower($word);
 			if (!empty($word) && !in_array($word, $dictionary) && !in_array($word, $keywords)) //if word is: not empty, not in filter, not repeated
-				array_push($keywords, $word);
+				$keywords[] = $word;
 		}
 
 		return $keywords;
