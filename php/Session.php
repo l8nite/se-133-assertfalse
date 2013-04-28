@@ -12,11 +12,13 @@ class Session {
 			'session:user:' . $sid
 		);
 		$db->set('user:session:' . $id, json_encode($userSessionEntry));
+		$db->expire('user:session:' . $id, 30*24*60*60);
 
 		$sessionUserEntry = array (
 			'user:' . $id
 		);
 		$db->set('session:user:' . $sid, json_encode($sessionUserEntry));
+		$db->expire('session:user:' . $sid, 30*24*60*60);		
 
 		return $sid;
 	}

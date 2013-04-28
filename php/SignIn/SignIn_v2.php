@@ -1,10 +1,7 @@
 <?php
-/*
-require_once 'Predis/Autoloader.php';
+
 require_once '../Session.php';
-Predis\Autoloader::register();
-$redis = new Predis\Client('tcp://localhost:6379');
-*/
+
 /**
  * Description of SignIn. This class is used to manage signins and signouts.
  *
@@ -18,9 +15,9 @@ class SignIn {
      *  @param password The user's password;
      *  @return true if the credentials are valid and the session was registered; otherwise false.
      */
-    public static function signIn($username, $password, $db)
+    public static function doSignIn($username, $password, $db)
     {
-        if (areValidCredentials($username, $password, $db))
+        if (SignIn::areValidCredentials($username, $password, $db))
         {
             // get UUID
            $uuid = $db->get("uuid_for:$username");
@@ -73,6 +70,7 @@ class SignIn {
     {
        // set the cookie to expire an hour ago
        setcookie('MentorWebSession', '', time()-3600, "/");
+	
     }
 }
 
