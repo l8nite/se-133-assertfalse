@@ -25,12 +25,30 @@ class Match {
 
 		if ($user_type == 'MENTOR') {
 			$array = self::scoreAllMentees($this->profile->getExperience()->{'keywords'});
-			arsort($array);
 		}
 		elseif ($user_type == 'MENTEE') {
 			$array = self::scoreAllMentors($this->profile->getGoals()->{'keywords'});
-			arsort($array);
 		}
+
+		//multi-dimensional sort and convert row-based array to column-based
+		$idCol          = array();
+		$scoreCol       = array();
+		$nameCol        = array();
+		$titleCol       = array();
+		$descriptionCol = array();
+		foreach ($array as $key => $row) {
+			$idCol[]          = $key;
+			$scoreCol[]       = $row[0];
+			$nameCol[]        = $row[1];
+			$titleCol[]       = $row[2];
+			$descriptionCol[] = $row[3];
+		}
+		array_multisort($idCol,
+		                $scoreCol, SORT_NUMERIC, SORT_DESC,
+						$nameCol,
+						$titleCol,
+						$descriptionCol);
+		$array = array($idCol, $scoreCol, $nameCol, $titleCol, $descriptionCol);
 
 		return $array;
 	}
@@ -46,7 +64,10 @@ class Match {
 			$profile = new Profile($this->database, substr($user, 13)); //strip off 'user:profile:'
 			$user_type = $profile->getProfile()->{'user_type'};
 			if ($user_type == 'MENTOR' || $user_type == 'BOTH') {
-				$array[$profile->getUUID()] = $this->score($keywords, $profile->getExperience()->{'keywords'}); //this vs that profile
+				$array[$profile->getUUID()] = array($this->score($keywords, $profile->getExperience()->{'keywords'}),
+													$profile->getProfile()->{'first'} . $profile->getProfile()->{'last'},
+													$profile->getProfile()->{'title'},
+													$profile->getExperience()->{'experience_description'});
 			}
 		}
 
@@ -64,7 +85,10 @@ class Match {
 			$profile = new Profile($this->database, substr($user, 13)); //strip off 'user:profile:'
 			$user_type = $profile->getProfile()->{'user_type'};
 			if ($user_type == 'MENTEE' || $user_type == 'BOTH') {
-				$array[$profile->getUUID()] = $this->score($keywords, $profile->getGoals()->{'keywords'}); //this vs that profile
+				$array[$profile->getUUID()] = array($this->score($keywords, $profile->getGoals()->{'keywords'}),
+				                                    $profile->getProfile()->{'first'} . $profile->getProfile()->{'last'},
+													$profile->getProfile()->{'title'},
+				                                    $profile->getGoals()->{'goal_description'});
 			}
 		}
 
