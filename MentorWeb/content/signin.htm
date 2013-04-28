@@ -102,10 +102,10 @@
     </div><!-- /.navbar-wrapper -->
     <div class="container">
 
-      <form class="form-signin">
+      <form class="form-signin" action="../../php/SignIn/SignIn_script.php" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" class="input-block-level" placeholder="Email address">
-        <input type="password" class="input-block-level" placeholder="Password">
+        <input type="text" class="input-block-level" placeholder="Email address" name="username">
+        <input type="password" class="input-block-level" placeholder="Password" name="password">
         <a href="">Forgot your password?</a>
         <label class="checkbox">
           <input type="checkbox" value="remember-me"> Remember me
@@ -120,6 +120,16 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../assets/js/jquery.js"></script>
     <script src="../assets/js/bootstrap.js"></script>
-
+    
+    <script>
+       /* $('.form-signin').on('submit', function(event) {
+            event.preventDefault(); //TODO could not find original listener, search and disable safely
+            $.post('../../php/SignIn/Sign_v2.php', $('.form-signin').serialize(), function(returnData) {
+                    window.location.replace("./signup1.htm"); //redirect to next sign up page
+            }, 'text');
+        });*/
+    </script>
+    
+    
   </body>
 </html>
