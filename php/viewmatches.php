@@ -6,7 +6,14 @@ require './Match.php';
 require './Profile.php';
 require './Session.php';
 
-Predis\Autoloader::register();
-//$redis = new Predis\Client('tcp://kong.idlemonkeys.net:6379');
-$redis = new Predis\Client('tcp://localhost:6379');
+if (isset($_COOKIE['MentorWebSession'])) {
+	Predis\Autoloader::register();
+	//$redis = new Predis\Client('tcp://kong.idlemonkeys.net:6379');
+	$redis = new Predis\Client('tcp://localhost:6379');
+
+	$uuid = Session::resolveSessionID($redis, $_COOKIE['MentorWebSession']);
+	
+	$match = new Match($redis, $uuid);
+	echo json_encode($match->match());
+}
 ?>
