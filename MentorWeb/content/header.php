@@ -1,4 +1,20 @@
-﻿<!DOCTYPE html>
+<?php
+require '../../php/Session.php';
+require 'Predis/Autoloader.php';
+
+Predis\Autoloader::register();
+$redis = new Predis\Client('tcp://kong.idlemonkeys.net:6379');
+$isLoggedIn = false;
+
+if (isset($_COOKIE['MentorWebSession'])) {
+    $uuid = Session::resolveSessionID($redis, $_COOKIE['MentorWebSession']);
+    if ($uuid != "") {
+        $isLoggedIn = true;
+    }
+}
+
+?>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -15,7 +31,6 @@
       body {
         padding-top: 40px;
         padding-bottom: 40px;
-        background-color: #f5f5f5;
       }
 
       .form-signin {
@@ -74,7 +89,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="#">MentorWeb</a>
+            <a class="brand" href="./home.php">MentorWeb</a>
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
                 <ul class="nav">
@@ -83,43 +98,22 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                    <li><a href="#">Edit Profile</a></li>
+                    <li><a href="./profile-edit.php">Edit Profile</a></li>
                     <li><a href="#">Upgrade to Premium</a></li>
                         <li class="divider"></li>
                     <li class="nav-header">Mentors</li>
-                    <li><a href="#">Find a Mentor</a></li>
+                    <li><a href="./findamentor.php">Find a Mentor</a></li>
                     <li><a href="#">Review a Mentor</a></li>
-                    <li><a href="#">Mentor Mentors</a></li>
+                    <li><a href="#">Manage Mentors</a></li>
                     </ul>
                 </li>
                 <li><a href="#about">About</a></li>
                 </ul> 
-                <a class="btn btn-success" href="#">Sign In</a>     
+				<?php if($isLoggedIn == false): ?>
+                <a class="btn btn-success" href="./signin.php">Sign In</a>
+				<?php endif; ?>
             </div><!--/.nav-collapse -->
             </div><!-- /.navbar-inner -->
         </div><!-- /.navbar -->
         </div> <!-- /.container -->
     </div><!-- /.navbar-wrapper -->
-    <div class="container">
-
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" class="input-block-level" placeholder="Email address">
-        <input type="password" class="input-block-level" placeholder="Password">
-        <a href="">Forgot your password?</a>
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
-      </form>
-
-    </div> <!-- /container -->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap.js"></script>
-
-  </body>
-</html>
