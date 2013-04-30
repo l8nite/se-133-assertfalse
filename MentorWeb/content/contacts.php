@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Sign Up &middot; MentorWeb</title>
+    <title>Profile &middot; MentorWeb</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -79,102 +79,69 @@
                     </ul>
                 </li>
                 <li><a href="#about">About</a></li>
-                </ul>
+                </ul>   
             </div><!--/.nav-collapse -->
             </div><!-- /.navbar-inner -->
         </div><!-- /.navbar -->
         </div> <!-- /.container -->
     </div>
 
-    <div class="container-fluid" >
+    <div class="container-fluid" style="margin-top:20px;">
       <div class="row-fluid">
-		<div class="span2">
-		</div>
-        <div class="span8">
-          <div class="hero-unit">
-              <h2>MentorWeb Sign Up</h2>
-              <p>In order to join the MentorWeb, we need to know a little more about you. Please take the time to fill out the details below and decide what role you would like to pursue. </p>
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Profile</li>
+              <li class="active"><a href="#">Overview</a></li>
+              <li><div class="divider" /></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Experience</a></li>
+              <li><a href="#">Goals</a></li>
+              <li><a href="#">Education</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+          <div class="row-fluid">
+            <div class="span4">
+                <img src="../assets/img/John-Doe.jpg" alt="" />
+            </div>
+            <div class="span8">
+                <h2>John Doe</h2>
+                <h4>Embedded Systems Entrepreneur and Web Application Designer</h4>
+                <p>Computer engineering has not only been my chosen educational path, but a passion. Between my professional career and education at San Jose State University, I have had an opportunity to use my time for digital hardware and web application projects. I am looking for a mentor to guide me toward my goal in computer engineering.</p>
+            </div>
+            <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p>           
           </div>
           <div class="row-fluid">
-            <div>
-                <form class="form-horizontal" id="mainForm">
-					<fieldset>
-						<legend>Account</legend>
-						<div class="control-group">
-							<label class="control-label" for="inputEmail">Email Address</label>
-							<div class="controls">
-								<input type="email" name="inputEmail" id="inputEmail" placeholder="Email Address">
-								<span class="help-block">Example: JohnDoe@Email.com</span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="inputPassword">Password</label>
-							<div class="controls">
-								<input type="password" name="inputPassword" id="inputPassword" placeholder="Password">
-								<span class="help-block">Password must contain an upper and lower case letter, a number, and symbol !@#$%^&*() </span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="inputPasswordConfirm">Confirm Password</label>
-							<div class="controls">
-								<input type="password" name="inputPasswordConfirm" id="inputPasswordConfirm" placeholder="Password">
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" >Account Type</label>
-							<div class="controls">
-								<input type="radio" name="typeOptions" id="menteeRadio" value="MENTEE">
-								Mentee
-
-							</div>
-							<div class="controls">
-								<input type="radio" name="typeOptions" id="mentorRadio" value="MENTOR">
-								Mentor
-							</div>
-							<div class="controls">
-								<input type="radio" name="typeOptions" id="bothRadio" value="BOTH">
-								Both
-							</div>
-						</div>
-					</fieldset>
-					<fieldset>
-						<legend>Contact</legend>
-						<div class="control-group">
-							<label class="control-label" for="inputFirst">First Name</label>
-							<div class="controls">
-								<input type="text" name="inputFirst" id="inputFirst" placeholder="First Name">
-								<span class="help-block">Example: Bill</span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="inputLast">Last Name</label>
-							<div class="controls">
-								<input type="text" name="inputLast" id="inputLast" placeholder="Last Name">
-								<span class="help-block">Example: Nye</span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="inputZip">Zip Code</label>
-							<div class="controls">
-								<input type="text" name="inputZip" id="inputZip" placeholder="Zip Code">
-								<span class="help-block">Example: 95117</span>
-							</div>
-						</div>
-					</fieldset>
-					<div class="row-fluid">
-						<div class="span4"></div>
-						<div class="span4"><button class="btn btn-success btn-large" type="submit">Sign Up</button></div>
-						<div class="span4"></div>
-					</div>
-				</form>
-            </div>
-			<div class="span2">
-			</div>
-          </div>
-		  <div class="span2">
-			</div>
+            <div class="span12">
+              <h3>Contact</h3>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p> 
+            </div><!--/span-->
+          </div><!--/row-->
+          <div class="row-fluid">
+            <div class="span12">
+              <h3>Experience</h3>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p> 
+            </div><!--/span-->
+          </div><!--/row-->
+          <div class="row-fluid">
+            <div class="span12">
+              <h3>Goals</h3>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p> 
+            </div><!--/span-->
+          </div><!--/row-->
+          <div class="row-fluid">
+            <div class="span12">
+              <h3>Education</h3>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a href="#" class="btn btn-primary btn-small">Update &raquo;</a></p> 
+            </div><!--/span-->
+          </div><!--/row-->
         </div><!--/span-->
-
       </div><!--/row-->
 
       <hr>
@@ -190,13 +157,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../assets/js/jquery.js"></script>
     <script src="../assets/js/bootstrap.js"></script>
-    <script>
-		$('#mainForm').on('submit', function(event) {
-			event.preventDefault(); //TODO could not find original listener, search and disable safely
-			$.post('../../php/createaccount.php', $('#mainForm').serialize(), function(returnData) {
-				window.location.replace("./signup1.htm"); //redirect to next sign up page
-			}, 'text');
-		});
-	</script>
+
   </body>
 </html>
