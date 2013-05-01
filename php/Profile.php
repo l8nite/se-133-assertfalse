@@ -1,4 +1,7 @@
 ﻿<?php
+/**
+ * This class allows for the creation and update of a user's profile.
+ */
 class Profile {
 
 	private $database;

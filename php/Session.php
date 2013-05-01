@@ -1,4 +1,7 @@
 ﻿<?php
+/**
+ * This class allows for the creation and resolution of a user's session.
+ */
 class Session {
 
 	/**

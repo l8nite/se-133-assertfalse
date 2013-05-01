@@ -1,4 +1,7 @@
 ﻿<?php
+/**
+ * This class allows a user to match with all other mentors or mentees based on a scoring algorithm.
+ */
 class Match {
 
 	private $database;
