@@ -1,4 +1,7 @@
 ﻿<?php
+/**
+ * This class allows a user to match with all other mentors or mentees based on a scoring algorithm.
+ */
 class Match {
 
 	private $database;
@@ -6,9 +9,10 @@ class Match {
 	private $profile;
 
 	/**
-	 * Constructor.
+	 * Constructor for Match object.
 	 *
-	 * @param
+	 * @param connection $db Redis connection object.
+	 * @param string $uuid User UUID.
 	 */
 	public function __construct($db, $uuid) {
 		$this->database = $db;
@@ -17,7 +21,9 @@ class Match {
 	}
 
 	/**
+	 * Executes matching algorithm and generates column-based multi-dimensional array of results.
 	 *
+	 * @return array[] Column-based multi-dimensional array: UUID, score, full name, title, description.
 	 */
 	public function match() {
 		$user_type = $this->profile->getProfile()->{'user_type'};
@@ -54,7 +60,10 @@ class Match {
 	}
 
 	/**
+	 * Scores array of keywords against all mentors' experience keywords.
 	 *
+	 * @param string[] $keywords Array of keywords.
+	 * @return array[] Row-based multi-dimensional array: key = UUID & value = {score, full name, title, description}.
 	 */
 	private function scoreAllMentors($keywords) {
 		$allUsers = $this->database->keys('user:profile:*');
@@ -75,7 +84,10 @@ class Match {
 	}
 
 	/**
+	 * Scores array of keywords against all mentees' goal keywords.
 	 *
+	 * @param string[] $keywords Array of keywords.
+	 * @return array[] Row-based multi-dimensional array: key = UUID & value = {score, full name, title, description}.
 	 */
 	private function scoreAllMentees($keywords) {
 		$allUsers = $this->database->keys('user:profile:*');
@@ -96,7 +108,10 @@ class Match {
 	}
 
 	/**
+	 * Splits a string on given regex and filters out words based on a dictionary. Words that are not filtered are converted to lower case.
 	 *
+	 * @param string $string User profile entry.
+	 * @return string[] Array of keywords.
 	 */
 	public static function filter($string) {
 		$dictionary = array("i","am","could","would","should");
@@ -114,7 +129,11 @@ class Match {
 	}
 
 	/**
+	 * Counts the number of words that exist in both of two string arrays.
 	 *
+	 * @param string[] $array1 String array.
+	 * @param string[] $array2 String array.
+	 * @return integer Comparison score.
 	 */
 	private static function score($array1, $array2) {
 		$score = 0;
