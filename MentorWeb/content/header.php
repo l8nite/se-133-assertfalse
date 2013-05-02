@@ -1,18 +1,23 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', True);
+
 require '../../php/Session.php';
+require '../../php/SignIn/SignIn_v2.php';
 require 'Predis/Autoloader.php';
 
 Predis\Autoloader::register();
 $redis = new Predis\Client('tcp://kong.idlemonkeys.net:6379');
-$isLoggedIn = false;
-
+$isLoggedIn = SignIn::enforceSignIn();
+/*
 if (isset($_COOKIE['MentorWebSession'])) {
     $uuid = Session::resolveSessionID($redis, $_COOKIE['MentorWebSession']);
     if ($uuid != "") {
         $isLoggedIn = true;
     }
 }
-
+*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,6 +116,9 @@ if (isset($_COOKIE['MentorWebSession'])) {
                 </ul> 
 				<?php if($isLoggedIn == false): ?>
                 <a class="btn btn-success" href="./signin.php">Sign In</a>
+                
+                <?php else: ?>
+                 <a class="btn btn-success" href="../../php/SignIn/SignOut_script.php">Sign Out</a>
 				<?php endif; ?>
             </div><!--/.nav-collapse -->
             </div><!-- /.navbar-inner -->

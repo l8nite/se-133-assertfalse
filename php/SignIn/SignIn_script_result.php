@@ -17,23 +17,14 @@ $REDIRECT_FAIL = "Location: ../../MentorWeb/content/signin.php";
 
 Predis\Autoloader::register();
 $redis = new Predis\Client('tcp://localhost:6379');
-
-// From the post
-$username = $_POST['username'];
-$password = $_POST['password'];
-$db = $redis;
-
-
-if(SignIn::doSignIn($username, $password, $db)){
-    //header($REDIRECT_SUCCESS);
-    header(SignIn::REDIRECT_SUCCESS);
-    //echo SignIn::isSignedIn();
-    //header("Location: SignIn_script_1.php");
-}
-else{
-    header(SignIn::REDIRECT_FAIL);
-    //echo "fai";
-  
-   // header("Location: SignIn_script_1.php");
-}
+ 
+SignIn::enforceSignIn();
+echo $_SERVER["REQUEST_URI"]."<br />";
+    if(SignIn::isSignedIn()){
+        echo $_COOKIE["MentorWebSession"];
+       
+    }
+        
+    else
+        echo "not signed in";
 ?>

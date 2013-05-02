@@ -8,8 +8,8 @@ require './Session.php';
 require './Match.php';
 
 Predis\Autoloader::register();
-$redis = new Predis\Client('tcp://kong.idlemonkeys.net:6379');
-//$redis = new Predis\Client('tcp://localhost:6379');
+//$redis = new Predis\Client('tcp://kong.idlemonkeys.net:6379');
+$redis = new Predis\Client('tcp://localhost:6379');
 
 //if first sign up page
 if (isset($_REQUEST['inputEmail']) && isset($_REQUEST['inputPassword']) && isset($_REQUEST['typeOptions']) && isset($_REQUEST['inputFirst']) && isset($_REQUEST['inputLast']) && isset($_REQUEST['inputZip'])) {
