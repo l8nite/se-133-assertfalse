@@ -1,23 +1,12 @@
 <?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', True);
 
-error_reporting(E_ALL);
-ini_set('display_errors', True);
+    require 'Session.php';
+    require 'SignIn_v2.php';
+    require 'database.php';
 
-require 'Session.php';
-require 'SignIn_v2.php';
-require 'Predis/Autoloader.php';
-
-Predis\Autoloader::register();
-$redis = new Predis\Client('tcp://kong.idlemonkeys.net:6379');
-$isLoggedIn = SignIn::enforceSignIn();
-/*
-if (isset($_COOKIE['MentorWebSession'])) {
-    $uuid = Session::resolveSessionID($redis, $_COOKIE['MentorWebSession']);
-    if ($uuid != "") {
-        $isLoggedIn = true;
-    }
-}
-*/
+    $isLoggedIn = SignIn::enforceSignIn();
 ?>
 <!DOCTYPE html>
 <html lang="en">

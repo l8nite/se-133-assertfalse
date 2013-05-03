@@ -36,7 +36,7 @@ class Session {
 			'user:' . $id
 		);
 		$db->set('session:user:' . $sid, json_encode($sessionUserEntry));
-		$db->expire('session:user:' . $sid, 30*24*60*60);		
+		$db->expire('session:user:' . $sid, 30*24*60*60);
 
 		return $sid;
 	}
