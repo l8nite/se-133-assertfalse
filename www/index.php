@@ -1,6 +1,4 @@
-<?php
-	include('./header.php');
-?>
+<?php include('./header.php'); ?>
 
     <!-- Carousel
     ================================================== -->
@@ -71,7 +69,7 @@
           <p><a class="btn" href="#">View details &raquo;</a></p>
         </div><!-- /.span4 -->
       </div><!-- /.row -->
-	  
+
 	  <hr/>
       <!-- FOOTER -->
       <footer>
@@ -80,20 +78,4 @@
 
     </div><!-- /.container -->
 
-
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap.js"></script>
-    <script>
-      !function ($) {
-        $(function(){
-          // carousel demo
-          $('#myCarousel').carousel()
-        })
-      }(window.jQuery)
-    </script>
-  </body>
-</html>
+<?php include('./footer.php'); ?>
