@@ -4,11 +4,10 @@
     <p>&copy; MentorWeb 2013</p>
     </footer>
 
+    </div> <!-- /.container -->
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="scripts/jquery.js"></script>
-    <script src="scripts/bootstrap.js"></script>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

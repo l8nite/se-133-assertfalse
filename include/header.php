@@ -1,18 +1,75 @@
+<?php
+// TODO: include session management code
+?>
+<?php
+// TODO: remove debugging code
+    $isLoggedIn = false;
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
 
-        <title><?php echo $pageTitle || 'MentorWeb' ?></title>
+        <title>MentorWeb<?php
+        if ($pageTitle !== null) {
+            echo " - $pageTitle";
+        }?></title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link href="styles/bootstrap.css" rel="stylesheet">
-        <link href="styles/bootstrap-responsive.css" rel="stylesheet">
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+        body  {
+            padding-top: 20px;
+        }
+        </style>
+        <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+
         <link href="styles/mentorweb.css" rel="stylesheet">
     </head>
 
     <body>
+
+    <!-- main page container, closed in footer.php -->
+    <div class="container">
+
+        <div class="navbar navbar-inverse">
+            <div class="navbar-inner">
+                <a class="brand" href="#">MentorWeb</a>
+                <ul class="nav">
+                <li class="active"><a href="#"><i class="icon-home"></i> Home</a></li>
+                <li><a href="#About">About</a></li>
+                <?php if ($isLoggedIn): ?>
+                <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="./profile-edit.php">Edit Profile</a></li>
+                        <li><a href="#">Upgrade to Premium</a></li>
+                        <li class="divider"></li>
+                        <li class="nav-header">Mentors</li>
+                        <li><a href="findamentor.php">Find a Mentor</a></li>
+                        <li><a href="#">Review a Mentor</a></li>
+                        <li><a href="#">Manage Mentors</a></li>
+                    </ul>
+                </li>
+                <?php endif; ?>
+                </ul>
+                <?php if (!$isLoggedIn): ?>
+                <form class="navbar-form pull-right">
+                    <input class="span2" type="text" placeholder="Email">
+                    <input class="span2" type="password" placeholder="Password">
+                    <button type="submit" class="btn">Sign in</button>
+                </form>
+                <?php else: ?>
+                <a class="btn btn-primary pull-right" href="#">Sign Out</a>
+                <?php endif; ?>
+            </div>
+        </div>
+
+
+<?php
+/*
         <div class="navbar-wrapper">
             <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
             <div class="container">
@@ -31,32 +88,20 @@
                         <div class="nav-collapse collapse">
                             <ul class="nav">
                                 <li class="active"><a href="#">Home</a></li>
-                                <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="./profile-edit.php">Edit Profile</a></li>
-                                        <li><a href="#">Upgrade to Premium</a></li>
-                                        <li class="divider"></li>
-                                        <li class="nav-header">Mentors</li>
-                                        <li><a href="findamentor.php">Find a Mentor</a></li>
-                                        <li><a href="#">Review a Mentor</a></li>
-                                        <li><a href="#">Manage Mentors</a></li>
-                                    </ul>
-                                </li>
                                 <li><a href="#about">About</a></li>
-                            </ul>
                             <?php
                                 if($isLoggedIn == false):
                             ?>
-                                <a class="btn btn-success" href="signin.php">Sign In</a>
+                                <li><div><a class="btn btn-success" href="signin.php">Sign In</a></div>
                             <?php else: ?>
                                 <a class="btn btn-success" href="SignOut_script.php">Sign Out</a>
                             <?php endif; ?>
+                            </ul>
                         </div><!--/.nav-collapse -->
                     </div><!-- /.navbar-inner -->
                 </div><!-- /.navbar -->
             </div> <!-- /.container -->
         </div><!-- /.navbar-wrapper -->
 
+*/?>
 <!-- end of header.php included content -->
