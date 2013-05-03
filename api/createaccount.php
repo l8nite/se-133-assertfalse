@@ -1,43 +1,41 @@
 ﻿<?php
-//disable domain access control
-header('Access-Control-Allow-Origin: *'); //TODO, fix if possible
+require_once '../include/lib/RedisClient.php';
+require_once '../include/lib/Session.php';
+require_once '../include/lib/User.php';
 
-require 'Predis/Autoloader.php';
-require './Profile.php';
-require './Session.php';
-require './Match.php';
+$session = new Session(RedisClient::GetConnectedInstance());
 
-Predis\Autoloader::register();
-//$redis = new Predis\Client('tcp://kong.idlemonkeys.net:6379');
-$redis = new Predis\Client('tcp://localhost:6379');
-
-//if first sign up page
-if (isset($_REQUEST['inputEmail']) && isset($_REQUEST['inputPassword']) && isset($_REQUEST['typeOptions']) && isset($_REQUEST['inputFirst']) && isset($_REQUEST['inputLast']) && isset($_REQUEST['inputZip'])) {
-    $uuid = Profile::generateUUID();
-    $email = $_REQUEST['inputEmail'];
-
-	Profile::setPassword($redis, $uuid, $_REQUEST['inputPassword']);
-	Profile::setContact($redis, $uuid, $email, $_REQUEST['inputZip']);
-	Profile::setProfile($redis, $uuid, $_REQUEST['inputFirst'], $_REQUEST['inputLast'], 'Title', 'Description', $_REQUEST['typeOptions'], $_REQUEST['inputZip']);
-
-    $redis->set("uuid_for:$email", $uuid);
-
-	$sid = Session::generateSession($redis, $uuid);
-	setcookie('MentorWebSession', $sid, time()-1, "/");
-	setcookie('MentorWebSession', $sid, time()+60*60*24*30, "/"); //30 days
-	echo $sid;
+if ($session->isLoggedIn()) {
+    header("Location: /index.php");
+    exit;
 }
 
-//if second sign up page
-if (isset($_REQUEST['inputTitle']) && isset($_REQUEST['inputSummary']) && isset($_REQUEST['inputGoals']) && isset($_REQUEST['inputExperience'])) {
-	if (isset($_COOKIE['MentorWebSession'])) {
-		$uuid = Session::resolveSessionID($redis, $_COOKIE['MentorWebSession']);
 
-		Profile::updateTitle($redis, $uuid, $_REQUEST['inputTitle']);
-		Profile::updateDescription($redis, $uuid, $_REQUEST['inputSummary']);
-		Profile::setGoals($redis, $uuid, $_REQUEST['inputTitle'], $_REQUEST['inputGoals']);
-		Profile::setExperience($redis, $uuid, $_REQUEST['inputExperience']);
-	} else {
-	}
+$reqParameters = array('inputEmail', 'inputPassword', 'typeOptions', 'inputFirst', 'inputLast', 'inputZip');
+
+foreach ($reqParameters as $parameter)
+{
+    if (!isset($_POST[$parameter])) {
+        header("Location: /signup.php?error=Missing%20required%20parameter");
+        exit;
+    }
+
+    // TODO: validate parameter values instead of blindly trusting user input
 }
-?>
+
+$username = $_POST['inputEmail'];
+$password = $_POST['inputPassword'];
+$mentorType = $_POST['typeOptions'];
+$firstName = $_POST['inputFirst'];
+$lastName = $_POST['inputLast'];
+$zipCode = $_POST['inputZip'];
+
+$user = User::CreateUser($username, $password, $mentorType, $firstName, $lastName, $zipCode);
+
+if ($user === null) {
+    header("Location: /signup.php?error=Could%20not%20create%20your%20account");
+    exit;
+}
+
+$session->login($username, $password);
+header("Location: /profile-edit.php");

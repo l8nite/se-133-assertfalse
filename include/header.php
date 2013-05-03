@@ -1,8 +1,16 @@
 <?php
 require_once 'lib/RedisClient.php';
 require_once 'lib/Session.php';
+require_once 'lib/User.php';
 
-$session = new Session(RedisClient::GetConnectedInstance());
+$db = RedisClient::GetConnectedInstance();
+$session = new Session($db);
+$user = null;
+
+if ($session->isLoggedIn())
+{
+    $user = new User($db, $session->getUserIdentifier());
+}
 
 ?>
 <?php
@@ -32,6 +40,15 @@ $session = new Session(RedisClient::GetConnectedInstance());
 
         <link href="styles/mentorweb.css" rel="stylesheet">
 
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $('#logout-button').click(function() {
+                    window.location.replace('/api/logout.php');
+                });
+            });
+        </script>
     </head>
 
     <body>
@@ -82,7 +99,8 @@ $session = new Session(RedisClient::GetConnectedInstance());
                     <button type="submit" class="btn">Sign in</button>
                 </form>
                 <?php else: ?>
-                <a id="logout-button" class="btn btn-primary pull-right" href="#">Sign Out</a>
+                <a id="logout-button" class="pull-right btn btn-primary vcenter" href="#">Sign Out</a>
+                <div class="loggedinas pull-right">Signed in as: <?php echo($user->getUsername()); ?>&nbsp;</div>
                 <?php endif; ?>
             </div>
         </div>

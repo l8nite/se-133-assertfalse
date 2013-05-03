@@ -15,6 +15,14 @@ if ($session->isLoggedIn())
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$session->login($username, $password);
-header("Location: /index.php");
+$result = $session->login($username, $password);
+
+if ($result === $session::SESSION_INVALID_USERNAME)
+{
+    header("Location: /signup.php?username=$username");
+}
+else
+{
+    header("Location: /index.php");
+}
 ?>

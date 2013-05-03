@@ -2,6 +2,10 @@
     color: #5a5a5a; /* lighter body text */
 }
 
+.navbar .loggedinas {
+    line-height: 40px !important;
+}
+
 /*
 TODO: comment the below CSS so that we can actually figure out what
 it is controlling and/or how it affects the layout

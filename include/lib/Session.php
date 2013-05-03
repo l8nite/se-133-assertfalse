@@ -8,6 +8,10 @@ require_once 'UUID.php';
  */
 class Session
 {
+    const SESSION_CREATED = 1;
+    const SESSION_INVALID_CREDENTIALS = -1;
+    const SESSION_INVALID_USERNAME = -2;
+
     const SessionCookieName = 'MentorWebSession';
     const SessionExpireTimeSeconds = 2592000; // 30 days
 
@@ -44,16 +48,16 @@ class Session
             error_log('login() of session who was already logged in...');
         }
 
-        $this->userIdentifier = $this->db->get("uuid_for:$username");
+        $this->userIdentifier = $this->db->get("user_id_for:$username");
 
         if ($this->userIdentifier === null) {
-            return false; // user not in database
+            return self::SESSION_INVALID_USERNAME; // user not in database
         }
 
-        $storedPassword = json_decode($this->db->get("password:$this->userIdentifier"));
-        $computedHash = crypt($password, $storedPassword->{'salt'});
+        $details = json_decode($this->db->get($this->userIdentifier));
+        $computedHash = crypt($password, $details->{'passwordSalt'});
 
-        if ($computedHash === $storedPassword->{'pass'})
+        if ($computedHash === $details->{'hashedPassword'})
         {
             // create a new session
             $sessionUUID = UUID::v4();
@@ -69,10 +73,10 @@ class Session
 
             $this->isLoggedIn = true;
 
-            return true;
+            return self::SESSION_CREATED;
         }
 
-        return false;
+        return SESSION_INVALID_CREDENTIALS;
     }
 
     public function isLoggedIn()
@@ -91,6 +95,11 @@ class Session
         setcookie(self::SessionCookieName, "", time() - self::SessionExpireTimeSeconds, "/");
 
         $this->isLoggedIn = false;
+    }
+
+    public function getUserIdentifier()
+    {
+        return $this->userIdentifier;
     }
 }
 ?>
