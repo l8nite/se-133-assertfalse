@@ -2,7 +2,7 @@
 $pageTitle = "Home";
 include('../include/header.php');
 
-if (!$isLoggedIn)
+if (!$session->isLoggedIn())
 {
     include('../include/pages/home-marketing.php');
 }

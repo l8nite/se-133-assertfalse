@@ -1,10 +1,14 @@
 <?php
-// TODO: include session management code
-$pageName = basename($_SERVER['PHP_SELF']);
+require_once 'lib/RedisClient.php';
+require_once 'lib/Session.php';
+
+$session = new Session(RedisClient::GetConnectedInstance());
+
 ?>
 <?php
-// TODO: remove debugging code
-    $isLoggedIn = false;
+    // TODO: remove debugging code
+    error_reporting(E_ALL);
+    ini_set('display_errors', True);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,6 +49,7 @@ $pageName = basename($_SERVER['PHP_SELF']);
                         'about.php' => '<i class="icon-book"></i> About',
                     );
 
+                    $pageName = basename($_SERVER['PHP_SELF']);
                     foreach ($pages as $link => $description) {
                         if ($pageName === $link) {
                             echo '<li class="active"><a href="#">' . $description . '</a></li>';
@@ -54,7 +59,7 @@ $pageName = basename($_SERVER['PHP_SELF']);
                         }
                     }
                 ?>
-                <?php if ($isLoggedIn): ?>
+                <?php if ($session->isLoggedIn()): ?>
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
@@ -70,14 +75,14 @@ $pageName = basename($_SERVER['PHP_SELF']);
                 </li>
                 <?php endif; ?>
                 </ul>
-                <?php if (!$isLoggedIn): ?>
-                <form class="navbar-form pull-right">
-                    <input class="span2" type="text" placeholder="Email">
-                    <input class="span2" type="password" placeholder="Password">
+                <?php if (!$session->isLoggedIn()): ?>
+                <form action="/api/login.php" method="POST" class="navbar-form pull-right">
+                    <input class="span2" type="text" name="username" placeholder="Email">
+                    <input class="span2" type="password" name="password" placeholder="Password">
                     <button type="submit" class="btn">Sign in</button>
                 </form>
                 <?php else: ?>
-                <a class="btn btn-primary pull-right" href="#">Sign Out</a>
+                <a id="logout-button" class="btn btn-primary pull-right" href="#">Sign Out</a>
                 <?php endif; ?>
             </div>
         </div>

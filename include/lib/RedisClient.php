@@ -10,7 +10,7 @@ class RedisClient
     * Returns a connected instance of the predis client
     * Multiple calls to this function will return the same result
     */
-    public static function GetConnectedPredisInstance()
+    public static function GetConnectedInstance()
     {
         static $predis = null;
 
