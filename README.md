@@ -11,7 +11,10 @@ The MentorWeb site is primarily written in PHP.
 
 To set up a local development environment you need:
 
-- <a href="http://httpd.apache.org/">Apache</a>, <a href="http://php.net/">PHP</a>, and <a href="http://redis.io/">Redis</a>
+- <a href="http://httpd.apache.org/">Apache</a>
+- <a href="http://php.net/">PHP</a>
+- <a href="http://redis.io/">Redis</a>
+- <a href="https://github.com/nrk/predishttps://github.com/nrk/predis">Predis</a>, the PHP redis client library
 
 The website content is primarily written in PHP and HTML within the *www* subdirectory.
 
