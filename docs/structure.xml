@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a12" title="">
+  <file path="SignIn.php" hash="f4b7f3231e699d5e913914f77778a2ae" package="Default">
+    <include line="3" type="Require Once" package="Default">
+      <name>Predis/Autoloader.php</name>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file SignIn.php</error>
+    </parse_markers>
+  </file>
+  <file path="SignIn_script.php" hash="297fbabb8569e3f7436f0c49df9dd7e6" package="Default">
+    <include line="11" type="Require Once" package="Default">
+      <name>SignIn_v2.php</name>
+    </include>
+    <include line="12" type="Require Once" package="Default">
+      <name>../Predis/Autoloader.php</name>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file SignIn_script.php</error>
+    </parse_markers>
+  </file>
+  <file path="SignIn_v2.php" hash="1ad71e8c04c9ad2912f080bad991b834" package="Default">
+    <include line="3" type="Require Once" package="Default">
+      <name>Predis/Autoloader.php</name>
+    </include>
+    <include line="4" type="Require Once" package="Default">
+      <name>../Session.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="13" package="Default">
+      <extends/>
+      <name>SignIn</name>
+      <full_name>\SignIn</full_name>
+      <docblock line="8">
+        <description>Description of SignIn.</description>
+        <long-description>&lt;p&gt;This class is used to manage signins and signouts.&lt;/p&gt;</long-description>
+        <tag line="8" name="author" description="Ryan"/>
+      </docblock>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="21" package="Default">
+        <name>signIn</name>
+        <full_name>signIn</full_name>
+        <docblock line="15">
+          <description>This method is used to sign in a user.</description>
+          <long-description>&lt;p&gt;@param username The user's username;&lt;/p&gt;</long-description>
+          <tag line="15" name="param" description="The user's password;&#10; @return true if the credentials are valid and the session was registered; otherwise false." type="\password" variable="$username">
+            <type by_reference="false">\password</type>
+          </tag>
+        </docblock>
+        <argument line="21">
+          <name>$username</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="21">
+          <name>$password</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="21">
+          <name>$db</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="private" namespace="global" line="41" package="Default">
+        <name>areValidCredentials</name>
+        <full_name>areValidCredentials</full_name>
+        <docblock line="35">
+          <description>This method checks if a user's credentials are valid.</description>
+          <long-description>&lt;p&gt;@param username The user's username;&lt;/p&gt;</long-description>
+          <tag line="35" name="param" description="The user's password;&#10; @return true if the credentials are valid; otherwise false." type="\password" variable="$username">
+            <type by_reference="false">\password</type>
+          </tag>
+        </docblock>
+        <argument line="41">
+          <name>$username</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="41">
+          <name>$password</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="41">
+          <name>$db</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="55" package="Default">
+        <name>isSignedIn</name>
+        <full_name>isSignedIn</full_name>
+        <docblock line="51">
+          <description>This method checks if a user is signed in.</description>
+          <long-description>&lt;p&gt;@return true if the user is signed in; otherwise false.&lt;/p&gt;</long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="64" package="Default">
+        <name>getUUID</name>
+        <full_name>getUUID</full_name>
+        <docblock line="60">
+          <description>This method gets the userid of the user signed in.</description>
+          <long-description>&lt;p&gt;@return the UUID if the user is signed in; otherwise NULL.&lt;/p&gt;</long-description>
+        </docblock>
+        <argument line="64">
+          <name>$redis</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="72" package="Default">
+        <name>signOut</name>
+        <full_name>signOut</full_name>
+        <docblock line="69">
+          <description>This method signs a user out.</description>
+          <long-description/>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file SignIn_v2.php</error>
+      <error line="15" code="50015">Argument $password is missing from the Docblock of signIn()</error>
+      <error line="15" code="50015">Argument $db is missing from the Docblock of signIn()</error>
+      <error line="35" code="50015">Argument $password is missing from the Docblock of areValidCredentials()</error>
+      <error line="35" code="50015">Argument $db is missing from the Docblock of areValidCredentials()</error>
+      <error line="60" code="50015">Argument $redis is missing from the Docblock of getUUID()</error>
+    </parse_markers>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <namespace name="global" full_name="global"/>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>
