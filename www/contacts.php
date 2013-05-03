@@ -104,7 +104,7 @@
         <div class="span9">
           <div class="row-fluid">
             <div class="span4">
-                <img src="../assets/img/John-Doe.jpg" alt="" />
+                <img src="images/John-Doe.jpg" alt="" />
             </div>
             <div class="span8">
                 <h2>John Doe</h2>

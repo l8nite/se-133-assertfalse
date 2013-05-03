@@ -20,7 +20,7 @@
         <div class="span9" id="mainField" style="display:none">
           <div class="row-fluid">
             <div class="span4">
-                <img src="../assets/img/John-Doe.jpg" alt="" />
+                <img src="images/John-Doe.jpg" alt="" />
             </div>
             <div class="span8">
                 <h2 id="nameField">loading...</h2>

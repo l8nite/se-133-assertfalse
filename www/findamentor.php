@@ -27,7 +27,7 @@
           </div> <!-- COMMENT
           <div class="row-fluid">
             <div class="span4">
-                <img src="../assets/img/John-Doe.jpg" alt="" />
+                <img src="images/John-Doe.jpg" alt="" />
             </div>
             <div class="span8">
                 <h2>John Doe</h2>
@@ -38,7 +38,7 @@
           </div> COMMENT -->
           <div class="row-fluid">
             <div class="span4">
-                <img src="../assets/img/Bill-Nye.jpg" alt="" />
+                <img src="images/Bill-Nye.jpg" alt="" />
             </div>
             <div class="span8">
                 <h2>Bill Nye</h2>
@@ -63,7 +63,7 @@
 					var divRowFluid = $('<div class="row-fluid"></div>');
 
 					var divSpan4 = $('<div class="span4"></div>');
-					var img = $('<img src="../assets/img/Bill-Nye.jpg" alt="" />');
+					var img = $('<img src="images/Bill-Nye.jpg" alt="" />');
 
 					var divSpan8 = $('<div class="span8"></div>');
 					var header2 = $('<h2>' + matchData[2][i] + '</h2>');

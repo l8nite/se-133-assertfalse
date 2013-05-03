@@ -5,7 +5,7 @@
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
          <div class="item active">
-          <img src="../assets/img/brain_blue.jpg" alt="">
+          <img src="images/brain_blue.jpg" alt="">
           <div class="container">
             <div class="carousel-caption">
               <h1>Its a Big Blue Brain.</h1>
@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="item">
-          <img src="../assets/img/brain_blue.jpg" alt="">
+          <img src="images/brain_blue.jpg" alt="">
           <div class="container">
             <div class="carousel-caption">
               <h1>Mentor.</h1>
@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="item">
-          <img src="../assets/img/brain_blue.jpg" alt="">
+          <img src="images/brain_blue.jpg" alt="">
           <div class="container">
             <div class="carousel-caption">
               <h1>Mentees.</h1>
