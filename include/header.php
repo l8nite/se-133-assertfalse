@@ -1,5 +1,6 @@
 <?php
 // TODO: include session management code
+$pageName = basename($_SERVER['PHP_SELF']);
 ?>
 <?php
 // TODO: remove debugging code
@@ -26,6 +27,7 @@
         <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 
         <link href="styles/mentorweb.css" rel="stylesheet">
+
     </head>
 
     <body>
@@ -37,8 +39,21 @@
             <div class="navbar-inner">
                 <a class="brand" href="#">MentorWeb</a>
                 <ul class="nav">
-                <li class="active"><a href="#"><i class="icon-home"></i> Home</a></li>
-                <li><a href="#About">About</a></li>
+                <?php
+                    $pages = array(
+                        'index.php' => '<i class="icon-home"></i> Home',
+                        'about.php' => '<i class="icon-book"></i> About',
+                    );
+
+                    foreach ($pages as $link => $description) {
+                        if ($pageName === $link) {
+                            echo '<li class="active"><a href="#">' . $description . '</a></li>';
+                        }
+                        else {
+                            echo '<li><a href="' . $link . '">' . $description . '</a></li>';
+                        }
+                    }
+                ?>
                 <?php if ($isLoggedIn): ?>
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                 <li class="dropdown">
