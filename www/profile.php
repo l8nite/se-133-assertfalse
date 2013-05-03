@@ -61,9 +61,6 @@
       </div><!--/row-->
 	</div>
 
- <?php
-	include('./footer.php');
-?> 
    <script>
 		$(document).ready(function () {
 			$.get('../../php/viewownprofile.php', function(returnData) {
@@ -80,5 +77,7 @@
 			}, 'text');
 		});
 	</script>
-	  </body>
-</html>
+
+<?php
+	include('./footer.php');
+?>
