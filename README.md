@@ -24,3 +24,12 @@ Interface documentation is in the *docs* directory
 
 You should configure the site such that requests to http://yourhost/ load **home.php** in the *www* subdirectory by default.
 You also need to ensure that requests to http://yourhost/api are routed to the *api* subdirectory.
+
+For apache, your configuration should look like:
+
+    DocumentRoot /yourpath/assertfalse/www
+    Alias /api /yourpath/assertfalse/api
+
+If you like, you can also use our favicon.ico
+
+   Alias /favicon.ico /yourpath/assertfalse/www/images/favicon.ico
