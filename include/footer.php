@@ -1,10 +1,9 @@
-      <hr>
+    <hr>
 
-      <footer>
-        <p>&copy; MentorWeb 2013</p>
-      </footer>
+    <footer>
+    <p>&copy; MentorWeb 2013</p>
+    </footer>
 
-    </div><!--/.fluid-container-->
 
     <!-- Le javascript
     ================================================== -->

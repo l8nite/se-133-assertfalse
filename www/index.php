@@ -1,4 +1,4 @@
-<?php include('./header.php'); ?>
+<?php include('../include/header.php'); ?>
 
     <!-- Carousel
     ================================================== -->
@@ -78,4 +78,4 @@
 
     </div><!-- /.container -->
 
-<?php include('./footer.php'); ?>
+<?php include('../include/footer.php'); ?>
