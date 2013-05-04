@@ -32,6 +32,37 @@ class User
         return new User($db, $userIdentifier);
     }
 
+    public static function GetUser($db, $identifierOrUsername)
+    {
+        if (UUID::is_valid($identifierOrUsername)) {
+            return User::GetUserWithIdentifier($db, $identifierOrUsername);
+        }
+        else {
+            return User::GetUserWithUsername($db, $identifierOrUsername);
+        }
+    }
+
+    public static function GetUserWithUsername($db, $username)
+    {
+        $userIdentifier = $db->get("user_id_for:$username");
+
+        if ($userIdentifier === null) {
+            return null;
+        }
+
+        return User::GetUserWithIdentifier($db, $userIdentifier);
+    }
+
+    public static function GetUserWithIdentifier($db, $userIdentifier)
+    {
+        if (!$db->exists($userIdentifier)) {
+            return null;
+        }
+
+        return new User($db, $userIdentifier);
+    }
+
+
     private $db = null;
     private $details = null;
     private $userIdentifier = null;
@@ -39,13 +70,14 @@ class User
     public function __construct($db, $userIdentifier)
     {
         if ($db === null || $userIdentifier === null) {
-            throw new Exception("You probably meant User::CreateUser");
+            throw new Exception("You probably meant User::Get* or User::CreateUser");
         }
 
         $this->db = $db;
         $this->userIdentifier = $userIdentifier;
 
-        $this->details = json_decode($db->get($userIdentifier));
+        $details = json_decode($db->get($userIdentifier));
+        $this->details = $details;
     }
 
     private function persist() {
@@ -67,5 +99,10 @@ class User
     public function setProfile($profile) {
         $this->details->{'profile'} = $profile;
         $this->persist();
+    }
+
+    public function getContacts() {
+        $userIdentifier = $this->userIdentifier;
+        return $this->db->zrange("contacts:$userIdentifier", 0, -1);
     }
 }

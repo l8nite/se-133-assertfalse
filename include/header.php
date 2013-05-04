@@ -9,10 +9,10 @@ $user = null;
 
 if ($session->isLoggedIn())
 {
-    $user = new User($db, $session->getUserIdentifier());
+    $user = User::GetUserWithIdentifier($db, $session->getUserIdentifier());
 }
 
-if ($requireAuthenticated && !$session->isLoggedIn())
+if (isset($requireAuthenticated) && $requireAuthenticated && !$session->isLoggedIn())
 {
     header("Location: /");
     exit;

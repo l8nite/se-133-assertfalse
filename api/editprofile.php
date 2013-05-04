@@ -1,17 +1,6 @@
 ﻿<?php
-require_once '../include/lib/RedisClient.php';
-require_once '../include/lib/Session.php';
-require_once '../include/lib/User.php';
-
-$db = RedisClient::GetConnectedInstance();
-
-$session = new Session($db);
-
-if (!$session->isLoggedIn()) {
-    header("Location: /index.php");
-    exit;
-}
-
+$redirectOnFailure = '/index.php';
+include '../include/api-header.php';
 
 $reqParameters = array('inputTitle', 'inputSummary', 'inputGoals', 'inputExperience');
 
@@ -36,8 +25,6 @@ $profile = array(
     'goals' => $goals,
     'experience' => $experience
 );
-
-$user = new User($db, $session->getUserIdentifier());
 
 $user->setProfile($profile);
 header("Location: /index.php");

@@ -1,23 +1,7 @@
 ﻿<?php
-require './Session.php';
-require 'Predis/Autoloader.php';
+include '../../include/api-header.php';
 
-Predis\Autoloader::register();
-$redis = new Predis\Client('tcp://kong.idlemonkeys.net:6379');
-
-if (isset($_COOKIE['MentorWebSession'])) {
-    $my_uuid = Session::resolveSessionID($redis, $_COOKIE['MentorWebSession']);
-    if ($my_uuid == "") {
-        echo("You are not logged in.");
-        exit;
-    }
-}
-else {
-    echo("You are not logged in.");
-    exit;
-}
-
-
+// $session & $user is available
 
 $my_contact = json_decode($redis->get("user:contact:$my_uuid"));
 $my_username = $my_contact->{'email'};
