@@ -67,35 +67,29 @@ if ($requireAuthenticated && !$session->isLoggedIn())
                 <a class="brand" href="/index.php">MentorWeb</a>
                 <ul class="nav">
                 <?php
-                    $pages = array(
-                        'index.php' => '<i class="icon-home"></i> Home',
-                        'about.php' => '<i class="icon-book"></i> About',
-                    );
-
+                function isActive($page) {
                     $pageName = basename($_SERVER['PHP_SELF']);
-                    foreach ($pages as $link => $description) {
-                        if ($pageName === $link) {
-                            echo '<li class="active"><a href="#">' . $description . '</a></li>';
-                        }
-                        else {
-                            echo '<li><a href="' . $link . '">' . $description . '</a></li>';
-                        }
+                    if ($page === $pageName) {
+                        echo ' class="active"';
                     }
+                }
                 ?>
+                    <li <?php isActive('index.php') ?>><a href="index.php"><i class="icon-home"></i> Home</a></li>
                 <?php if ($session->isLoggedIn()): ?>
-                <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="./edit-profile.php">Edit Profile</a></li>
-                        <li><a href="#">Upgrade to Premium</a></li>
-                        <li class="divider"></li>
-                        <li class="nav-header">Mentors</li>
-                        <li><a href="findamentor.php">Find a Mentor</a></li>
-                        <li><a href="#">Review a Mentor</a></li>
-                        <li><a href="#">Manage Mentors</a></li>
-                    </ul>
-                </li>
+                    <li <?php isActive('messages.php') ?>><a href="messages.php">Messages <span class="badge badge-inverse">42</span> </a></li>
+                    <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./edit-profile.php">Edit Profile</a></li>
+                            <li><a href="#">Upgrade to Premium</a></li>
+                            <li class="divider"></li>
+                            <li class="nav-header">Mentors</li>
+                            <li><a href="findamentor.php">Find a Mentor</a></li>
+                            <li><a href="#">Review a Mentor</a></li>
+                            <li><a href="#">Manage Mentors</a></li>
+                        </ul>
+                    </li>
                 <?php endif; ?>
                 </ul>
                 <?php if (!$session->isLoggedIn()): ?>
