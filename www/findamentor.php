@@ -1,5 +1,5 @@
 <?php
-	include('./header.php');
+	include('../include/header.php');
 ?>
     <div class="container-fluid" style="margin-top:20px;">
       <div class="row-fluid">
@@ -51,7 +51,7 @@
       </div><!--/row-->
 
 <?php
-	include('./footer.php');
+	include('../include/footer.php');
 ?>
 	<script>
 		$(document).ready(function () {
