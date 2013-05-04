@@ -18,7 +18,7 @@
           <div class="hero-unit">
               <h2>Find A Mentor</h2>
               <p>Enter desired related skills of mentors to search</p>
-              <form class="form-search">
+              <form class="form-search" id="searchForm">
                   <div class="input-append">
                     <input type="text" class="search-query">
                     <button type="submit" class="btn">Search</button>
@@ -56,36 +56,50 @@
 	<script>
 		$(document).ready(function () {
 			$.get('../../php/viewmatches.php', function(returnData) {
-				var matchData = $.parseJSON($.trim(returnData)); //PHP seems to add two invisible, trimmable characters in front of output
-				console.log(matchData);
-
-				for (var i = 0; i < matchData[0].length; i++) {
-					var divRowFluid = $('<div class="row-fluid"></div>');
-
-					var divSpan4 = $('<div class="span4"></div>');
-					var img = $('<img src="images/Bill-Nye.jpg" alt="" />');
-
-					var divSpan8 = $('<div class="span8"></div>');
-					var header2 = $('<h2>' + matchData[2][i] + '</h2>');
-					var header4 = $('<h4>' + matchData[3][i] + '</h4>');
-					var para = $('<p>' + matchData[4][i] + '</p>');
-
-					var para2 = $('<p><a href="#" class="btn btn-success btn-small">Connect &raquo;</a></p>');
-
-					divSpan4.append(img);
-					divSpan8.append(header2);
-					divSpan8.append(header4);
-					divSpan8.append(para);
-					divRowFluid.append(divSpan4);
-					divRowFluid.append(divSpan8);
-					divRowFluid.append(para2);
-
-					$('#mainList').append(divRowFluid);
-				}
-
-				$('#mainList').show(0); //div mainList has inline "display:none"
+				var data = $.parseJSON($.trim(returnData)); //PHP seems to add two invisible, trimmable characters in front of output
+				console.log(data);
+				populate(data);
 			}, 'text');
 		});
+
+		$('#searchForm').on('submit', function(event) {
+			event.preventDefault();
+			$.post('../../php/viewmatches.php', $('#searchForm').serialize(), function(returnData) {
+				var data = $.parseJSON($.trim(returnData)); //PHP seems to add two invisible, trimmable characters in front of output
+				console.log(data);
+				populate(data);
+			}, 'text');
+		});
+
+		function populate(matchData) {
+			$('.MentorWeb').empty(); //remote elements with class = MentorWeb, see rest of populate() code
+
+			for (var i = 0; i < matchData[0].length; i++) {
+				var divRowFluid = $('<div class="row-fluid MentorWeb"></div>');
+
+				var divSpan4 = $('<div class="span4"></div>');
+				var img = $('<img src="images/Bill-Nye.jpg" alt="" />');
+
+				var divSpan8 = $('<div class="span8"></div>');
+				var header2 = $('<h2>' + matchData[2][i] + '</h2>');
+				var header4 = $('<h4>' + matchData[3][i] + '</h4>');
+				var para = $('<p>' + matchData[4][i] + '</p>');
+
+				var para2 = $('<p><a href="#" class="btn btn-success btn-small">Connect &raquo;</a></p>');
+
+				divSpan4.append(img);
+				divSpan8.append(header2);
+				divSpan8.append(header4);
+				divSpan8.append(para);
+				divRowFluid.append(divSpan4);
+				divRowFluid.append(divSpan8);
+				divRowFluid.append(para2);
+
+				$('#mainList').append(divRowFluid);
+			}
+
+			$('#mainList').show(0); //div mainList has inline "display:none"
+		};
 	</script>
-	  </body>
+	</body>
 </html>

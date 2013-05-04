@@ -21,19 +21,26 @@ class Match {
 	}
 
 	/**
-	 * Executes matching algorithm and generates column-based multi-dimensional array of results.
+	 * Executes matching algorithm and generates column-based multi-dimensional array of results. Scores of 0 are not returned.
 	 *
 	 * @return array[] Column-based multi-dimensional array: UUID, score, full name, title, description.
 	 */
-	public function match() {
+	public function match($searchKeywords = NULL) {
 		$user_type = $this->profile->getProfile()->{'user_type'};
 		$array = NULL;
 
-		if ($user_type == 'MENTOR') {
-			$array = self::scoreAllMentees($this->profile->getExperience()->{'keywords'});
-		}
-		elseif ($user_type == 'MENTEE') {
-			$array = self::scoreAllMentors($this->profile->getGoals()->{'keywords'});
+		if ($searchKeywords == NULL) { //profile comparison
+			if ($user_type == 'MENTOR') {
+				$array = self::scoreAllMentees($this->profile->getExperience()->{'keywords'});
+			} elseif ($user_type == 'MENTEE') {
+				$array = self::scoreAllMentors($this->profile->getGoals()->{'keywords'});
+			}
+		} else { //search parameter comparison
+			if ($user_type == 'MENTOR') {
+				$array = self::scoreAllMentees($searchKeywords);
+			} elseif ($user_type == 'MENTEE') {
+				$array = self::scoreAllMentors($searchKeywords);
+			}
 		}
 
 		//multi-dimensional sort and convert row-based array to column-based
@@ -43,17 +50,19 @@ class Match {
 		$titleCol       = array();
 		$descriptionCol = array();
 		foreach ($array as $key => $row) {
-			$idCol[]          = $key;
-			$scoreCol[]       = $row[0];
-			$nameCol[]        = $row[1];
-			$titleCol[]       = $row[2];
-			$descriptionCol[] = $row[3];
+			if ($row[0] > 0) { //do not return if score is 0
+				$idCol[]          = $key;
+				$scoreCol[]       = $row[0];
+				$nameCol[]        = $row[1];
+				$titleCol[]       = $row[2];
+				$descriptionCol[] = $row[3];
+			}
 		}
-		array_multisort($idCol,
-		                $scoreCol, SORT_NUMERIC, SORT_DESC,
-						$nameCol,
-						$titleCol,
-						$descriptionCol);
+		array_multisort($scoreCol, SORT_NUMERIC, SORT_DESC,
+			$idCol,
+			$nameCol,
+			$titleCol,
+			$descriptionCol);
 		$array = array($idCol, $scoreCol, $nameCol, $titleCol, $descriptionCol);
 
 		return $array;
@@ -74,9 +83,9 @@ class Match {
 			$user_type = $profile->getProfile()->{'user_type'};
 			if ($user_type == 'MENTOR' || $user_type == 'BOTH') {
 				$array[$profile->getUUID()] = array($this->score($keywords, $profile->getExperience()->{'keywords'}),
-													$profile->getProfile()->{'first'} . $profile->getProfile()->{'last'},
-													$profile->getProfile()->{'title'},
-													$profile->getExperience()->{'experience_description'});
+					$profile->getProfile()->{'first'} . ' ' . $profile->getProfile()->{'last'},
+					$profile->getProfile()->{'title'},
+					$profile->getExperience()->{'experience_description'});
 			}
 		}
 
@@ -98,9 +107,9 @@ class Match {
 			$user_type = $profile->getProfile()->{'user_type'};
 			if ($user_type == 'MENTEE' || $user_type == 'BOTH') {
 				$array[$profile->getUUID()] = array($this->score($keywords, $profile->getGoals()->{'keywords'}),
-				                                    $profile->getProfile()->{'first'} . $profile->getProfile()->{'last'},
-													$profile->getProfile()->{'title'},
-				                                    $profile->getGoals()->{'goal_description'});
+					$profile->getProfile()->{'first'} . ' ' . $profile->getProfile()->{'last'},
+					$profile->getProfile()->{'title'},
+					$profile->getGoals()->{'goal_description'});
 			}
 		}
 
