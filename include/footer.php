@@ -5,5 +5,30 @@
     </footer>
 
     </div> <!-- /.container -->
+
+    <script type="text/javascript">
+    $(function() {
+        // TODO: this can probably be a much lower interval
+<?php if ($user !== null): ?>
+        setInterval(checkUnreadMessageCount, 1000);
+<?php endif; ?>
+    });
+
+    function checkUnreadMessageCount() {
+        $.get('/api/messages/unread.php', function (responseData) {
+            var unread = $.parseJSON($.trim(responseData));
+            var badge = $('#messages-unread-count');
+
+            badge.text(unread);
+
+            if (unread > 0) {
+                badge.show();
+            }
+            else {
+                badge.hide();
+            }
+        });
+    }
+    </script>
 </body>
 </html>

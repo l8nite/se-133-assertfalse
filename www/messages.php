@@ -7,33 +7,139 @@
 <style>
 #messages-contacts-list {
     overflow-y: auto;
+    border-right: 1px solid gray;
+    height: 80%;
+}
+
+#messages-content-area {
+    overflow-y: auto;
+    height: 60%;
 }
 </style>
 
 <div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span2" id="messages-contacts-list">
-        </div>
-        <div class="span10" id="messages-content-area">
+    <div class="row-fluid" id="messages-layout-row">
+        <div class="span3" id="messages-contacts-list">
+            <h4> Contacts </h4>
+            <?php
+            $contacts = $user->getContacts();
 
+            foreach ($contacts as $sender_userIdentifier) {
+                $sender = User::GetUserWithIdentifier($db, $sender_userIdentifier);
+                $sender_uid = $sender->getIdentifier();
+                $sender_name = $sender->getUsername();
+                echo "<a class=\"btn btn-link\" onclick=\"showMessagesWith('$sender_uid');\">$sender_name</a>";
+            }
+            ?>
+        </div>
+        <div class="span9">
+            <div id="messages-content-area" style="margin-bottom: 20px;">
+                <div style="padding-top: 100px; text-align: center;">
+                    <h3>No conversation selected</h3>
+                    <p>Select one of your conversations from the left or send a new message</p>
+                </div>
+            </div>
+
+            <div id="send-message-area" class="well" style="display: none;">
+                <textarea placeholder="Say something..." id="send-message-input" style="height: 80px; width: 100%;"></textarea>
+                <a href="#" id="send-message-button" class="btn btn-primary btn-small">Send &raquo;</a>
+            </div>
         </div>
     </div>
 </div>
 
     <script type="text/javascript">
+    var selectedInterlocuterUID = null;
+    var lastDisplayedMessageCount = -1;
+
     $(function() {
-        $.get('/api/messages/contacts.php', function(returnData) {
-            var senders = $.parseJSON($.trim(returnData));
-            for (var i = 0; i < senders.length; ++i) {
-                console.log(senders[i]);
-                var div = $('<div uuid="' + senders[i].uuid + '">' + senders[i].username + '</div>');
-                div.click(function() {
-                    displayMessagesFrom($(this).attr('uuid'));
-                });
-                $('#messages-contacts-list').append(div);
+        setInterval(refreshMessages, 1000);
+
+        $('#send-message-button').click(sendMessage);
+
+        $('#send-message-input').keypress(function (e) {
+            if (e.which == 13 && !e.shiftKey) {
+                $('#send-message-button').click();
             }
-        }, 'text');
+        });
     });
+
+    function sendMessage() {
+        var message = $('#send-message-input').val();
+
+        if (message === "") {
+            return;
+        }
+
+        $.get('/api/messages/send.php', { 'to': selectedInterlocuterUID, 'm': message }, function () {
+            $('#send-message-input').val('');
+            refreshMessages();
+        });
+    }
+
+    function refreshMessages() {
+        if (selectedInterlocuterUID === null) {
+            return;
+        }
+
+        showMessagesWith(selectedInterlocuterUID);
+    }
+
+    function showMessagesWith(uid) {
+        var newUser = uid !== selectedInterlocuterUID;
+        selectedInterlocuterUID = uid;
+
+        $.get('/api/messages/list.php', { 'with': uid }, function (returnData) {
+            var response = $.parseJSON($.trim(returnData));
+
+            if (!newUser && lastDisplayedMessageCount === response.messages.length) {
+                return;
+            }
+
+            lastDisplayedMessageCount = response.messages.length;
+
+            $('#messages-content-area').empty().append(
+                '<h3>Messages with ' + response.with + '</h3>'
+            );
+
+            for (var i = 0; i < response.messages.length; ++i) {
+                var message = response.messages[i];
+                var d = new Date(message.time * 1000);
+                var df = getISODateTime(d);
+                var div = $(
+                    '<div class="row-fluid">' +
+                    '<div class="span6"><h5>' + message.name + '</h5></div>'
+                    + '<div class="span6 date" style="text-align: right;"><h5>' + df + '</h5></div>'
+                    + '</div><div class="row-fluid">'
+                    + '<div class="span12">' + message.text + '</div></div>');
+                $('#messages-content-area').append(div);
+            }
+
+            $('#messages-content-area').animate({ scrollTop: $('#messages-content-area')[0].scrollHeight }, 1000);
+            $('#send-message-area').show();
+//            $('#new-message-area').hide();
+//            $('#message-area').show();
+
+        });
+    }
+
+    function getISODateTime(d){
+        // padding function
+        var s = function(a,b){return(1e15+a+"").slice(-b)};
+
+        // default date parameter
+        if (typeof d === 'undefined'){
+            d = new Date();
+        };
+
+        // return ISO datetime
+        return d.getFullYear() + '-' +
+            s(d.getMonth()+1,2) + '-' +
+            s(d.getDate(),2) + ' ' +
+            s(d.getHours(),2) + ':' +
+            s(d.getMinutes(),2) + ':' +
+            s(d.getSeconds(),2);
+    }
     </script>
 
 <?php
@@ -46,57 +152,6 @@
 	include('../include/header.php');
 ?>
 
-    <div class="container-fluid" style="margin-top:20px;">
-      <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul id="friends" class="nav nav-list">
-              <!-- TODO: make sure link color is right -->
-              <li id="send-new-message-text" class="nav-header" style="color: blue;">Send new message</li>
-              <li class="nav-header">Friends</li>
-              <li><div class="divider" /></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9" id="message-area" style="display: none;">
-          <div class="row-fluid">
-            <div class="span12">
-              <h3 id="messages-with">Messages</h3>
-              <div id="messages-list"></div>
-              <p><input id="message-text"/>&nbsp;<a href="#" id="send-message-button" class="btn btn-primary btn-small">Send &raquo;</a></p>
-            </div><!--/span-->
-          </div><!--/row-->
-        </div><!--/span-->
-        <div class="span9" id="new-message-area" style="display: none;">
-          <div class="row-fluid">
-            <div class="span12">
-              <h3>Send a new message</h3>
-                <div class="control-group">
-                  <label class="control-label" for="inputTo">To</label>
-                  <div class="controls">
-                    <input type="text" id="inputTo" placeholder="To">
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label" for="inputMessage">Message</label>
-                  <div class="controls">
-                    <input type="text" id="inputMessage" placeholder="Message">
-                  </div>
-                </div>
-                <div class="control-group">
-                  <div class="controls">
-                    <button id="send-new-message-button" class="btn">Send &raquo;</button>
-                  </div>
-                </div>
-            </div><!--/span-->
-          </div><!--/row-->
-        </div><!--/span-->
-      </div><!--/row-->
-      </div><!--/row-->
-
-<?php
-	include('./footer.php');
-?>
     <script>
         var currentMessagesFrom = null;
 
@@ -107,38 +162,14 @@
             var senders = $.parseJSON($.trim(returnData));
             for (var i = 0; i < senders.length; ++i) {
                 console.log(senders[i]);
-                var li = $('<li uuid="' + senders[i].uuid + '">' + senders[i].username + '</li>');
+                var li = $('<li uid="' + senders[i].uid + '">' + senders[i].username + '</li>');
                 li.click(function() {
-                    displayMessagesFrom($(this).attr('uuid'));
+                    displayMessagesFrom($(this).attr('uid'));
                 });
                 $('#friends').append(li);
             }
           }, 'text');
 
-          $('#send-message-button').click(function () {
-            $.get('../../php/sendmessage.php', { 'to': currentMessagesFrom, 'm': $('#message-text').val() }, function () {
-                $('#message-text').val('');
-                displayMessagesFrom(currentMessagesFrom);
-            });
-          });
-
-          $('#send-new-message-text').click(function () {
-              currentMessagesFrom = null;
-              $('#message-area').hide();
-              $('#new-message-area').show();
-          });
-
-          $('#message-text').keypress(function (e) {
-            if (e.which == 13) {
-                $('#send-message-button').click();
-            }
-          });
-
-          $('#inputMessage').keypress(function (e) {
-            if (e.which == 13) {
-                $('#send-new-message-button').click();
-            }
-          });
 
           $('#send-new-message-button').click(function () {
             $to = $('#inputTo').val();
@@ -159,43 +190,6 @@
             displayMessagesFrom(currentMessagesFrom);
         }
 
-        function displayMessagesFrom(sender) {
-          currentMessagesFrom = sender;
-          $.get('../../php/getmessages.php', { 'from': sender }, function (returnData) {
-              var response = $.parseJSON($.trim(returnData));
-              console.log(response);
-              $('#messages-with').html('Messages with ' + response.with);
-
-              $('#messages-list').empty();
-              for (var i = 0; i < response.messages.length; ++i) {
-                  var message = response.messages[i];
-                  var d = new Date(message.time * 1000);
-                  var df = getISODateTime(d);
-                  var div = $('<div class="row-fluid"><div class="span2">' + df + '</div><div class="span3">' + message.name + '</div><div class="span7">' + message.text + '</div></div>');
-                  $('#messages-list').append(div);
-              }
-              $('#new-message-area').hide();
-              $('#message-area').show();
-          });
-        }
-
-        function getISODateTime(d){
-            // padding function
-            var s = function(a,b){return(1e15+a+"").slice(-b)};
-
-            // default date parameter
-            if (typeof d === 'undefined'){
-                d = new Date();
-            };
-
-            // return ISO datetime
-            return d.getFullYear() + '-' +
-                s(d.getMonth()+1,2) + '-' +
-                s(d.getDate(),2) + ' ' +
-                s(d.getHours(),2) + ':' +
-                s(d.getMinutes(),2) + ':' +
-                s(d.getSeconds(),2);
-        }
         </script>
         </body>
 </html>

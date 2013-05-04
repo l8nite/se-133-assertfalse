@@ -1,45 +1,46 @@
 ﻿<?php
 include '../../include/api-header.php';
 
-// $session & $user is available
-
-$my_contact = json_decode($redis->get("user:contact:$my_uuid"));
-$my_username = $my_contact->{'email'};
-
-$from = $_REQUEST['from'];
-$from_uuid = "";
-if (preg_match("/^[a-z0-9]{8}-([a-z0-9]{4}-){3}[a-z0-9]{12}$/i", $from)) {
-    $from_uuid = $from;
-}
-else {
-    $from_uuid = $redis->get("uuid_for:$from");
+if (!isset($_REQUEST['with'])) {
+    respond_error('missing "with" parameter');
 }
 
-if ($from_uuid == null) {
-    header(':', true, 409);
-    echo(json_encode(array('error' => 'UUID not found')));
-    exit;
+$interlocutor = User::GetUser($db, $_REQUEST['with']);
+
+if ($interlocutor === null) {
+    respond_error("invalid 'with' user");
 }
 
-$from_contact = json_decode($redis->get("user:contact:$from_uuid"));
-$from_username = $from_contact->{'email'};
+$my_uid = $user->getIdentifier();
+$il_uid = $interlocutor->getIdentifier();
 
-$rcvd = $redis->zrange("messages:$my_uuid:$from_uuid", 0, -1, 'withscores');
-$sent = $redis->zrange("messages:$from_uuid:$my_uuid", 0, -1, 'withscores');
+$rcvd = $db->zrange("messages:$my_uid:$il_uid", 0, -1, 'withscores');
+$sent = $db->zrange("messages:$il_uid:$my_uid", 0, -1, 'withscores');
 
 // no messages
+$response = array(
+    'with' => $il_uname,
+    'unread' => $unread,
+    'messages' => array()
+);
+
 if (!(count($rcvd) || count($sent))) {
-    echo('[]');
-    exit;
+    respond_success($response);
 }
+
+$unread = $db->get("messages:$my_uid:$il_uid:unread");
+$db->set("messages:$my_uid:$il_uid:unread", 0);
+$db->decrby("messages:$my_uid:unread", $unread);
 
 // mark up each message with the right sender
+$il_uname = $interlocutor->getUsername();
 foreach ($rcvd as &$m) {
-    array_push($m, $from_username, $from_uuid);
+    array_push($m, $il_uname, $il_uid);
 }
 
+$my_uname = $user->getUsername();
 foreach ($sent as &$m) {
-    array_push($m, $my_username, $my_uuid);
+    array_push($m, $my_uname, $my_uid);
 }
 
 // merge the arrays and sort by timestamp
@@ -62,22 +63,18 @@ function cmp_msg_time ($a, $b) {
 
 usort($messages, "cmp_msg_time");
 
-$response = array(
-    'with' => $from_username,
-    'messages' => array()
-);
 $senders = array();
 
 foreach ($messages as $mraw) {
     $message = array(
-        'text' => $mraw[0],
+        'text' => preg_replace('/\n/', '<br/>', $mraw[0]),
         'time' => $mraw[1],
         'name' => $mraw[2],
-        'uuid' => $mraw[3]
+        'uid' => $mraw[3]
     );
 
     array_push($response['messages'], $message);
 }
 
-echo(json_encode($response));
+respond_success($response);
 ?>

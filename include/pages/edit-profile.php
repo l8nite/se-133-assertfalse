@@ -24,7 +24,7 @@ else:
                         <label class="control-label" for="inputTitle">Title</label>
                         <div class="controls">
                         <?php
-                            $defaultTitleValue = array_key_exists('title', $profile) ? ' value="' . $profile->{'title'} . '"' : '';
+                            $defaultTitleValue = isset($profile) && array_key_exists('title', $profile) ? ' value="' . $profile->{'title'} . '"' : '';
                         ?>
                         <input type="text" name="inputTitle" id="inputTitle" placeholder="Senior Software Engineer" <?php echo $defaultTitleValue ?>/>
                         </div>
@@ -33,20 +33,20 @@ else:
                     <div class="control-group">
                         <label class="control-label" for="inputSummary">Summary</label>
                         <div class="controls">
-                        <textarea type="text" rows="4" name="inputSummary" id="inputSummary" placeholder="Give us some details about yourself..."><?php echo $profile->{'summary'} ?></textarea>
+                        <textarea type="text" rows="4" name="inputSummary" id="inputSummary" placeholder="Give us some details about yourself..."><?php echo isset($profile) ? $profile->{'summary'} : "" ?></textarea>
                         </div>
                     </div>
                 </fieldset>
                 <div class="control-group">
                     <label class="control-label" for="inputGoals">Goals</label>
                     <div class="controls">
-                        <textarea type="text" rows="4" name="inputGoals" id="inputGoals" placeholder="What do you aspire towards?"><?php echo $profile->{'goals'} ?></textarea>
+                        <textarea type="text" rows="4" name="inputGoals" id="inputGoals" placeholder="What do you aspire towards?"><?php echo isset($profile) ? $profile->{'goals'} : "" ?></textarea>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="inputExperience">Experience</label>
                     <div class="controls">
-                        <textarea type="text" rows="4" name="inputExperience" id="inputExperience" placeholder="What are some interesting things you've done?"><?php echo $profile->{'experience'} ?></textarea>
+                        <textarea type="text" rows="4" name="inputExperience" id="inputExperience" placeholder="What are some interesting things you've done?"><?php echo isset($profile) ? $profile->{'experience'} : "" ?></textarea>
                     </div>
                 </div>
                 <div class="form-actions">
