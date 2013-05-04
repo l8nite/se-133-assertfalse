@@ -60,11 +60,12 @@ class User
         return $this->details->{'username'};
     }
 
-    public function getHashedPassword() {
-        return $this->details->{'hashedPassword'};
+    public function getDetails() {
+        return $this->details;
     }
 
-    public function getPasswordSalt() {
-        return $this->details->{'passwordSalt'};
+    public function setProfile($profile) {
+        $this->details->{'profile'} = $profile;
+        $this->persist();
     }
 }

@@ -12,6 +12,12 @@ if ($session->isLoggedIn())
     $user = new User($db, $session->getUserIdentifier());
 }
 
+if ($requireAuthenticated && !$session->isLoggedIn())
+{
+    header("Location: /");
+    exit;
+}
+
 ?>
 <?php
     // TODO: remove debugging code
@@ -81,7 +87,7 @@ if ($session->isLoggedIn())
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="./profile-edit.php">Edit Profile</a></li>
+                        <li><a href="./edit-profile.php">Edit Profile</a></li>
                         <li><a href="#">Upgrade to Premium</a></li>
                         <li class="divider"></li>
                         <li class="nav-header">Mentors</li>

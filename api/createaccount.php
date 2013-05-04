@@ -38,4 +38,4 @@ if ($user === null) {
 }
 
 $session->login($username, $password);
-header("Location: /profile-edit.php");
+header("Location: /index.php");
