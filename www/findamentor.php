@@ -35,7 +35,7 @@
                 <p>Computer engineering has not only been my chosen educational path, but a passion. Between my professional career and education at San Jose State University, I have had an opportunity to use my time for digital hardware and web application projects. I am looking for a mentor to guide me toward my goal in computer engineering.</p>
             </div>
             <p><a href="#" class="btn btn-success btn-small">Connect &raquo;</a></p>
-          </div> COMMENT -->
+          </div>
           <div class="row-fluid">
             <div class="span4">
                 <img src="images/Bill-Nye.jpg" alt="" />
@@ -46,7 +46,7 @@
                 <p>Computer engineering has not only been my chosen educational path, but a passion. Between my professional career and education at San Jose State University, I have had an opportunity to use my time for digital hardware and web application projects. I am looking for a mentor to guide me toward my goal in computer engineering.</p>
             </div>
             <p><a href="#" class="btn btn-success btn-small">Connect &raquo;</a></p>
-          </div>
+          </div> COMMENT -->
         </div><!--/span-->
       </div><!--/row-->
 
@@ -55,7 +55,8 @@
 ?>
 	<script>
 		$(document).ready(function () {
-			$.get('../../php/viewmatches.php', function(returnData) {
+			$.get('/api/viewmatches.php', function(returnData) {
+				//console.log(returnData);
 				var data = $.parseJSON($.trim(returnData)); //PHP seems to add two invisible, trimmable characters in front of output
 				console.log(data);
 				populate(data);
