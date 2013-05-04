@@ -34,7 +34,7 @@ class User
 
     public static function GetUser($db, $identifierOrUsername)
     {
-        if (UUID::is_valid($identifierOrUsername)) {
+        if (UUID::is_valid(substr($identifierOrUsername, 5))) {
             return User::GetUserWithIdentifier($db, $identifierOrUsername);
         }
         else {

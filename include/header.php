@@ -67,6 +67,14 @@ if (isset($requireAuthenticated) && $requireAuthenticated && !$session->isLogged
                 <a class="brand" href="/index.php">MentorWeb</a>
                 <ul class="nav">
                 <?php
+                $unread_messages_count = null;
+                if ($user !== null) {
+                    $unread_messages_count = $db->get('messages:' . $user->getIdentifier() . ':unread');
+                }
+                if ($unread_messages_count === null) {
+                    $unread_messages_count = 0;
+                }
+
                 function isActive($page) {
                     $pageName = basename($_SERVER['PHP_SELF']);
                     if ($page === $pageName) {
@@ -76,7 +84,7 @@ if (isset($requireAuthenticated) && $requireAuthenticated && !$session->isLogged
                 ?>
                     <li <?php isActive('index.php') ?>><a href="index.php"><i class="icon-home"></i> Home</a></li>
                 <?php if ($session->isLoggedIn()): ?>
-                    <li <?php isActive('messages.php') ?>><a href="messages.php">Messages <span class="badge badge-inverse">42</span> </a></li>
+                <li <?php isActive('messages.php') ?>><a href="messages.php">Messages <span class="badge badge-important" id="messages-unread-count" style="display: <?php echo $unread_messages_count ? 'visible' : 'none';?>"><?php echo $unread_messages_count ?></span></a></li>
                     <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
