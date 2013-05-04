@@ -14,8 +14,6 @@ if (!$session->isLoggedIn())
 }
 
 $details = $user->getDetails();
-var_dump($details);
-$profile = null;
 
 if (array_key_exists('profile', $details)) {
 	$match = new Match($db, $user);

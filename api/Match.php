@@ -19,11 +19,7 @@ class Match {
 		$this->user = $user;
 
 		$details = $user->getDetails();
-		if (array_key_exists('profile', $details)) {
-			$this->profile = $details->{'profile'};
-		}
-		else {
-		}
+		$this->profile = $details->{'profile'};
 	}
 
 	/**
@@ -86,10 +82,10 @@ class Match {
 		$array = array();
 
 		foreach($allUsers as $user) {
-			$profile = User::GetUserWithIdentifier($this->database, substr($user, 6)); //strip off 'user:*'
+			$profile = User::GetUserWithIdentifier($this->database, $user);
 			$user_type = $profile->getDetails()->{'mentorType'};
-			if ($user_type == 'MENTOR' || $user_type == 'BOTH') {
-				$array[substr($user, 6)] = array($this->score($keywords, self::filter($profile->getDetails()->{'profile'}->{'experience'})),
+			if (array_key_exists('profile', $profile->getDetails()) && ($user_type == 'MENTOR' || $user_type == 'BOTH')) {
+				$array[substr($user, 5)] = array($this->score($keywords, self::filter($profile->getDetails()->{'profile'}->{'experience'})),
 					$profile->getDetails()->{'firstName'} . ' ' . $profile->getDetails()->{'lastName'},
 					$profile->getDetails()->{'profile'}->{'title'},
 					$profile->getDetails()->{'profile'}->{'experience'});
@@ -110,10 +106,10 @@ class Match {
 		$array = array();
 
 		foreach($allUsers as $user) {
-			$profile = User::GetUserWithIdentifier($this->database, substr($user, 6)); //strip off 'user:*'
+			$profile = User::GetUserWithIdentifier($this->database, $user);
 			$user_type = $profile->getDetails()->{'mentorType'};
-			if ($user_type == 'MENTEE' || $user_type == 'BOTH') {
-				$array[substr($user, 6)] = array($this->score($keywords, self::filter($profile->getDetails()->{'profile'}->{'goals'})),
+			if (array_key_exists('profile', $profile->getDetails()) && ($user_type == 'MENTEE' || $user_type == 'BOTH')) {
+				$array[substr($user, 5)] = array($this->score($keywords, self::filter($profile->getDetails()->{'profile'}->{'goals'})),
 					$profile->getDetails()->{'firstName'} . ' ' . $profile->getDetails()->{'lastName'},
 					$profile->getDetails()->{'profile'}->{'title'},
 					$profile->getDetails()->{'profile'}->{'goals'});
@@ -121,21 +117,6 @@ class Match {
 		}
 
 		return $array;
-		//$allUsers = $this->database->keys('user:profile:*');
-		//$array = array();
-        //
-		//foreach($allUsers as $user) {
-		//	$profile = new Profile($this->database, substr($user, 13)); //strip off 'user:profile:'
-		//	$user_type = $profile->getProfile()->{'user_type'};
-		//	if ($user_type == 'MENTEE' || $user_type == 'BOTH') {
-		//		$array[$profile->getUUID()] = array($this->score($keywords, $profile->getGoals()->{'keywords'}),
-		//			$profile->getProfile()->{'first'} . ' ' . $profile->getProfile()->{'last'},
-		//			$profile->getProfile()->{'title'},
-		//			$profile->getGoals()->{'goal_description'});
-		//	}
-		//}
-        //
-		//return $array;
 	}
 
 	/**
