@@ -18,6 +18,9 @@ $rcvd = $db->zrange("messages:$my_uid:$il_uid", 0, -1, 'withscores');
 $sent = $db->zrange("messages:$il_uid:$my_uid", 0, -1, 'withscores');
 
 // no messages
+$il_uname = $interlocutor->getUsername();
+$unread = $db->hget("messages:$my_uid:unread", $il_uid);
+
 $response = array(
     'with' => $il_uname,
     'unread' => $unread,
@@ -28,12 +31,10 @@ if (!(count($rcvd) || count($sent))) {
     respond_success($response);
 }
 
-$unread = $db->get("messages:$my_uid:$il_uid:unread");
-$db->set("messages:$my_uid:$il_uid:unread", 0);
-$db->decrby("messages:$my_uid:unread", $unread);
+$db->hdel("messages:$my_uid:unread", $il_uid);
+$db->hincrby("messages:$my_uid:unread", "total", 0 - $unread);
 
 // mark up each message with the right sender
-$il_uname = $interlocutor->getUsername();
 foreach ($rcvd as &$m) {
     array_push($m, $il_uname, $il_uid);
 }

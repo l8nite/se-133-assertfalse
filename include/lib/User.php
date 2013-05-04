@@ -26,6 +26,11 @@ class User
 
         $userIdentifier = 'user:' . UUID::v4();
 
+        // check if username is already in use
+        if ($db->get($userIdentifier) !== null) {
+            return null;
+        }
+
         $db->set($userIdentifier, json_encode($details));
         $db->set("user_id_for:$username", $userIdentifier);
 
