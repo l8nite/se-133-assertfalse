@@ -1,5 +1,10 @@
 <?php
 	include('../include/header.php');
+	if (!$session->isLoggedIn())
+	{
+		header("Location: /index.php");
+		exit;
+	}
 ?>
     <div class="container-fluid" style="margin-top:20px;">
       <div class="row-fluid">
@@ -20,7 +25,7 @@
               <p>Enter desired related skills of mentors to search</p>
               <form class="form-search" id="searchForm">
                   <div class="input-append">
-                    <input type="text" class="search-query">
+                    <input type="text" name="search-query" class="search-query">
                     <button type="submit" class="btn">Search</button>
                   </div>
              </form>
@@ -59,21 +64,27 @@
 				//console.log(returnData);
 				var data = $.parseJSON($.trim(returnData)); //PHP seems to add two invisible, trimmable characters in front of output
 				console.log(data);
-				populate(data);
+				if (data.error)
+					displayError(data);
+				else
+					populate(data);
 			}, 'text');
 		});
 
 		$('#searchForm').on('submit', function(event) {
 			event.preventDefault();
-			$.post('../../php/viewmatches.php', $('#searchForm').serialize(), function(returnData) {
+			$.post('/api/viewmatches.php', $('#searchForm').serialize(), function(returnData) {
 				var data = $.parseJSON($.trim(returnData)); //PHP seems to add two invisible, trimmable characters in front of output
 				console.log(data);
-				populate(data);
+				if (data.error)
+					displayError(data);
+				else
+					populate(data);
 			}, 'text');
 		});
 
 		function populate(matchData) {
-			$('.MentorWeb').empty(); //remote elements with class = MentorWeb, see rest of populate() code
+			$('.MentorWeb').empty(); //remove elements with class = MentorWeb, see rest of populate() code
 
 			for (var i = 0; i < matchData[0].length; i++) {
 				var divRowFluid = $('<div class="row-fluid MentorWeb"></div>');
@@ -98,6 +109,22 @@
 
 				$('#mainList').append(divRowFluid);
 			}
+
+			$('#mainList').show(0); //div mainList has inline "display:none"
+		};
+
+		function displayError(errData) {
+			$('.MentorWeb').empty();
+
+			var divRowFluid = $('<div class="row-fluid MentorWeb"></div>');
+
+			var divSpan8 = $('<div class="span8"></div>');
+			var header2 = $('<h2>' + errData.error + '</h2>');
+
+			divSpan8.append(header2);
+			divRowFluid.append(divSpan8);
+
+			$('#mainList').append(divRowFluid);
 
 			$('#mainList').show(0); //div mainList has inline "display:none"
 		};
