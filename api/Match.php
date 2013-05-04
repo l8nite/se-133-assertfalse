@@ -5,35 +5,42 @@
 class Match {
 
 	private $database;
-	private $uuid;
+	private $user;
 	private $profile;
 
 	/**
 	 * Constructor for Match object.
 	 *
 	 * @param connection $db Redis connection object.
-	 * @param string $uuid User UUID.
+	 * @param array[] $user User data object.
 	 */
-	public function __construct($db, $uuid) {
+	public function __construct($db, $user) {
 		$this->database = $db;
-		$this->uuid = $uuid;
-		$this->profile = new Profile($db, $uuid);
+		$this->user = $user;
+
+		$details = $user->getDetails();
+		if (array_key_exists('profile', $details)) {
+			$this->profile = $details->{'profile'};
+		}
+		else {
+		}
 	}
 
 	/**
 	 * Executes matching algorithm and generates column-based multi-dimensional array of results. Scores of 0 are not returned.
 	 *
+	 * @param array $searchKeywords Array of keywords.
 	 * @return array[] Column-based multi-dimensional array: UUID, score, full name, title, description.
 	 */
 	public function match($searchKeywords = NULL) {
-		$user_type = $this->profile->getProfile()->{'user_type'};
+		$user_type = $this->user->getDetails()->{'mentorType'};
 		$array = NULL;
 
 		if ($searchKeywords == NULL) { //profile comparison
 			if ($user_type == 'MENTOR') {
-				$array = self::scoreAllMentees($this->profile->getExperience()->{'keywords'});
+				$array = self::scoreAllMentees(self::filter($this->profile->{'experience'}));
 			} elseif ($user_type == 'MENTEE') {
-				$array = self::scoreAllMentors($this->profile->getGoals()->{'keywords'});
+				$array = self::scoreAllMentors(self::filter($this->profile->{'goals'}));
 			}
 		} else { //search parameter comparison
 			if ($user_type == 'MENTOR') {
@@ -75,17 +82,17 @@ class Match {
 	 * @return array[] Row-based multi-dimensional array: key = UUID & value = {score, full name, title, description}.
 	 */
 	private function scoreAllMentors($keywords) {
-		$allUsers = $this->database->keys('user:profile:*');
+		$allUsers = $this->database->keys('user:*');
 		$array = array();
 
 		foreach($allUsers as $user) {
-			$profile = new Profile($this->database, substr($user, 13)); //strip off 'user:profile:'
-			$user_type = $profile->getProfile()->{'user_type'};
+			$profile = User::GetUserWithIdentifier($this->database, substr($user, 6)); //strip off 'user:*'
+			$user_type = $profile->getDetails()->{'mentorType'};
 			if ($user_type == 'MENTOR' || $user_type == 'BOTH') {
-				$array[$profile->getUUID()] = array($this->score($keywords, $profile->getExperience()->{'keywords'}),
-					$profile->getProfile()->{'first'} . ' ' . $profile->getProfile()->{'last'},
-					$profile->getProfile()->{'title'},
-					$profile->getExperience()->{'experience_description'});
+				$array[substr($user, 6)] = array($this->score($keywords, self::filter($profile->getDetails()->{'profile'}->{'experience'})),
+					$profile->getDetails()->{'firstName'} . ' ' . $profile->getDetails()->{'lastName'},
+					$profile->getDetails()->{'profile'}->{'title'},
+					$profile->getDetails()->{'profile'}->{'experience'});
 			}
 		}
 
@@ -99,21 +106,36 @@ class Match {
 	 * @return array[] Row-based multi-dimensional array: key = UUID & value = {score, full name, title, description}.
 	 */
 	private function scoreAllMentees($keywords) {
-		$allUsers = $this->database->keys('user:profile:*');
+		$allUsers = $this->database->keys('user:*');
 		$array = array();
 
 		foreach($allUsers as $user) {
-			$profile = new Profile($this->database, substr($user, 13)); //strip off 'user:profile:'
-			$user_type = $profile->getProfile()->{'user_type'};
+			$profile = User::GetUserWithIdentifier($this->database, substr($user, 6)); //strip off 'user:*'
+			$user_type = $profile->getDetails()->{'mentorType'};
 			if ($user_type == 'MENTEE' || $user_type == 'BOTH') {
-				$array[$profile->getUUID()] = array($this->score($keywords, $profile->getGoals()->{'keywords'}),
-					$profile->getProfile()->{'first'} . ' ' . $profile->getProfile()->{'last'},
-					$profile->getProfile()->{'title'},
-					$profile->getGoals()->{'goal_description'});
+				$array[substr($user, 6)] = array($this->score($keywords, self::filter($profile->getDetails()->{'profile'}->{'goals'})),
+					$profile->getDetails()->{'firstName'} . ' ' . $profile->getDetails()->{'lastName'},
+					$profile->getDetails()->{'profile'}->{'title'},
+					$profile->getDetails()->{'profile'}->{'goals'});
 			}
 		}
 
 		return $array;
+		//$allUsers = $this->database->keys('user:profile:*');
+		//$array = array();
+        //
+		//foreach($allUsers as $user) {
+		//	$profile = new Profile($this->database, substr($user, 13)); //strip off 'user:profile:'
+		//	$user_type = $profile->getProfile()->{'user_type'};
+		//	if ($user_type == 'MENTEE' || $user_type == 'BOTH') {
+		//		$array[$profile->getUUID()] = array($this->score($keywords, $profile->getGoals()->{'keywords'}),
+		//			$profile->getProfile()->{'first'} . ' ' . $profile->getProfile()->{'last'},
+		//			$profile->getProfile()->{'title'},
+		//			$profile->getGoals()->{'goal_description'});
+		//	}
+		//}
+        //
+		//return $array;
 	}
 
 	/**

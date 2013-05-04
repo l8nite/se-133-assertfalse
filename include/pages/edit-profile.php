@@ -13,7 +13,7 @@ else:
         <h1>Create your profile <small>(it'll only take a minute!)</small></h1>
         <p>It looks like you haven't given us your profile details yet!  This profile will be shared with other Mentors and Mentees to help you connect with suitable peers.</p>
     </div>
-<? endif; ?>
+<?php endif; ?>
 
 <!-- begin edit profile form -->
     <div class="row-fluid">

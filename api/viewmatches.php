@@ -1,19 +1,24 @@
 ﻿<?php
 //disable domain access control
-header('Access-Control-Allow-Origin: *'); //TODO, fix if possible
-require 'Predis/Autoloader.php';
+header('Access-Control-Allow-Origin: *');
+
+require_once '../include/api-header.php';
 require './Match.php';
-require './Profile.php';
-require './Session.php';
 
-if (isset($_COOKIE['MentorWebSession'])) {
-	Predis\Autoloader::register();
-	//$redis = new Predis\Client('tcp://kong.idlemonkeys.net:6379');
-	$redis = new Predis\Client('tcp://localhost:6379');
+$session = new Session(RedisClient::GetConnectedInstance());
 
-	$uuid = Session::resolveSessionID($redis, $_COOKIE['MentorWebSession']);
-	
-	$match = new Match($redis, $uuid);
+if (!$session->isLoggedIn())
+{
+    header("Location: /index.php");
+    exit;
+}
+
+$details = $user->getDetails();
+var_dump($details);
+$profile = null;
+
+if (array_key_exists('profile', $details)) {
+	$match = new Match($db, $user);
 	echo json_encode($match->match());
 }
 ?>
