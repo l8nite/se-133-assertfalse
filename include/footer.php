@@ -16,7 +16,8 @@
 
     function checkUnreadMessageCount() {
         $.get('/api/messages/unread.php', function (responseData) {
-            var unread = $.parseJSON($.trim(responseData));
+            var response = $.parseJSON($.trim(responseData));
+            var unread = response.total;
             var badge = $('#messages-unread-count');
 
             badge.text(unread);
@@ -26,6 +27,10 @@
             }
             else {
                 badge.hide();
+            }
+
+            if (typeof(updateUnreadMessageCounts) !== undefined) {
+                updateUnreadMessageCounts(response);
             }
         });
     }

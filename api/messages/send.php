@@ -24,8 +24,8 @@ $recipient_userIdentifier = $recipient->getIdentifier();
 $db->zadd("contacts:$recipient_userIdentifier", time(), $sender_userIdentifier);
 $db->zadd("contacts:$sender_userIdentifier", time(), $recipient_userIdentifier);
 $db->zadd("messages:$recipient_userIdentifier:$sender_userIdentifier", time(), $message);
-$db->incr("messages:$recipient_userIdentifier:unread");
-$db->incr("messages:$recipient_userIdentifier:$sender_userIdentifier:unread");
+$db->hincrby("messages:$recipient_userIdentifier:unread", "total", 1);
+$db->hincrby("messages:$recipient_userIdentifier:unread", $sender_userIdentifier, 1);
 
 respond_success(array('success' => true));
 ?>

@@ -23,12 +23,17 @@
             <h4> Contacts </h4>
             <?php
             $contacts = $user->getContacts();
+            $unread = $db->hgetall("messages:" . $user->getIdentifier() . ":unread");
 
             foreach ($contacts as $sender_userIdentifier) {
                 $sender = User::GetUserWithIdentifier($db, $sender_userIdentifier);
                 $sender_uid = $sender->getIdentifier();
                 $sender_name = $sender->getUsername();
+                $unread_count = isset($unread) && array_key_exists($sender_uid, $unread) ? $unread[$sender_uid] : 0;
                 echo "<a class=\"btn btn-link\" onclick=\"showMessagesWith('$sender_uid');\">$sender_name</a>";
+                ?>
+            <span class="badge badge-important messages-unread" uid="<?php echo $sender_uid ?>" style="display: <?php echo $unread_count ? 'visible' : 'none';?>"><?php echo $unread_count ?></span>
+            <?php
             }
             ?>
         </div>
@@ -117,9 +122,6 @@
 
             $('#messages-content-area').animate({ scrollTop: $('#messages-content-area')[0].scrollHeight }, 1000);
             $('#send-message-area').show();
-//            $('#new-message-area').hide();
-//            $('#message-area').show();
-
         });
     }
 
@@ -140,57 +142,20 @@
             s(d.getMinutes(),2) + ':' +
             s(d.getSeconds(),2);
     }
+
+    function updateUnreadMessageCounts(unread) {
+        $('.messages-unread').each(function() {
+            var uid = $(this).attr('uid');
+            if (uid !== selectedInterlocuterUID && unread[uid]) {
+                $(this).text(unread[uid]).show();
+            }
+            else {
+                $(this).text(0).hide();
+            }
+        });
+    }
     </script>
 
 <?php
 	include('../include/footer.php');
 ?>
-
-<?php /*
-
-<?php
-	include('../include/header.php');
-?>
-
-    <script>
-        var currentMessagesFrom = null;
-
-        $(document).ready(function () {
-            setInterval(displayMessagesFromCurrentUser, 500);
-
-          $.get('../../php/getcontacts.php', function(returnData) {
-            var senders = $.parseJSON($.trim(returnData));
-            for (var i = 0; i < senders.length; ++i) {
-                console.log(senders[i]);
-                var li = $('<li uid="' + senders[i].uid + '">' + senders[i].username + '</li>');
-                li.click(function() {
-                    displayMessagesFrom($(this).attr('uid'));
-                });
-                $('#friends').append(li);
-            }
-          }, 'text');
-
-
-          $('#send-new-message-button').click(function () {
-            $to = $('#inputTo').val();
-            $m = $('#inputMessage').val();
-
-            $.get('../../php/sendmessage.php', {'to': $to, 'm': $m}, function () {
-                $('#inputTo').val('');
-                displayMessagesFrom($to);
-            });
-          });
-        });
-
-        function displayMessagesFromCurrentUser() {
-            if (currentMessagesFrom === null) {
-                return;
-            }
-
-            displayMessagesFrom(currentMessagesFrom);
-        }
-
-        </script>
-        </body>
-</html>
-*/?>

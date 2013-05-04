@@ -69,7 +69,7 @@ if (isset($requireAuthenticated) && $requireAuthenticated && !$session->isLogged
                 <?php
                 $unread_messages_count = null;
                 if ($user !== null) {
-                    $unread_messages_count = $db->get('messages:' . $user->getIdentifier() . ':unread');
+                    $unread_messages_count = $db->hget('messages:' . $user->getIdentifier() . ':unread', 'total');
                 }
                 if ($unread_messages_count === null) {
                     $unread_messages_count = 0;
