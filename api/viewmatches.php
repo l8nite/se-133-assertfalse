@@ -3,7 +3,7 @@
 header('Access-Control-Allow-Origin: *');
 
 require_once '../include/api-header.php';
-require './Match.php';
+require '../include/lib/Match.php';
 
 $session = new Session(RedisClient::GetConnectedInstance());
 if (!$session->isLoggedIn())
