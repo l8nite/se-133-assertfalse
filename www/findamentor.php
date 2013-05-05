@@ -1,5 +1,5 @@
 <?php
-    $pageTitle = 'Find a Mentor';
+    $pageTitle = 'Find a <?php echo $mentorMentee ?>';
     $requireAuthenticated = true;
 	include('../include/header.php');
 ?>
@@ -8,18 +8,18 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Mentors</li>
-              <li class="active"><a href="#">Find a Mentor</a></li>
-              <li><a href="#">Review a Mentor</a></li>
-              <li><a href="#">Contact a Mentor</a></li>
-              <li><a href="#">Manage Mentors</a></li>
+              <li class="nav-header"><?php echo $mentorMentee ?>s</li>
+              <li class="active"><a href="#">Find a <?php echo $mentorMentee ?></a></li>
+              <li><a href="#">Review a <?php echo $mentorMentee ?></a></li>
+              <li><a href="#">Contact a <?php echo $mentorMentee ?></a></li>
+              <li><a href="#">Manage <?php echo $mentorMentee ?>s</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div id="mainList" class="span9" style="display:none">
           <div class="hero-unit">
-              <h2>Find A Mentor</h2>
-              <p>Enter desired related skills of mentors to search</p>
+              <h2>Find A <?php echo $mentorMentee ?></h2>
+              <p>Enter desired related skills of <?php echo strtolower($mentorMentee) ?>s to search</p>
               <form class="form-search" id="searchForm">
                   <div class="input-append">
                     <input type="text" name="search-query" class="search-query">
@@ -52,9 +52,6 @@
         </div><!--/span-->
       </div><!--/row-->
 
-<?php
-	include('../include/footer.php');
-?>
 	<script>
 		$(document).ready(function () {
 			$.get('/api/viewmatches.php', function(returnData) {
@@ -126,5 +123,7 @@
 			$('#mainList').show(0); //div mainList has inline "display:none"
 		};
 	</script>
-	</body>
-</html>
+
+<?php
+	include('../include/footer.php');
+?>

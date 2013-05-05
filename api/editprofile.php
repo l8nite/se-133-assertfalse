@@ -2,7 +2,7 @@
 $redirectOnFailure = '/index.php';
 include '../include/api-header.php';
 
-$reqParameters = array('inputTitle', 'inputSummary', 'inputGoals', 'inputExperience');
+$reqParameters = array('inputTitle', 'inputSummary', 'inputGoals', 'inputExperience', 'inputUserType');
 
 foreach ($reqParameters as $parameter)
 {
@@ -18,6 +18,7 @@ $title = $_POST['inputTitle'];
 $summary = $_POST['inputSummary'];
 $goals = $_POST['inputGoals'];
 $experience = $_POST['inputExperience'];
+$userType = $_POST['inputUserType'];
 
 $profile = array(
     'title' => $title,
@@ -26,5 +27,7 @@ $profile = array(
     'experience' => $experience
 );
 
+$user->setUserType($userType);
 $user->setProfile($profile);
+
 header("Location: /index.php");

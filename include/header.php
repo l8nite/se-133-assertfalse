@@ -18,6 +18,12 @@ if (isset($requireAuthenticated) && $requireAuthenticated && !$session->isLogged
     exit;
 }
 
+$mentorMentee = "Mentor";
+
+if ($user->getUserType() == 'MENTOR') {
+    $mentorMentee = "Mentee";
+}
+
 ?>
 <?php
     // TODO: remove debugging code
@@ -91,7 +97,7 @@ if (isset($requireAuthenticated) && $requireAuthenticated && !$session->isLogged
                 <li <?php isActive('contacts.php') ?>><a href="contacts.php"><i class="icon-book"></i> Contacts</a></li>
                 <li <?php isActive('messages.php') ?>><a href="messages.php"><i class="icon-comment"></i> Messages <span class="badge badge-important" id="messages-unread-count" style="display: <?php echo $unread_messages_count ? 'visible' : 'none';?>"><?php echo $unread_messages_count ?></span></a></li>
                 <li <?php isActive('edit-profile.php') ?>><a href="edit-profile.php"><i class="icon-user"></i> My Profile</a></li>
-                <li <?php isActive('findamentor.php') ?>><a href="findamentor.php"><i class="icon-thumbs-up"></i> Find a Mentor</a></li>
+                <li <?php isActive('findamentor.php') ?>><a href="findamentor.php"><i class="icon-thumbs-up"></i> Find a <?php echo $mentorMentee ?></a></li>
                 <?php endif; ?>
                 </ul>
                 <?php if (!$session->isLoggedIn()): ?>

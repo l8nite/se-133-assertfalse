@@ -106,6 +106,15 @@ class User
         $this->persist();
     }
 
+    public function getUserType() {
+        return $this->details->{'mentorType'};
+    }
+
+    public function setUserType($type) {
+        $this->details->{'mentorType'} = $type;
+        $this->persist();
+    }
+
     public function getContacts() {
         $userIdentifier = $this->userIdentifier;
         return $this->db->zrange("contacts:$userIdentifier", 0, -1);

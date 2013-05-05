@@ -49,7 +49,19 @@ else:
                         <textarea type="text" rows="4" name="inputExperience" id="inputExperience" placeholder="What are some interesting things you've done?"><?php echo isset($profile) ? $profile->{'experience'} : "" ?></textarea>
                     </div>
                 </div>
-                <div class="form-actions">
+                <div class="control-group">
+                    <label class="control-label" >Account Type</label>
+                    <div class="controls">
+                    <input type="radio" name="inputUserType" id="menteeRadio" value="MENTEE" <?php if ($user->getDetails()->{'mentorType'} === "MENTEE"): ?>checked="checked"<?php endif; ?>>
+                        Mentee
+                    </div>
+                    <div class="controls">
+                    <input type="radio" name="inputUserType" id="mentorRadio" value="MENTOR" <?php if ($user->getDetails()->{'mentorType'} === "MENTOR"): ?>checked="checked"<?php endif; ?>>
+                        Mentor
+                    </div>
+                </div>
+
+                    <div class="form-actions">
                     <div>
                         Pssst.  You can also <a href="">import your LinkedIn profile <img src="images/linkedin-logo.png" style="width: 25px; height: 25px;" /></a>
                     </div>
