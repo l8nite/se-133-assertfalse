@@ -1,10 +1,7 @@
 <?php
+    $pageTitle = 'Find a Mentor';
+    $requireAuthenticated = true;
 	include('../include/header.php');
-	if (!$session->isLoggedIn())
-	{
-		header("Location: /index.php");
-		exit;
-	}
 ?>
     <div class="container-fluid" style="margin-top:20px;">
       <div class="row-fluid">
