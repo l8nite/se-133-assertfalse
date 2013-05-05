@@ -9,6 +9,13 @@
  * $v4uuid = UUID::v4();
  */
 class UUID {
+    
+  /** Creates a v3 UUID.
+   * 
+   * @param String $namespace The namespace UUID.
+   * @param String $name The username.
+   * @return String The v3 UUID.
+   */
   public static function v3($namespace, $name) {
     if(!self::is_valid($namespace)) return false;
 
@@ -48,6 +55,10 @@ class UUID {
     );
   }
 
+  /** Generates a v4 UUID
+   * 
+   * @return String The v4 UUID.
+   */
   public static function v4() {
     return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
 
@@ -71,6 +82,12 @@ class UUID {
     );
   }
 
+  /** Creates a v5 UUID.
+   * 
+   * @param String $namespace The namespace UUID.
+   * @param String $name The username.
+   * @return String The v5 UUID.
+   */
   public static function v5($namespace, $name) {
     if(!self::is_valid($namespace)) return false;
 
@@ -110,6 +127,11 @@ class UUID {
     );
   }
 
+  /** Checks whether a string is a valid UUID.
+   * 
+   * @param String $uuid A string that is supposed to be a UUID.
+   * @return boolean True if the string is proper UUID; false otherwise.
+   */
   public static function is_valid($uuid) {
     return preg_match('/^\{?[0-9a-f]{8}\-?[0-9a-f]{4}\-?[0-9a-f]{4}\-?'.
                       '[0-9a-f]{4}\-?[0-9a-f]{12}\}?$/i', $uuid) === 1;

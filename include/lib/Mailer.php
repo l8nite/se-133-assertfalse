@@ -1,23 +1,17 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of Mailer
- *
- * @author ryan
- */
-
 require_once '/usr/share/pear/swift_required.php';
 
+/**
+ * This class is used to send mail from the server. Swift Mailer is required.
+ */
 class Mailer {
-    
-  
- 
-
+    /**
+     * Sends an email from the server.
+     *
+     * @param String $to The email recipient.
+     * @param String $subject The subject line of the email.
+     * @param String $body The message of the email.  
+     */
    public static function mail($to, $subject, $body)
    {
         $GMAIL_USERNAME= 'noreply.mentorweb';
@@ -39,6 +33,11 @@ class Mailer {
       $result = $mailer->send($message);
    }
    
+   /** This method stores the content of the email to be sent after a user signs up for the website. The user needs this email to validate their account.
+    * @param String $username The email address of the user.
+    * @param String $token The token that person needs to validate their email address.
+    * @return String The body of the validation email.
+    */
    public static function validateBody($username, $token)
    {
        

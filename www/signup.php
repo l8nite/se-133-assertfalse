@@ -1,4 +1,7 @@
 <?php
+/** This page lets a user sign up for MentorWeb.
+ * 
+ */
 $pageTitle = 'Register Account';
 include('../include/header.php');
 

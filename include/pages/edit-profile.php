@@ -1,6 +1,10 @@
 <div class="container-fluid">
 
 <?php
+/** This webpage allows a user to edit his profile.
+ *
+ */
+
 // only show the page-header if they haven't given us details before
 $details = $user->getDetails();
 $profile = null;

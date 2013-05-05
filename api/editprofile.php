@@ -1,4 +1,7 @@
 ﻿<?php
+/** 
+ * This script is used to update a user's information.
+ */
 $redirectOnFailure = '/index.php';
 include '../include/api-header.php';
 

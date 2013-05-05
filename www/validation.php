@@ -1,4 +1,7 @@
 <?php
+/** This page tells the user whether they have been validated or not.
+ */
+
 $pageTitle = 'Register Account';
 
 require_once '../include/lib/RedisClient.php';

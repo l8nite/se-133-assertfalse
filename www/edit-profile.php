@@ -1,4 +1,9 @@
 <?php
+/**
+This page lets the user edit their profile.
+ */
+
+
 $pageTitle = "Edit Profile";
 $requireAuthenticated = true;
 include('../include/header.php');

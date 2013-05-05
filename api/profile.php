@@ -1,4 +1,7 @@
 ﻿<?php
+/** 
+ * This script is to retrieve a user's profile.
+ */
 include '../include/api-header.php';
 
 if (!isset($_REQUEST['uid'])) {

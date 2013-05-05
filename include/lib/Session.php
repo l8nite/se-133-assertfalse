@@ -20,6 +20,11 @@ class Session
     private $isLoggedIn = false;
     private $db = null;
 
+    /** Constructs a Session object.
+     * 
+     * @param Predis\Client $db The Predis Client object.
+     * @throws Exception Throws an exception when $db is null.
+     */
     public function __construct($db)
     {
         if ($db === null) {
@@ -41,6 +46,12 @@ class Session
         }
     }
 
+    /** Logs a user in. If the credentials are correct, creates a session.
+     * 
+     * @param String $username The username.
+     * @param String $password The user's password.
+     * @return int An integer that represents the result of the login attempt. The meaning of the integer can be determined by the Class constants.
+     */
     public function login($username, $password)
     {
         if ($this->isLoggedIn)
@@ -79,11 +90,17 @@ class Session
         return SESSION_INVALID_CREDENTIALS;
     }
 
+    /** Checks if the user is logged in.
+     * 
+     * @return boolean True if the user is logged in; false otherwise.
+     */
     public function isLoggedIn()
     {
         return $this->isLoggedIn;
     }
 
+    /** Logs a user out.
+     */
     public function logout()
     {
         if (!$this->isLoggedIn)
@@ -97,6 +114,10 @@ class Session
         $this->isLoggedIn = false;
     }
 
+    /** Gets the logged in user's identifier.
+     * 
+     * @return UUID The logged in user's UUID.
+     */
     public function getUserIdentifier()
     {
         return $this->userIdentifier;

@@ -1,4 +1,9 @@
 ﻿<?php
+
+/**
+This page is the header for scripts in the API folder.
+ */
+
 require_once 'lib/RedisClient.php';
 require_once 'lib/Session.php';
 require_once 'lib/User.php';

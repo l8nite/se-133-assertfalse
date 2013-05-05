@@ -1,4 +1,7 @@
 <?php
+/**
+This page is the home page.
+ */
 $pageTitle = "Home";
 include('../include/header.php');
 

@@ -1,134 +1,1348 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a12" title="">
-  <file path="SignIn.php" hash="f4b7f3231e699d5e913914f77778a2ae" package="Default">
-    <include line="3" type="Require Once" package="Default">
-      <name>Predis/Autoloader.php</name>
+  <file path="www/signup.php" hash="9d4a99d1e42d6c8569e84633e8c94fb7" package="Default">
+    <docblock line="2">
+      <description>This page lets a user sign up for MentorWeb.</description>
+      <long-description></long-description>
+    </docblock>
+    <include line="6" type="Include" package="Default">
+      <name>../include/header.php</name>
     </include>
+    <include line="160" type="Include" package="Default">
+      <name>../include/footer.php</name>
+    </include>
+  </file>
+  <file path="www/handle_form.php" hash="409dada9456e2af2dead0794cf25a711" package="Default">
     <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file SignIn.php</error>
+      <error line="0" code="50007">No page-level DocBlock was found in file www/handle_form.php</error>
     </parse_markers>
   </file>
-  <file path="SignIn_script.php" hash="297fbabb8569e3f7436f0c49df9dd7e6" package="Default">
-    <include line="11" type="Require Once" package="Default">
-      <name>SignIn_v2.php</name>
+  <file path="www/findamentor.php" hash="70f393c519b75bf79ff6a6b3405311c7" package="Default">
+    <docblock line="2">
+      <description>This page lets a user find a mentor.</description>
+      <long-description></long-description>
+    </docblock>
+    <include line="8" type="Include" package="Default">
+      <name>../include/header.php</name>
     </include>
-    <include line="12" type="Require Once" package="Default">
-      <name>../Predis/Autoloader.php</name>
+    <include line="131" type="Include" package="Default">
+      <name>../include/footer.php</name>
     </include>
-    <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file SignIn_script.php</error>
-    </parse_markers>
   </file>
-  <file path="SignIn_v2.php" hash="1ad71e8c04c9ad2912f080bad991b834" package="Default">
-    <include line="3" type="Require Once" package="Default">
-      <name>Predis/Autoloader.php</name>
-    </include>
-    <include line="4" type="Require Once" package="Default">
-      <name>../Session.php</name>
-    </include>
-    <class final="false" abstract="false" namespace="global" line="13" package="Default">
-      <extends/>
-      <name>SignIn</name>
-      <full_name>\SignIn</full_name>
-      <docblock line="8">
-        <description>Description of SignIn.</description>
-        <long-description>&lt;p&gt;This class is used to manage signins and signouts.&lt;/p&gt;</long-description>
-        <tag line="8" name="author" description="Ryan"/>
+  <file path="www/profile.php" hash="93f378caead430f3d52ed01f24f95d52" package="Default">
+    <include line="5" type="Include" package="Default">
+      <name>./header.php</name>
+      <docblock line="2">
+        <description>This page presents a user's profile information.</description>
+        <long-description></long-description>
       </docblock>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="21" package="Default">
-        <name>signIn</name>
-        <full_name>signIn</full_name>
-        <docblock line="15">
-          <description>This method is used to sign in a user.</description>
-          <long-description>&lt;p&gt;@param username The user's username;&lt;/p&gt;</long-description>
-          <tag line="15" name="param" description="The user's password;&#10; @return true if the credentials are valid and the session was registered; otherwise false." type="\password" variable="$username">
-            <type by_reference="false">\password</type>
+    </include>
+    <include line="85" type="Include" package="Default">
+      <name>./footer.php</name>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file www/profile.php</error>
+    </parse_markers>
+  </file>
+  <file path="www/contacts.php" hash="e447ab2b998a57122305542f7a0e8a84" package="Default">
+    <docblock line="2">
+      <description>This page redners the user's contacts.</description>
+      <long-description></long-description>
+    </docblock>
+    <include line="9" type="Include" package="Default">
+      <name>../include/header.php</name>
+    </include>
+    <include line="86" type="Include" package="Default">
+      <name>../include/footer.php</name>
+    </include>
+  </file>
+  <file path="www/validation.php" hash="d747317eba7d4a136890f1d0ae18ec1e" package="Default">
+    <docblock line="2">
+      <description>This page tells the user whether they have been validated or not.</description>
+      <long-description></long-description>
+    </docblock>
+    <include line="7" type="Require Once" package="Default">
+      <name>../include/lib/RedisClient.php</name>
+    </include>
+    <include line="8" type="Require Once" package="Default">
+      <name>../include/lib/Validation.php</name>
+    </include>
+    <include line="9" type="Require Once" package="Default">
+      <name>../include/lib/User.php</name>
+    </include>
+    <include line="30" type="Include" package="Default">
+      <name>../include/header.php</name>
+    </include>
+    <include line="64" type="Include" package="Default">
+      <name>../include/footer.php</name>
+    </include>
+  </file>
+  <file path="www/index.php" hash="245d311185fb32dcbea242693bfbfadf" package="Default">
+    <docblock line="2">
+      <description>This page is the home page.</description>
+      <long-description></long-description>
+    </docblock>
+    <include line="6" type="Include" package="Default">
+      <name>../include/header.php</name>
+    </include>
+    <include line="10" type="Include" package="Default">
+      <name>../include/pages/home-marketing.php</name>
+    </include>
+    <include line="14" type="Include" package="Default">
+      <name>../include/pages/home.php</name>
+    </include>
+    <include line="17" type="Include" package="Default">
+      <name>../include/footer.php</name>
+    </include>
+  </file>
+  <file path="www/messages.php" hash="97f8d6f9d03d2d638d254fc9113b5653" package="Default">
+    <docblock line="2">
+      <description>This page creates an interface for the user to send messages to other users.</description>
+      <long-description></long-description>
+    </docblock>
+    <include line="7" type="Include" package="Default">
+      <name>../include/header.php</name>
+    </include>
+    <include line="163" type="Include" package="Default">
+      <name>../include/footer.php</name>
+    </include>
+  </file>
+  <file path="www/about.php" hash="7cd9cb413f9e5b0e31fb4126a6d19065" package="Default">
+    <docblock line="2">
+      <description>This webpage is stores the about information.</description>
+      <long-description></long-description>
+    </docblock>
+    <include line="8" type="Include" package="Default">
+      <name>../include/header.php</name>
+    </include>
+    <include line="19" type="Include" package="Default">
+      <name>../include/footer.php</name>
+    </include>
+  </file>
+  <file path="www/edit-profile.php" hash="d512e9d63d2854203e4663e2ad80febc" package="Default">
+    <docblock line="2">
+      <description>This page lets the user edit their profile.</description>
+      <long-description></long-description>
+    </docblock>
+    <include line="9" type="Include" package="Default">
+      <name>../include/header.php</name>
+    </include>
+    <include line="11" type="Include" package="Default">
+      <name>../include/pages/edit-profile.php</name>
+    </include>
+    <include line="13" type="Include" package="Default">
+      <name>../include/footer.php</name>
+    </include>
+  </file>
+  <file path="api/viewmatches.php" hash="9cc5e94cf64952074202b8efa7d6dc65" package="Default">
+    <docblock line="2">
+      <description>This script is used to retrieve other users who match a user.</description>
+      <long-description></long-description>
+    </docblock>
+    <include line="8" type="Require Once" package="Default">
+      <name>../include/api-header.php</name>
+    </include>
+    <include line="9" type="Require" package="Default">
+      <name>../include/lib/Match.php</name>
+    </include>
+    <markers>
+      <todo line="28">validate input</todo>
+    </markers>
+  </file>
+  <file path="api/editprofile.php" hash="2a54d3b112a54c0525ed2a6e38ca4a9e" package="Default">
+    <docblock line="2">
+      <description>This script is used to update a user's information.</description>
+      <long-description></long-description>
+    </docblock>
+    <include line="6" type="Include" package="Default">
+      <name>../include/api-header.php</name>
+    </include>
+    <markers>
+      <todo line="17">validate parameter values instead of blindly trusting user input</todo>
+    </markers>
+  </file>
+  <file path="api/validate.php" hash="90024e9cf75ab24785a7270b89cfc8f0" package="Default">
+    <docblock line="2">
+      <description>This script is used to validate a token.</description>
+      <long-description></long-description>
+    </docblock>
+    <include line="9" type="Require Once" package="Default">
+      <name>../include/lib/RedisClient.php</name>
+    </include>
+    <include line="10" type="Require Once" package="Default">
+      <name>../include/lib/Validation.php</name>
+    </include>
+    <include line="11" type="Require Once" package="Default">
+      <name>../include/lib/User.php</name>
+    </include>
+  </file>
+  <file path="api/connect.php" hash="0e8f12ebd8c6ed55e559142c5c4b00d6" package="Default">
+    <docblock line="2">
+      <description>This script prevents invalid connect requests.</description>
+      <long-description></long-description>
+    </docblock>
+    <include line="8" type="Require Once" package="Default">
+      <name>../include/api-header.php</name>
+    </include>
+  </file>
+  <file path="api/profile.php" hash="735352e7a8b7612d8827d738a30c0800" package="Default">
+    <include line="5" type="Include" package="Default">
+      <name>../include/api-header.php</name>
+      <docblock line="2">
+        <description>This script is to retrieve a user's profile.</description>
+        <long-description></long-description>
+      </docblock>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file api/profile.php</error>
+    </parse_markers>
+  </file>
+  <file path="api/messages/send.php" hash="cb504c881d898f6930e108f1a7cc1f12" package="Default">
+    <include line="5" type="Include" package="Default">
+      <name>../../include/api-header.php</name>
+      <docblock line="2">
+        <description>This script is used to send messages.</description>
+        <long-description></long-description>
+      </docblock>
+    </include>
+    <markers>
+      <todo line="25">move adding contacts to User class</todo>
+      <todo line="26">write Message class to encapsulate database access</todo>
+    </markers>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file api/messages/send.php</error>
+    </parse_markers>
+  </file>
+  <file path="api/messages/list.php" hash="630f15d26d99bde42e59077e4409befd" package="Default">
+    <include line="5" type="Include" package="Default">
+      <name>../../include/api-header.php</name>
+      <docblock line="2">
+        <description>This page creates a list of messages.</description>
+        <long-description></long-description>
+      </docblock>
+    </include>
+    <function namespace="global" line="53" package="Default">
+      <name>cmp_msg_time</name>
+      <full_name>\cmp_msg_time</full_name>
+      <argument line="53">
+        <name>$a</name>
+        <default></default>
+        <type/>
+      </argument>
+      <argument line="53">
+        <name>$b</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file api/messages/list.php</error>
+      <error line="53" code="50009">No DocBlock was found for function \cmp_msg_time()</error>
+    </parse_markers>
+  </file>
+  <file path="api/messages/unread.php" hash="5b1053924eceb2f01e51abe2856c208a" package="Default">
+    <include line="5" type="Include" package="Default">
+      <name>../../include/api-header.php</name>
+      <docblock line="2">
+        <description>This script is used to get unread messages.</description>
+        <long-description></long-description>
+      </docblock>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file api/messages/unread.php</error>
+    </parse_markers>
+  </file>
+  <file path="api/login.php" hash="6d35c76bf3ea1867597aac7ee4be6966" package="Default">
+    <include line="5" type="Require Once" package="Default">
+      <name>../include/lib/RedisClient.php</name>
+      <docblock line="2">
+        <description>This script is used to authenticate a user into MentorWeb.</description>
+        <long-description></long-description>
+      </docblock>
+    </include>
+    <include line="6" type="Require Once" package="Default">
+      <name>../include/lib/Session.php</name>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file api/login.php</error>
+    </parse_markers>
+  </file>
+  <file path="api/generateValidation.php" hash="c01e593f39495e2c2753b192b66be026" package="Default">
+    <docblock line="2">
+      <description>This script is used to generate a validation token and email.</description>
+      <long-description></long-description>
+    </docblock>
+    <include line="9" type="Require Once" package="Default">
+      <name>../include/lib/RedisClient.php</name>
+    </include>
+    <include line="10" type="Require Once" package="Default">
+      <name>../include/lib/Validation.php</name>
+    </include>
+    <include line="11" type="Require Once" package="Default">
+      <name>../include/lib/User.php</name>
+    </include>
+  </file>
+  <file path="api/logout.php" hash="94f382201cab7023e61fe4e9732bd32c" package="Default">
+    <include line="5" type="Require Once" package="Default">
+      <name>../include/lib/RedisClient.php</name>
+      <docblock line="2">
+        <description>This script is used to disconnect a user from MentorWeb.</description>
+        <long-description></long-description>
+      </docblock>
+    </include>
+    <include line="6" type="Require Once" package="Default">
+      <name>../include/lib/Session.php</name>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file api/logout.php</error>
+    </parse_markers>
+  </file>
+  <file path="api/createaccount.php" hash="0cf27cc84076f18d0b65ef1d09c96872" package="Default">
+    <include line="5" type="Require Once" package="Default">
+      <name>../include/lib/RedisClient.php</name>
+      <docblock line="2">
+        <description>This script is used to create a User object on the database.</description>
+        <long-description></long-description>
+      </docblock>
+    </include>
+    <include line="6" type="Require Once" package="Default">
+      <name>../include/lib/Session.php</name>
+    </include>
+    <include line="7" type="Require Once" package="Default">
+      <name>../include/lib/User.php</name>
+    </include>
+    <markers>
+      <todo line="26">validate parameter values instead of blindly trusting user input</todo>
+    </markers>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file api/createaccount.php</error>
+    </parse_markers>
+  </file>
+  <file path="include/pages/home-marketing.php" hash="41ac743c2c3a30545d58ed34d9b4855b" package="Default">
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file include/pages/home-marketing.php</error>
+    </parse_markers>
+  </file>
+  <file path="include/pages/home.php" hash="b7927a75ea2807d4e8cf319b30788884" package="Default">
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file include/pages/home.php</error>
+    </parse_markers>
+  </file>
+  <file path="include/pages/edit-profile.php" hash="32ba95dd005031bf6089bfe0faaed00d" package="Default">
+    <docblock line="4">
+      <description>This webpage allows a user to edit his profile.</description>
+      <long-description></long-description>
+    </docblock>
+  </file>
+  <file path="include/api-header.php" hash="44b6630de900285a5bd1048b75d704a0" package="Default">
+    <include line="7" type="Require Once" package="Default">
+      <name>lib/RedisClient.php</name>
+      <docblock line="3">
+        <description>This page is the header for scripts in the API folder.</description>
+        <long-description></long-description>
+      </docblock>
+    </include>
+    <include line="8" type="Require Once" package="Default">
+      <name>lib/Session.php</name>
+    </include>
+    <include line="9" type="Require Once" package="Default">
+      <name>lib/User.php</name>
+    </include>
+    <function namespace="global" line="15" package="Default">
+      <name>respond_error</name>
+      <full_name>\respond_error</full_name>
+      <argument line="15">
+        <name>$message</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="global" line="26" package="Default">
+      <name>respond_success</name>
+      <full_name>\respond_success</full_name>
+      <argument line="26">
+        <name>$data</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file include/api-header.php</error>
+      <error line="15" code="50009">No DocBlock was found for function \respond_error()</error>
+      <error line="26" code="50009">No DocBlock was found for function \respond_success()</error>
+    </parse_markers>
+  </file>
+  <file path="include/lib/Match.php" hash="a94c5ad3b78e783e71836199a0109a70" package="Default">
+    <class final="false" abstract="false" namespace="global" line="5" package="Default">
+      <extends/>
+      <name>Match</name>
+      <full_name>\Match</full_name>
+      <docblock line="2">
+        <description>This class allows a user to match with all other mentors or mentees based on a scoring algorithm.</description>
+        <long-description></long-description>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="7" namespace="global" package="Default">
+        <name>$database</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="8" namespace="global" package="Default">
+        <name>$user</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="9" namespace="global" package="Default">
+        <name>$profile</name>
+        <default></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="17" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="11">
+          <description>Constructor for Match object.</description>
+          <long-description></long-description>
+          <tag line="11" name="param" description="Redis connection object." type="\connection" variable="$db">
+            <type by_reference="false">\connection</type>
+          </tag>
+          <tag line="11" name="param" description="User data object." type="array[]" variable="$user">
+            <type by_reference="false">array[]</type>
           </tag>
         </docblock>
-        <argument line="21">
-          <name>$username</name>
-          <default/>
-          <type/>
-        </argument>
-        <argument line="21">
-          <name>$password</name>
-          <default/>
-          <type/>
-        </argument>
-        <argument line="21">
+        <argument line="17">
           <name>$db</name>
-          <default/>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="17">
+          <name>$user</name>
+          <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="private" namespace="global" line="41" package="Default">
-        <name>areValidCredentials</name>
-        <full_name>areValidCredentials</full_name>
-        <docblock line="35">
-          <description>This method checks if a user's credentials are valid.</description>
-          <long-description>&lt;p&gt;@param username The user's username;&lt;/p&gt;</long-description>
-          <tag line="35" name="param" description="The user's password;&#10; @return true if the credentials are valid; otherwise false." type="\password" variable="$username">
-            <type by_reference="false">\password</type>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="31" package="Default">
+        <name>match</name>
+        <full_name>match</full_name>
+        <docblock line="25">
+          <description>Executes matching algorithm and generates column-based multi-dimensional array of results.</description>
+          <long-description>&lt;p&gt;Scores of 0 are not returned.&lt;/p&gt;</long-description>
+          <tag line="25" name="param" description="Array of keywords." type="array" variable="$searchKeywords">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="25" name="return" description="Column-based multi-dimensional array: UUID, score, full name, title, description." type="array[]">
+            <type by_reference="false">array[]</type>
           </tag>
         </docblock>
-        <argument line="41">
+        <argument line="31">
+          <name>$searchKeywords</name>
+          <default>NULL</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="80" package="Default">
+        <name>scoreAllMentors</name>
+        <full_name>scoreAllMentors</full_name>
+        <docblock line="74">
+          <description>Scores array of keywords against all mentors' experience keywords.</description>
+          <long-description></long-description>
+          <tag line="74" name="param" description="Array of keywords." type="string[]" variable="$keywords">
+            <type by_reference="false">string[]</type>
+          </tag>
+          <tag line="74" name="return" description="Row-based multi-dimensional array: key = UUID &amp; value = {score, full name, title, description}." type="array[]">
+            <type by_reference="false">array[]</type>
+          </tag>
+        </docblock>
+        <argument line="80">
+          <name>$keywords</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="104" package="Default">
+        <name>scoreAllMentees</name>
+        <full_name>scoreAllMentees</full_name>
+        <docblock line="98">
+          <description>Scores array of keywords against all mentees' goal keywords.</description>
+          <long-description></long-description>
+          <tag line="98" name="param" description="Array of keywords." type="string[]" variable="$keywords">
+            <type by_reference="false">string[]</type>
+          </tag>
+          <tag line="98" name="return" description="Row-based multi-dimensional array: key = UUID &amp; value = {score, full name, title, description}." type="array[]">
+            <type by_reference="false">array[]</type>
+          </tag>
+        </docblock>
+        <argument line="104">
+          <name>$keywords</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="128" package="Default">
+        <name>filter</name>
+        <full_name>filter</full_name>
+        <docblock line="122">
+          <description>Splits a string on given regex and filters out words based on a dictionary.</description>
+          <long-description>&lt;p&gt;Words that are not filtered are converted to lower case.&lt;/p&gt;</long-description>
+          <tag line="122" name="param" description="User profile entry." type="string" variable="$string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="122" name="return" description="Array of keywords." type="string[]">
+            <type by_reference="false">string[]</type>
+          </tag>
+        </docblock>
+        <argument line="128">
+          <name>$string</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="private" namespace="global" line="150" package="Default">
+        <name>score</name>
+        <full_name>score</full_name>
+        <docblock line="143">
+          <description>Counts the number of words that exist in both of two string arrays.</description>
+          <long-description></long-description>
+          <tag line="143" name="param" description="String array." type="string[]" variable="$array1">
+            <type by_reference="false">string[]</type>
+          </tag>
+          <tag line="143" name="param" description="String array." type="string[]" variable="$array2">
+            <type by_reference="false">string[]</type>
+          </tag>
+          <tag line="143" name="return" description="Comparison score." type="integer">
+            <type by_reference="false">integer</type>
+          </tag>
+        </docblock>
+        <argument line="150">
+          <name>$array1</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="150">
+          <name>$array2</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file include/lib/Match.php</error>
+      <error line="7" code="50018">No DocBlock was found for property $database</error>
+      <error line="8" code="50018">No DocBlock was found for property $user</error>
+      <error line="9" code="50018">No DocBlock was found for property $profile</error>
+    </parse_markers>
+  </file>
+  <file path="include/lib/UUID.php" hash="f2cd60c8450ab3483708f416d0c36ea7" package="Default">
+    <class final="false" abstract="false" namespace="global" line="11" package="Default">
+      <extends/>
+      <name>UUID</name>
+      <full_name>\UUID</full_name>
+      <docblock line="2">
+        <description>A class for generating v3, v4, or v5 UUIDs
+From: http://www.php.net/manual/en/function.uniqid.php#94959</description>
+        <long-description></long-description>
+        <tag line="2" name="author" description="Andrew Moore&#10;Usage:&#10;$v3uuid = UUID::v3('1546058f-5a25-4334-85ae-e68f2a44bbaf', 'SomeRandomString');&#10;$v4uuid = UUID::v4();"/>
+      </docblock>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="19" package="Default">
+        <name>v3</name>
+        <full_name>v3</full_name>
+        <docblock line="13">
+          <description>Creates a v3 UUID.</description>
+          <long-description></long-description>
+          <tag line="13" name="param" description="The namespace UUID." type="String" variable="$namespace">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="13" name="param" description="The username." type="String" variable="$name">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="13" name="return" description="The v3 UUID." type="String">
+            <type by_reference="false">String</type>
+          </tag>
+        </docblock>
+        <argument line="19">
+          <name>$namespace</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="19">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="62" package="Default">
+        <name>v4</name>
+        <full_name>v4</full_name>
+        <docblock line="58">
+          <description>Generates a v4 UUID</description>
+          <long-description></long-description>
+          <tag line="58" name="return" description="The v4 UUID." type="String">
+            <type by_reference="false">String</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="91" package="Default">
+        <name>v5</name>
+        <full_name>v5</full_name>
+        <docblock line="85">
+          <description>Creates a v5 UUID.</description>
+          <long-description></long-description>
+          <tag line="85" name="param" description="The namespace UUID." type="String" variable="$namespace">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="85" name="param" description="The username." type="String" variable="$name">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="85" name="return" description="The v5 UUID." type="String">
+            <type by_reference="false">String</type>
+          </tag>
+        </docblock>
+        <argument line="91">
+          <name>$namespace</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="91">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="135" package="Default">
+        <name>is_valid</name>
+        <full_name>is_valid</full_name>
+        <docblock line="130">
+          <description>Checks whether a string is a valid UUID.</description>
+          <long-description></long-description>
+          <tag line="130" name="param" description="A string that is supposed to be a UUID." type="String" variable="$uuid">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="130" name="return" description="True if the string is proper UUID; false otherwise." type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="135">
+          <name>$uuid</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file include/lib/UUID.php</error>
+    </parse_markers>
+  </file>
+  <file path="include/lib/User.php" hash="f53c81de67b1796c0bfa7101e513f411" package="Default">
+    <include line="2" type="Require Once" package="Default">
+      <name>RedisClient.php</name>
+    </include>
+    <include line="3" type="Require Once" package="Default">
+      <name>UUID.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="8" package="Default">
+      <extends/>
+      <name>User</name>
+      <full_name>\User</full_name>
+      <docblock line="5">
+        <description>This class allows for the creation and update of a user's profile.</description>
+        <long-description></long-description>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="99" namespace="global" package="Default">
+        <name>$db</name>
+        <default>null</default>
+      </property>
+      <property final="false" static="false" visibility="private" line="100" namespace="global" package="Default">
+        <name>$details</name>
+        <default>null</default>
+      </property>
+      <property final="false" static="false" visibility="private" line="101" namespace="global" package="Default">
+        <name>$userIdentifier</name>
+        <default>null</default>
+      </property>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="20" package="Default">
+        <name>CreateUser</name>
+        <full_name>CreateUser</full_name>
+        <docblock line="10">
+          <description>Creates a User in the database.</description>
+          <long-description>&lt;p&gt;Creates a User object for manipulation.&lt;/p&gt;</long-description>
+          <tag line="10" name="param" description="The username." type="String" variable="$username">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="10" name="param" description="The user's password." type="String" variable="$password">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="10" name="param" description="Whether the person wants to be a mentor, mentee, or both." type="String" variable="$mentorType">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="10" name="param" description="The user's firstname." type="String" variable="$firstName">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="10" name="param" description="The user's lastname." type="String" variable="$lastName">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="10" name="param" description="The user's zip code." type="String" variable="$zipCode">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="10" name="return" description="A user object for manipulation, or null if the user already exists." type="\User">
+            <type by_reference="false">\User</type>
+          </tag>
+        </docblock>
+        <argument line="20">
           <name>$username</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
-        <argument line="41">
+        <argument line="20">
           <name>$password</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
-        <argument line="41">
+        <argument line="20">
+          <name>$mentorType</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="20">
+          <name>$firstName</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="20">
+          <name>$lastName</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="20">
+          <name>$zipCode</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="56" package="Default">
+        <name>GetUser</name>
+        <full_name>GetUser</full_name>
+        <docblock line="50">
+          <description>Gets the User from the database.</description>
+          <long-description></long-description>
+          <tag line="50" name="param" description="The Predis client connected to the Redis database." type="\Predis/Client" variable="$db">
+            <type by_reference="false">\Predis/Client</type>
+          </tag>
+          <tag line="50" name="param" description="A string that is either the UUID or username." type="String" variable="$identifierOrUsername">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="50" name="return" description="A User object with the user's data loaded into it." type="\User">
+            <type by_reference="false">\User</type>
+          </tag>
+        </docblock>
+        <argument line="56">
           <name>$db</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
-      </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="55" package="Default">
-        <name>isSignedIn</name>
-        <full_name>isSignedIn</full_name>
-        <docblock line="51">
-          <description>This method checks if a user is signed in.</description>
-          <long-description>&lt;p&gt;@return true if the user is signed in; otherwise false.&lt;/p&gt;</long-description>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="64" package="Default">
-        <name>getUUID</name>
-        <full_name>getUUID</full_name>
-        <docblock line="60">
-          <description>This method gets the userid of the user signed in.</description>
-          <long-description>&lt;p&gt;@return the UUID if the user is signed in; otherwise NULL.&lt;/p&gt;</long-description>
-        </docblock>
-        <argument line="64">
-          <name>$redis</name>
-          <default/>
+        <argument line="56">
+          <name>$identifierOrUsername</name>
+          <default></default>
           <type/>
         </argument>
       </method>
       <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="72" package="Default">
-        <name>signOut</name>
-        <full_name>signOut</full_name>
-        <docblock line="69">
-          <description>This method signs a user out.</description>
-          <long-description/>
+        <name>GetUserWithUsername</name>
+        <full_name>GetUserWithUsername</full_name>
+        <docblock line="66">
+          <description>Gets the User from the database.</description>
+          <long-description></long-description>
+          <tag line="66" name="param" description="The Predis client connected to the Redis database." type="\Predis/Client" variable="$db">
+            <type by_reference="false">\Predis/Client</type>
+          </tag>
+          <tag line="66" name="param" description="The username." type="String" variable="$username">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="66" name="return" description="A User object with the user's data loaded into it." type="\User">
+            <type by_reference="false">\User</type>
+          </tag>
+        </docblock>
+        <argument line="72">
+          <name>$db</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="72">
+          <name>$username</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="89" package="Default">
+        <name>GetUserWithIdentifier</name>
+        <full_name>GetUserWithIdentifier</full_name>
+        <docblock line="83">
+          <description>Gets the User from the database.</description>
+          <long-description></long-description>
+          <tag line="83" name="param" description="The Predis client connected to the Redis database." type="\Predis/Client" variable="$db">
+            <type by_reference="false">\Predis/Client</type>
+          </tag>
+          <tag line="83" name="param" description="The UUID." type="String" variable="$userIdentifier">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="83" name="return" description="A User object with the user's data loaded into it." type="\User">
+            <type by_reference="false">\User</type>
+          </tag>
+        </docblock>
+        <argument line="89">
+          <name>$db</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="89">
+          <name>$userIdentifier</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="109" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="103">
+          <description>The constructor to create a User object.</description>
+          <long-description></long-description>
+          <tag line="103" name="param" description="The Predis client connected to the Redis database." type="\Predis/Client" variable="$db">
+            <type by_reference="false">\Predis/Client</type>
+          </tag>
+          <tag line="103" name="param" description="The UUID." type="String" variable="$userIdentifier">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="103" name="throws" description="Throws an exception when the constructor is missing parameters." type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="109">
+          <name>$db</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="109">
+          <name>$userIdentifier</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="125" package="Default">
+        <name>persist</name>
+        <full_name>persist</full_name>
+        <docblock line="122">
+          <description>This method stores the User in the database.</description>
+          <long-description>&lt;p&gt;To be called when the User object's attributes are changed.&lt;/p&gt;</long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="133" package="Default">
+        <name>getIdentifier</name>
+        <full_name>getIdentifier</full_name>
+        <docblock line="129">
+          <description>Gets the UUID</description>
+          <long-description></long-description>
+          <tag line="129" name="return" description="The UUID." type="String">
+            <type by_reference="false">String</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="141" package="Default">
+        <name>getUsername</name>
+        <full_name>getUsername</full_name>
+        <docblock line="137">
+          <description>Gets the username.</description>
+          <long-description></long-description>
+          <tag line="137" name="return" description="The Username." type="String">
+            <type by_reference="false">String</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="149" package="Default">
+        <name>getDetails</name>
+        <full_name>getDetails</full_name>
+        <docblock line="145">
+          <description>Returns a JSON array with the User's details.</description>
+          <long-description></long-description>
+          <tag line="145" name="return" description="A JSON array with the User's details." type="\JSONArray">
+            <type by_reference="false">\JSONArray</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="157" package="Default">
+        <name>setProfile</name>
+        <full_name>setProfile</full_name>
+        <docblock line="153">
+          <description>Sets the User's profile information.</description>
+          <long-description></long-description>
+          <tag line="153" name="param" description="The profile information." type="String" variable="$profile">
+            <type by_reference="false">String</type>
+          </tag>
+        </docblock>
+        <argument line="157">
+          <name>$profile</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="166" package="Default">
+        <name>getUserType</name>
+        <full_name>getUserType</full_name>
+        <docblock line="162">
+          <description>Gets the uers's type.</description>
+          <long-description></long-description>
+          <tag line="162" name="return" description="The User's type (mentor, mentee, or both)." type="String">
+            <type by_reference="false">String</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="174" package="Default">
+        <name>setUserType</name>
+        <full_name>setUserType</full_name>
+        <docblock line="170">
+          <description>Sets the user's type.</description>
+          <long-description></long-description>
+          <tag line="170" name="param" description="The type of account the user has." type="String" variable="$type">
+            <type by_reference="false">String</type>
+          </tag>
+        </docblock>
+        <argument line="174">
+          <name>$type</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="183" package="Default">
+        <name>getContacts</name>
+        <full_name>getContacts</full_name>
+        <docblock line="179">
+          <description>Gets the user's contacts.</description>
+          <long-description></long-description>
+          <tag line="179" name="return" description="An array with the user's contacts." type="array">
+            <type by_reference="false">array</type>
+          </tag>
         </docblock>
       </method>
     </class>
     <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file SignIn_v2.php</error>
-      <error line="15" code="50015">Argument $password is missing from the Docblock of signIn()</error>
-      <error line="15" code="50015">Argument $db is missing from the Docblock of signIn()</error>
-      <error line="35" code="50015">Argument $password is missing from the Docblock of areValidCredentials()</error>
-      <error line="35" code="50015">Argument $db is missing from the Docblock of areValidCredentials()</error>
-      <error line="60" code="50015">Argument $redis is missing from the Docblock of getUUID()</error>
+      <error line="0" code="50007">No page-level DocBlock was found in file include/lib/User.php</error>
+      <error line="99" code="50018">No DocBlock was found for property $db</error>
+      <error line="100" code="50018">No DocBlock was found for property $details</error>
+      <error line="101" code="50018">No DocBlock was found for property $userIdentifier</error>
+    </parse_markers>
+  </file>
+  <file path="include/lib/RedisClient.php" hash="4f3ae14799f7133d6fe24d8a858a318e" package="Default">
+    <include line="3" type="Require Once" package="Default">
+      <name>Predis/Autoloader.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="8" package="Default">
+      <extends/>
+      <name>RedisClient</name>
+      <full_name>\RedisClient</full_name>
+      <docblock line="5">
+        <description>Factory method which returns a single instance of the Predis client object</description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="14" package="Default">
+        <name>GetConnectedInstance</name>
+        <full_name>GetConnectedInstance</full_name>
+        <docblock line="10">
+          <description>Returns a connected instance of the predis client.</description>
+          <long-description>&lt;p&gt;Multiple calls to this function will return the same result.&lt;/p&gt;</long-description>
+          <tag line="10" name="return" description="The Predis client. If one already exists, returns that one." type="\Predis\Client">
+            <type by_reference="false">\Predis\Client</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="30" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="26">
+          <description>Constructor that should not be called.</description>
+          <long-description></long-description>
+          <tag line="26" name="throws" description="RedisClient should not be constructed." type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file include/lib/RedisClient.php</error>
+    </parse_markers>
+  </file>
+  <file path="include/lib/Session.php" hash="7786bb1661aa23f00e3a1e78fe48b02e" package="Default">
+    <include line="2" type="Require Once" package="Default">
+      <name>UUID.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="9" package="Default">
+      <extends/>
+      <name>Session</name>
+      <full_name>\Session</full_name>
+      <docblock line="4">
+        <description>A class for managing a MentorWeb user's session
+Upon construction, determines if the user is logged in or not
+Has facilities for logging a user in or out</description>
+        <long-description></long-description>
+      </docblock>
+      <constant namespace="global" line="11" package="Default">
+        <name>SESSION_CREATED</name>
+        <full_name>SESSION_CREATED</full_name>
+        <value>1</value>
+      </constant>
+      <constant namespace="global" line="12" package="Default">
+        <name>SESSION_INVALID_CREDENTIALS</name>
+        <full_name>SESSION_INVALID_CREDENTIALS</full_name>
+        <value>-1</value>
+      </constant>
+      <constant namespace="global" line="13" package="Default">
+        <name>SESSION_INVALID_USERNAME</name>
+        <full_name>SESSION_INVALID_USERNAME</full_name>
+        <value>-2</value>
+      </constant>
+      <constant namespace="global" line="15" package="Default">
+        <name>SessionCookieName</name>
+        <full_name>SessionCookieName</full_name>
+        <value>'MentorWebSession'</value>
+      </constant>
+      <constant namespace="global" line="16" package="Default">
+        <name>SessionExpireTimeSeconds</name>
+        <full_name>SessionExpireTimeSeconds</full_name>
+        <value>2592000</value>
+      </constant>
+      <property final="false" static="false" visibility="private" line="18" namespace="global" package="Default">
+        <name>$sessionIdentifier</name>
+        <default>null</default>
+      </property>
+      <property final="false" static="false" visibility="private" line="19" namespace="global" package="Default">
+        <name>$userIdentifier</name>
+        <default>null</default>
+      </property>
+      <property final="false" static="false" visibility="private" line="20" namespace="global" package="Default">
+        <name>$isLoggedIn</name>
+        <default>false</default>
+      </property>
+      <property final="false" static="false" visibility="private" line="21" namespace="global" package="Default">
+        <name>$db</name>
+        <default>null</default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="28" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="23">
+          <description>Constructs a Session object.</description>
+          <long-description></long-description>
+          <tag line="23" name="param" description="The Predis Client object." type="\Predis\Client" variable="$db">
+            <type by_reference="false">\Predis\Client</type>
+          </tag>
+          <tag line="23" name="throws" description="Throws an exception when $db is null." type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="28">
+          <name>$db</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="55" package="Default">
+        <name>login</name>
+        <full_name>login</full_name>
+        <docblock line="49">
+          <description>Logs a user in.</description>
+          <long-description>&lt;p&gt;If the credentials are correct, creates a session.&lt;/p&gt;</long-description>
+          <tag line="49" name="param" description="The username." type="String" variable="$username">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="49" name="param" description="The user's password." type="String" variable="$password">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="49" name="return" description="An integer that represents the result of the login attempt. The meaning of the integer can be determined by the Class constants." type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="55">
+          <name>$username</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="55">
+          <name>$password</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="97" package="Default">
+        <name>isLoggedIn</name>
+        <full_name>isLoggedIn</full_name>
+        <docblock line="93">
+          <description>Checks if the user is logged in.</description>
+          <long-description></long-description>
+          <tag line="93" name="return" description="True if the user is logged in; false otherwise." type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="104" package="Default">
+        <name>logout</name>
+        <full_name>logout</full_name>
+        <docblock line="102">
+          <description>Logs a user out.</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="121" package="Default">
+        <name>getUserIdentifier</name>
+        <full_name>getUserIdentifier</full_name>
+        <docblock line="117">
+          <description>Gets the logged in user's identifier.</description>
+          <long-description></long-description>
+          <tag line="117" name="return" description="The logged in user's UUID." type="\UUID">
+            <type by_reference="false">\UUID</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file include/lib/Session.php</error>
+      <error line="18" code="50018">No DocBlock was found for property $sessionIdentifier</error>
+      <error line="19" code="50018">No DocBlock was found for property $userIdentifier</error>
+      <error line="20" code="50018">No DocBlock was found for property $isLoggedIn</error>
+      <error line="21" code="50018">No DocBlock was found for property $db</error>
+    </parse_markers>
+  </file>
+  <file path="include/lib/Mailer.php" hash="507ec421f4bff4bff842cd55ac94e141" package="Default">
+    <include line="2" type="Require Once" package="Default">
+      <name>/usr/share/pear/swift_required.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="7" package="Default">
+      <extends/>
+      <name>Mailer</name>
+      <full_name>\Mailer</full_name>
+      <docblock line="4">
+        <description>This class is used to send mail from the server.</description>
+        <long-description>&lt;p&gt;Swift Mailer is required.&lt;/p&gt;</long-description>
+      </docblock>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="15" package="Default">
+        <name>mail</name>
+        <full_name>mail</full_name>
+        <docblock line="8">
+          <description>Sends an email from the server.</description>
+          <long-description></long-description>
+          <tag line="8" name="param" description="The email recipient." type="String" variable="$to">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="8" name="param" description="The subject line of the email." type="String" variable="$subject">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="8" name="param" description="The message of the email." type="String" variable="$body">
+            <type by_reference="false">String</type>
+          </tag>
+        </docblock>
+        <argument line="15">
+          <name>$to</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="15">
+          <name>$subject</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="15">
+          <name>$body</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="41" package="Default">
+        <name>validateBody</name>
+        <full_name>validateBody</full_name>
+        <docblock line="36">
+          <description>This method stores the content of the email to be sent after a user signs up for the website.</description>
+          <long-description>&lt;p&gt;The user needs this email to validate their account.&lt;/p&gt;</long-description>
+          <tag line="36" name="param" description="The email address of the user." type="String" variable="$username">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="36" name="param" description="The token that person needs to validate their email address." type="String" variable="$token">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="36" name="return" description="The body of the validation email." type="String">
+            <type by_reference="false">String</type>
+          </tag>
+        </docblock>
+        <argument line="41">
+          <name>$username</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="41">
+          <name>$token</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file include/lib/Mailer.php</error>
+    </parse_markers>
+  </file>
+  <file path="include/lib/Validation.php" hash="2ed3985ff444a22dcae6b42407f347da" package="Default">
+    <include line="2" type="Require Once" package="Default">
+      <name>UUID.php</name>
+    </include>
+    <include line="3" type="Require Once" package="Default">
+      <name>Mailer.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="8" package="Default">
+      <extends/>
+      <name>Validation</name>
+      <full_name>\Validation</full_name>
+      <docblock line="5">
+        <description>This class is used to validate a user's email.</description>
+        <long-description></long-description>
+      </docblock>
+      <constant namespace="global" line="10" package="Default">
+        <name>TOKEN_VALIDATED</name>
+        <full_name>TOKEN_VALIDATED</full_name>
+        <value>"true"</value>
+      </constant>
+      <constant namespace="global" line="11" package="Default">
+        <name>TOKEN_NOT_VALIDATED</name>
+        <full_name>TOKEN_NOT_VALIDATED</full_name>
+        <value>"false"</value>
+      </constant>
+      <property final="false" static="false" visibility="private" line="13" namespace="global" package="Default">
+        <name>$db</name>
+        <default>null</default>
+      </property>
+      <property final="false" static="false" visibility="private" line="14" namespace="global" package="Default">
+        <name>$UUID</name>
+        <default>null</default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="22" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="16">
+          <description>The constuctor.</description>
+          <long-description></long-description>
+          <tag line="16" name="param" description="The Predis client connected to the Predis database." type="\Predis/Client" variable="$db">
+            <type by_reference="false">\Predis/Client</type>
+          </tag>
+          <tag line="16" name="param" description="The user's UUID." type="String" variable="$UUID">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="16" name="throws" description="Throws an exception when $db is null." type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="22">
+          <name>$db</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="22">
+          <name>$UUID</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="37" package="Default">
+        <name>getToken</name>
+        <full_name>getToken</full_name>
+        <docblock line="33">
+          <description>Gets the token that user needs to validate the email address.</description>
+          <long-description></long-description>
+          <tag line="33" name="return" description="The token." type="String">
+            <type by_reference="false">String</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="47" package="Default">
+        <name>isValidated</name>
+        <full_name>isValidated</full_name>
+        <docblock line="43">
+          <description>Checks whether the user has validated their email.</description>
+          <long-description></long-description>
+          <tag line="43" name="return" description="True if the user has validated their email; false otherwise." type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="57" package="Default">
+        <name>generateToken</name>
+        <full_name>generateToken</full_name>
+        <docblock line="53">
+          <description>Generates a token in the database that user needs to validate his email.</description>
+          <long-description>&lt;p&gt;This function does nothing if it has already been called for a particular user.&lt;/p&gt;</long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="81" package="Default">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="77">
+          <description>Checks if the token presented is valid.</description>
+          <long-description>&lt;p&gt;This function does nothing if the user has already been validated. The results are stored in the database.&lt;/p&gt;</long-description>
+          <tag line="77" name="param" description="The token to be checked." type="String" variable="$token">
+            <type by_reference="false">String</type>
+          </tag>
+        </docblock>
+        <argument line="81">
+          <name>$token</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="100" package="Default">
+        <name>sendValidationEmail</name>
+        <full_name>sendValidationEmail</full_name>
+        <docblock line="97">
+          <description>Sends an email with a link that user can use to validate his email.</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file include/lib/Validation.php</error>
+      <error line="13" code="50018">No DocBlock was found for property $db</error>
+      <error line="14" code="50018">No DocBlock was found for property $UUID</error>
+    </parse_markers>
+  </file>
+  <file path="include/footer.php" hash="546ebb3cacc927dc12f881cdab297ce5" package="Default">
+    <markers>
+      <todo line="17">this can probably be a much lower interval</todo>
+    </markers>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file include/footer.php</error>
+    </parse_markers>
+  </file>
+  <file path="include/header.php" hash="9ad9be0339d1ca4f8a0c4708d480a598" package="Default">
+    <include line="7" type="Require Once" package="Default">
+      <name>lib/RedisClient.php</name>
+      <docblock line="2">
+        <description>This page is the header for the pages in the www folder.</description>
+        <long-description></long-description>
+      </docblock>
+    </include>
+    <include line="8" type="Require Once" package="Default">
+      <name>lib/Session.php</name>
+    </include>
+    <include line="9" type="Require Once" package="Default">
+      <name>lib/User.php</name>
+    </include>
+    <function namespace="global" line="96" package="Default">
+      <name>isActive</name>
+      <full_name>\isActive</full_name>
+      <argument line="96">
+        <name>$page</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <markers>
+      <todo line="37">remove debugging code</todo>
+    </markers>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file include/header.php</error>
+      <error line="96" code="50009">No DocBlock was found for function \isActive()</error>
     </parse_markers>
   </file>
   <package name="Default" full_name="Default"/>
   <namespace name="global" full_name="global"/>
-  <marker count="0">todo</marker>
+  <marker count="7">todo</marker>
   <marker count="0">fixme</marker>
   <deprecated count="0"/>
 </project>

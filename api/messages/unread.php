@@ -1,4 +1,7 @@
 ﻿<?php
+/** 
+ * This script is used to get unread messages.
+ */
 include '../../include/api-header.php';
 
 $my_uid = $user->getIdentifier();

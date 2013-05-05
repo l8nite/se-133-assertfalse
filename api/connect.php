@@ -1,4 +1,7 @@
 ﻿<?php
+/** 
+ * This script prevents invalid connect requests.
+ */
 //disable domain access control
 header('Access-Control-Allow-Origin: *');
 

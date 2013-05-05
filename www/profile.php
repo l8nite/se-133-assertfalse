@@ -1,4 +1,7 @@
 <?php
+/**
+This page presents a user's profile information.
+ */
 	include('./header.php');
 ?>
 

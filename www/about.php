@@ -1,4 +1,9 @@
 <?php
+/**
+This webpage is stores the about information.
+ */
+
+
 $pageTitle = "About";
 include('../include/header.php');
 ?>
