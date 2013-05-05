@@ -29,7 +29,7 @@
                 badge.hide();
             }
 
-            if (typeof(updateUnreadMessageCounts) !== undefined) {
+            if (typeof updateUnreadMessageCounts !== "undefined") {
                 updateUnreadMessageCounts(response);
             }
         });

@@ -46,6 +46,7 @@ if (isset($requireAuthenticated) && $requireAuthenticated && !$session->isLogged
 
         <link href="styles/mentorweb.css" rel="stylesheet">
 
+
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript">
@@ -55,6 +56,9 @@ if (isset($requireAuthenticated) && $requireAuthenticated && !$session->isLogged
                 });
             });
         </script>
+
+        <script src="rateit/jquery.rateit.min.js"></script>
+        <link href="rateit/rateit.css" rel="stylesheet">
     </head>
 
     <body>
@@ -62,7 +66,7 @@ if (isset($requireAuthenticated) && $requireAuthenticated && !$session->isLogged
     <!-- main page container, closed in footer.php -->
     <div class="container">
 
-        <div class="navbar navbar-inverse">
+        <div class="navbar">
             <div class="navbar-inner">
                 <a class="brand" href="/index.php">MentorWeb</a>
                 <ul class="nav">
@@ -84,20 +88,10 @@ if (isset($requireAuthenticated) && $requireAuthenticated && !$session->isLogged
                 ?>
                     <li <?php isActive('index.php') ?>><a href="index.php"><i class="icon-home"></i> Home</a></li>
                 <?php if ($session->isLoggedIn()): ?>
-                <li <?php isActive('messages.php') ?>><a href="messages.php">Messages <span class="badge badge-important" id="messages-unread-count" style="display: <?php echo $unread_messages_count ? 'visible' : 'none';?>"><?php echo $unread_messages_count ?></span></a></li>
-                    <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="./edit-profile.php">Edit Profile</a></li>
-                            <li><a href="#">Upgrade to Premium</a></li>
-                            <li class="divider"></li>
-                            <li class="nav-header">Mentors</li>
-                            <li><a href="findamentor.php">Find a Mentor</a></li>
-                            <li><a href="#">Review a Mentor</a></li>
-                            <li><a href="#">Manage Mentors</a></li>
-                        </ul>
-                    </li>
+                <li <?php isActive('contacts.php') ?>><a href="contacts.php"><i class="icon-book"></i> Contacts</a></li>
+                <li <?php isActive('messages.php') ?>><a href="messages.php"><i class="icon-comment"></i> Messages <span class="badge badge-important" id="messages-unread-count" style="display: <?php echo $unread_messages_count ? 'visible' : 'none';?>"><?php echo $unread_messages_count ?></span></a></li>
+                <li <?php isActive('edit-profile.php') ?>><a href="edit-profile.php"><i class="icon-user"></i> My Profile</a></li>
+                <li <?php isActive('findamentor.php') ?>><a href="findamentor.php"><i class="icon-thumbs-up"></i> Find a Mentor</a></li>
                 <?php endif; ?>
                 </ul>
                 <?php if (!$session->isLoggedIn()): ?>

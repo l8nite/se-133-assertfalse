@@ -114,7 +114,7 @@
                 var div = $(
                     '<div class="row-fluid">' +
                     '<div class="span6"><h5>' + message.name + '</h5></div>'
-                    + '<div class="span6 date" style="text-align: right;"><h5>' + df + '</h5></div>'
+                    + '<div class="span5 date" style="text-align: right;"><h5>' + df + '</h5></div>'
                     + '</div><div class="row-fluid">'
                     + '<div class="span12">' + message.text + '</div></div>');
                 $('#messages-content-area').append(div);
