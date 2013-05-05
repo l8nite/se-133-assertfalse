@@ -11,12 +11,12 @@
  * @author ryan
  */
 
-require_once '/usr/share/pear/swift_required.php';
+require_once 'swift_required.php';
 
 class Mailer {
-    
-  
- 
+
+
+
 
    public static function mail($to, $subject, $body)
    {
@@ -24,7 +24,7 @@ class Mailer {
         $PASSWORD = 'pearl<eed';
         $FROM = 'noreply.mentorweb@gmail.com';
         $EMAILNAME = 'MentorWeb Team';
-       
+
        $transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl")
         ->setUsername($GMAIL_USERNAME)
         ->setPassword($PASSWORD);
@@ -38,13 +38,13 @@ class Mailer {
 
       $result = $mailer->send($message);
    }
-   
+
    public static function validateBody($username, $token)
    {
-       
+
        $HOST_DOMAIN='assertfalse.pw';
-       
-       return 
+
+       return
 "Dear $username,
 
 Thank you for registering at the MentorWeb. Before we can activate your account one last step must be taken to complete your registration.
@@ -60,7 +60,7 @@ All the best,
 MentorWeb Team"
         ;
    }
-   
+
 }
 
 ?>
