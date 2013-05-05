@@ -5,18 +5,7 @@
 ?>
     <div class="container-fluid" style="margin-top:20px;">
       <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header"><?php echo $mentorMentee ?>s</li>
-              <li class="active"><a href="#">Find a <?php echo $mentorMentee ?></a></li>
-              <li><a href="#">Review a <?php echo $mentorMentee ?></a></li>
-              <li><a href="#">Contact a <?php echo $mentorMentee ?></a></li>
-              <li><a href="#">Manage <?php echo $mentorMentee ?>s</a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div id="mainList" class="span9" style="display:none">
+        <div id="mainList" class="span12" style="display:none">
           <div class="hero-unit">
               <h2>Find A <?php echo $mentorMentee ?></h2>
               <p>Enter desired related skills of <?php echo strtolower($mentorMentee) ?>s to search</p>
@@ -85,13 +74,23 @@
 
 				var divSpan4 = $('<div class="span4"></div>');
 				var img = $('<img src="images/Bill-Nye.jpg" alt="" />');
-
 				var divSpan8 = $('<div class="span8"></div>');
 				var header2 = $('<h2>' + matchData[2][i] + '</h2>');
 				var header4 = $('<h4>' + matchData[3][i] + '</h4>');
 				var para = $('<p>' + matchData[4][i] + '</p>');
 
-				var para2 = $('<p><a href="#" class="btn btn-success btn-small">Connect &raquo;</a></p>');
+				var connectID = matchData[0][i];
+				var para2 = $('<p><a href="#" id="' + connectID.substr(5) + '" class="btn btn-success btn-small">Connect &raquo;</a></p>');
+				para2.on('click', function(event) {
+					event.preventDefault();
+					$.post('/api/connect.php?connect=' + connectID, function(returnData) {
+						var data = $.parseJSON($.trim(returnData));
+						console.log(data);
+						if (data.success) {
+							$('#'+connectID.substr(5)).html('Connected.');
+						}
+					}, 'text');
+				});
 
 				divSpan4.append(img);
 				divSpan8.append(header2);
