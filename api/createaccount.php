@@ -37,5 +37,6 @@ if ($user === null) {
     exit;
 }
 
-$session->login($username, $password);
-header("Location: /index.php");
+//$session->login($username, $password);
+//header("Location: /index.php");
+header("Location: generateValidation.php?username=$username");
