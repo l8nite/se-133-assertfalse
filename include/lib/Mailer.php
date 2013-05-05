@@ -42,7 +42,7 @@ class Mailer {
    public static function validateBody($username, $token)
    {
        
-       $HOST_DOMAIN='southferry.info';
+       $HOST_DOMAIN='assertfalse.pw';
        
        return 
 "Dear $username,
