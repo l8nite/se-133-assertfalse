@@ -85,7 +85,7 @@ class Match {
 			$profile = User::GetUserWithIdentifier($this->database, $user);
 			$user_type = $profile->getDetails()->{'mentorType'};
 			if (array_key_exists('profile', $profile->getDetails()) && ($user_type == 'MENTOR' || $user_type == 'BOTH')) {
-				$array[substr($user, 5)] = array($this->score($keywords, self::filter($profile->getDetails()->{'profile'}->{'experience'})),
+				$array[$user] = array($this->score($keywords, self::filter($profile->getDetails()->{'profile'}->{'experience'})),
 					$profile->getDetails()->{'firstName'} . ' ' . $profile->getDetails()->{'lastName'},
 					$profile->getDetails()->{'profile'}->{'title'},
 					$profile->getDetails()->{'profile'}->{'experience'});
@@ -109,7 +109,7 @@ class Match {
 			$profile = User::GetUserWithIdentifier($this->database, $user);
 			$user_type = $profile->getDetails()->{'mentorType'};
 			if (array_key_exists('profile', $profile->getDetails()) && ($user_type == 'MENTEE' || $user_type == 'BOTH')) {
-				$array[substr($user, 5)] = array($this->score($keywords, self::filter($profile->getDetails()->{'profile'}->{'goals'})),
+				$array[$user] = array($this->score($keywords, self::filter($profile->getDetails()->{'profile'}->{'goals'})),
 					$profile->getDetails()->{'firstName'} . ' ' . $profile->getDetails()->{'lastName'},
 					$profile->getDetails()->{'profile'}->{'title'},
 					$profile->getDetails()->{'profile'}->{'goals'});
