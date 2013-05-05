@@ -20,9 +20,12 @@ if (isset($requireAuthenticated) && $requireAuthenticated && !$session->isLogged
 
 $mentorMentee = "Mentor";
 
-if ($user->getUserType() == 'MENTOR') {
-    $mentorMentee = "Mentee";
+if ($user !== null) {
+	if ($user->getUserType() == 'MENTOR') {
+	    $mentorMentee = "Mentee";
+	}
 }
+
 
 ?>
 <?php
