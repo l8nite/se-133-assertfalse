@@ -46,6 +46,9 @@ if (isset($requireAuthenticated) && $requireAuthenticated && !$session->isLogged
 
         <link href="styles/mentorweb.css" rel="stylesheet">
 
+
+
+
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript">
@@ -55,6 +58,9 @@ if (isset($requireAuthenticated) && $requireAuthenticated && !$session->isLogged
                 });
             });
         </script>
+
+        <script src="rateit/jquery.rateit.min.js"></script>
+        <link href="rateit/rateit.css" rel="stylesheet">
     </head>
 
     <body>

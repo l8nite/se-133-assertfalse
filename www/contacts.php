@@ -47,39 +47,33 @@
     <script type="text/javascript">
     var selectedContactUID = null;
 
-    $(function() {
-    });
-
     function showProfileFor(uid) {
         selectedContactUID = uid;
-        /*
 
         $.get('/api/profile.php', { 'uid': uid }, function (returnData) {
             var response = $.parseJSON($.trim(returnData));
 
             $('#contacts-content-area').empty().append(
-                '<h3>contacts with ' + response.with + '</h3>'
+                '<h3>' + response.username + '</h3>'
             );
 
-            for (var i = 0; i < response.contacts.length; ++i) {
-                var message = response.contacts[i];
-                var d = new Date(message.time * 1000);
-                var df = getISODateTime(d);
-                var div = $(
-                    '<div class="row-fluid">' +
-                    '<div class="span6"><h5>' + message.name + '</h5></div>'
-                    + '<div class="span5 date" style="text-align: right;"><h5>' + df + '</h5></div>'
-                    + '</div><div class="row-fluid">'
-                    + '<div class="span12">' + message.text + '</div></div>');
-                $('#contacts-content-area').append(div);
+            if (response.profile !== undefined) {
+                var rating = $('<div class="rateit" data-rateit-value="3.5"></div>');
+                rating.rateit();
+
+                $('#contacts-content-area').append(
+                    '<div class="row-fluid"><div class="span3"></div><div class="span6"><img src="images/Bill-Nye.jpg"/></div><div class="span3"></div></div>' +
+                    '<div class="row-fluid"><div class="span2"><b>Summary:</b></div><div class="span9">' + response.profile.summary + '</div></div>' +
+                    '<div class="row-fluid"><div class="span2"><b>Goals:</b></div><div class="span9">' + response.profile.goals + '</div></div>' +
+                    '<div class="row-fluid"><div class="span2"><b>Experience:</b></div><div class="span9">' + response.profile.experience + '</div></div>'
+                );
+
+                $('#contacts-content-area').append(rating);
             }
-
-            $('#contacts-content-area').animate({ scrollTop: $('#contacts-content-area')[0].scrollHeight }, 1000);
-            $('#send-message-area').show();
-         */
-        alert('show profile for: ' + uid);
-    });
-
+            else {
+                $('#contacts-content-area').append('<div><h2>This user has not created their profile yet!</h2></div>');
+            }
+        });
     }
     </script>
 
