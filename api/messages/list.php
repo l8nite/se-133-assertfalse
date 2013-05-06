@@ -1,4 +1,7 @@
 ﻿<?php
+/** 
+ * This page creates a list of messages.
+ */
 include '../../include/api-header.php';
 
 if (!isset($_REQUEST['with'])) {

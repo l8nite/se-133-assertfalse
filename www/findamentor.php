@@ -1,4 +1,8 @@
 <?php
+/**
+This page lets a user find a mentor.
+ */
+
     $pageTitle = 'Find a <?php echo $mentorMentee ?>';
     $requireAuthenticated = true;
 	include('../include/header.php');

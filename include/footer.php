@@ -1,4 +1,10 @@
-    <hr>
+<?php
+/**
+This page is the footer for the pages in the www folder.
+ */
+?>
+
+<hr>
 
     <footer>
     <p>&copy; MentorWeb 2013 - <i class="icon-book"></i> <a href="/about.php" style="color: #5a5a5a;">About</a></p>

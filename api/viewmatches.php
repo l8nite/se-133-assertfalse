@@ -1,4 +1,7 @@
 ﻿<?php
+/** 
+ * This script is used to retrieve other users who match a user.
+ */
 //disable domain access control
 header('Access-Control-Allow-Origin: *');
 

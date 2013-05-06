@@ -28,9 +28,11 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">8</span></a></li>
+                <span class="label label-info">37</span></a></li>
 <li><a href="markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul></ul></a></li>
+                <ul><li>todo 
+                <span class="label label-info">7</span>
+</li></ul></a></li>
 <li><a href="deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
 </ul>
@@ -45,7 +47,15 @@
                             if Javascript is enabled.
                         </div></noscript>
 <div class="row">
-<div class="span4"><ul class="side-nav nav nav-list"><li class="nav-header">Navigation</li></ul></div>
+<div class="span4"><ul class="side-nav nav nav-list">
+<li class="nav-header">Navigation</li>
+<li><a href="#api/viewmatches.php"><i class="icon-file"></i>api/viewmatches.php</a></li>
+<li><a href="#api/editprofile.php"><i class="icon-file"></i>api/editprofile.php</a></li>
+<li><a href="#api/messages/send.php"><i class="icon-file"></i>api/messages/send.php</a></li>
+<li><a href="#api/createaccount.php"><i class="icon-file"></i>api/createaccount.php</a></li>
+<li><a href="#include/footer.php"><i class="icon-file"></i>include/footer.php</a></li>
+<li><a href="#include/header.php"><i class="icon-file"></i>include/header.php</a></li>
+</ul></div>
 <div class="span8">
 <ul class="breadcrumb">
 <li>
@@ -53,18 +63,127 @@
 </li>
 <li>Markers</li>
 </ul>
-<div class="alert alert-info">No markers have been found in this project.</div>
 <div class="alert alert-info">
                         The following markers were found:
-                        <ul></ul>
+                        <ul><li>todo 
+                <span class="label label-info">7</span>
+</li></ul>
 </div>
-<div id="marker-accordion"></div>
+<div id="marker-accordion">
+<div class="package-contents">
+<a name="api/viewmatches.php" id="api/viewmatches.php"></a><h3>
+<i class="icon-file"></i>api/viewmatches.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>28</td>
+<td>validate input</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="api/editprofile.php" id="api/editprofile.php"></a><h3>
+<i class="icon-file"></i>api/editprofile.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>17</td>
+<td>validate parameter values instead of blindly trusting user input</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="api/messages/send.php" id="api/messages/send.php"></a><h3>
+<i class="icon-file"></i>api/messages/send.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>25</td>
+<td>move adding contacts to User class</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>26</td>
+<td>write Message class to encapsulate database access</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="api/createaccount.php" id="api/createaccount.php"></a><h3>
+<i class="icon-file"></i>api/createaccount.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>26</td>
+<td>validate parameter values instead of blindly trusting user input</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="include/footer.php" id="include/footer.php"></a><h3>
+<i class="icon-file"></i>include/footer.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>17</td>
+<td>this can probably be a much lower interval</td>
+</tr>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="include/header.php" id="include/header.php"></a><h3>
+<i class="icon-file"></i>include/header.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>todo</td>
+<td>37</td>
+<td>remove debugging code</td>
+</tr>
+</table></div>
+</div>
+</div>
 </div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-04-28T04:48:43-07:00.<br></footer></div>
+            generated on 2013-05-05T16:37:12-07:00.<br></footer></div>
 </div>
 </body>
 </html>

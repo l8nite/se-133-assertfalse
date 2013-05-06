@@ -1,4 +1,7 @@
 ﻿<?php
+/** 
+ * This script is used to send messages.
+ */
 include '../../include/api-header.php';
 
 

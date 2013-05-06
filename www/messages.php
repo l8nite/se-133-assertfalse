@@ -1,4 +1,7 @@
 <?php
+/**
+This page creates an interface for the user to send messages to other users.
+ */
     $pageTitle = 'Messages';
     $requireAuthenticated = true;
 	include('../include/header.php');

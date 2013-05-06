@@ -3,24 +3,22 @@ require_once 'UUID.php';
 require_once 'Mailer.php';
 
 /**
- * A class for managing a MentorWeb user's session
- * Upon construction, determines if the user is logged in or not
- * Has facilities for logging a user in or out
+ * This class is used to validate a user's email.
  */
 class Validation
 {
     const TOKEN_VALIDATED = "true";
     const TOKEN_NOT_VALIDATED = "false";
     
-
-    //private $sessionIdentifier = null;
-    
-    //private $isLoggedIn = false;
     private $db = null;
     private $UUID = null;
-    //private $token = null;
-    //private $validated = false;
-
+   
+    /** The constuctor.
+     * 
+     * @param Predis/Client $db The Predis client connected to the Predis database.
+     * @param String $UUID The user's UUID.
+     * @throws Exception Throws an exception when $db is null.
+     */
     public function __construct($db, $UUID)
     {
         if ($db === null) {
@@ -29,26 +27,33 @@ class Validation
 
         $this->db = $db;
         $this->UUID = $UUID;
-        /*
-        $this->generateToken();
-        $details = json_decode($this->db->get("uuid:validation:$this->UUID"));
-        $this->token = $details->{'token'};
-        $this->validated = ($details->{'validated'} === self::TOKEN_VALIDATED);
-        */
+       
     }
     
+    /** Gets the token that user needs to validate the email address.
+     * 
+     * @return String The token.
+     */
     public function getToken()
     {
         $details = json_decode($this->db->get("uuid:validation:$this->UUID"));
         return $details->{'token'};
     }
     
+    /** Checks whether the user has validated their email.
+     * 
+     * @return boolean True if the user has validated their email; false otherwise.
+     */
      public function isValidated()
     {
         $details = json_decode($this->db->get("uuid:validation:$this->UUID"));
         return ($details->{'validated'} == self::TOKEN_VALIDATED);
     }
     
+    /** Generates a token in the database that user needs to validate his email. This function does nothing if it has already been called for a particular user.
+     * 
+     * 
+     */
     public function generateToken()
     {
         $jsonDetails = $this->db->get("uuid:validation:$this->UUID");
@@ -69,6 +74,10 @@ class Validation
         }
     }
     
+    /** Checks if the token presented is valid. This function does nothing if the user has already been validated. The results are stored in the database.
+     * 
+     * @param String $token The token to be checked.
+     */
     public function validate($token)
     {
         if ($this->isValidated())
@@ -85,6 +94,9 @@ class Validation
         }
     }
 
+    /** Sends an email with a link that user can use to validate his email.
+     * 
+     */
     public function sendValidationEmail()
     {
        $user = User::GetUserWithIdentifier($this->db, $this->UUID);

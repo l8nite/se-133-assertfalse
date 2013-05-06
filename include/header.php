@@ -1,4 +1,9 @@
 <?php
+/**
+This page is the header for the pages in the www folder.
+ */
+
+
 require_once 'lib/RedisClient.php';
 require_once 'lib/Session.php';
 require_once 'lib/User.php';

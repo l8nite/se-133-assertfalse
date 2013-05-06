@@ -1,4 +1,7 @@
 ﻿<?php
+/** 
+ * This script is used to create a User object on the database.
+ */
 require_once '../include/lib/RedisClient.php';
 require_once '../include/lib/Session.php';
 require_once '../include/lib/User.php';

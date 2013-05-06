@@ -1,4 +1,9 @@
 <?php
+/**
+This page redners the user's contacts.
+ */
+
+
     $pageTitle = 'Connections';
     $requireAuthenticated = true;
 	include('../include/header.php');

@@ -1,3 +1,5 @@
+<?php /**This page tries to persuade users to join MentorWeb*/?>
+
 <div id="myCarousel" class="carousel slide">
     <div class="carousel-inner">
         <div class="item active">

@@ -1,4 +1,7 @@
 <?php
+/** 
+ * This script is used to authenticate a user into MentorWeb.
+ */
 require_once '../include/lib/RedisClient.php';
 require_once '../include/lib/Session.php';
 
